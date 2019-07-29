@@ -46,7 +46,7 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		*/
 					// maybe do things like this sometime?
 		
-		request.getRequestDispatcher("FeedingSchedulesHome.jsp").forward(request, response);
+		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 				// I'll need to create this at some point
 	}
 }
