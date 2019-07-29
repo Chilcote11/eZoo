@@ -35,7 +35,7 @@
 			<tbody>
 				<c:forEach var="schedule" items="${feedingSchedules}">
 					<tr>
-						<td><fmt:formatNumber value="${schedule.feedingScheduleID}"/></td>
+						<td><fmt:formatNumber value="${schedule.scheduleID}"/></td>
 						
 						<td><c:out value="${schedule.feedingTime}" /></td>
 						<td><c:out value="${schedule.recurrence}" /></td>
