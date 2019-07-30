@@ -25,7 +25,7 @@ public class FeedingSchedulesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// Grab a list of Animals from the Database
+		// Grab a list of Feeding Schedules from the Database
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
 
@@ -46,7 +46,7 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		*/
 					// maybe do things like this sometime?
 		
-		request.getRequestDispatcher("FeedingSchedulesHome.jsp").forward(request, response);
+		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 				// I'll need to create this at some point
 	}
 }
