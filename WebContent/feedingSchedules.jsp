@@ -23,7 +23,7 @@
 		<h1>eZoo <small>Feeding Schedules</small></h1>
 		<hr class="paw-primary">
 		
-		<form action="deleteFeedingSchedule" method="post">
+		<form action="feedingSchedules" method="post">
 		
 			<table class="table table-striped table-hover table-responsive ezoo-datatable">
 				<thead>
