@@ -24,17 +24,17 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;		// default
 	
-	@Override
+	/*@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
-	}
+	}*/
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
 		String feedingTime = request.getParameter("feedingTime");
 		String recurrence = request.getParameter("recurrence");
@@ -43,7 +43,7 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		
 		// Create a FeedingSchedule object from the parameters
 		FeedingSchedule scheduleToDelete = new FeedingSchedule(
-				id,
+				scheduleID,
 				feedingTime,
 				recurrence,
 				food,

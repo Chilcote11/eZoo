@@ -1,6 +1,7 @@
 package com.examples.ezoo.servlets;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -49,4 +50,5 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 				// I'll need to create this at some point
 	}
+	
 }
