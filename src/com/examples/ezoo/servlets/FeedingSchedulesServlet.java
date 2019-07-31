@@ -32,23 +32,8 @@ public class FeedingSchedulesServlet extends HttpServlet {
 
 		// Populate the list into a variable that will be stored in the session
 		request.getSession().setAttribute("feedingSchedules", feedingSchedules);
-		
-		/*Animal largest = new Animal();
-		for (Animal a : animals)
-			if (a.getWeight() > largest.getWeight())
-				largest = a;
-		request.getSession().setAttribute("largestAnimal", largest);
-		
-		Animal longest = new Animal();
-		for (Animal a : animals)
-			if (a.getName().length() > longest.getName().length())
-				longest = a;
-		request.getSession().setAttribute("longestNamedAnimal", longest);
-		*/
-					// maybe do things like this sometime?
-		
+				
 		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
-				// I'll need to create this at some point
 	}
 	
 	@Override
@@ -84,14 +69,14 @@ public class FeedingSchedulesServlet extends HttpServlet {
 			// change the message
 			request.getSession().setAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("deleteFeedingSchedule.jsp").forward(request, response);
+			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			// change the message
 			request.getSession().setAttribute("message",  "There was a problem deleting the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("deleteFeedingSchedule.jsp").forward(request, response);
+			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 		}
 		
 	}
