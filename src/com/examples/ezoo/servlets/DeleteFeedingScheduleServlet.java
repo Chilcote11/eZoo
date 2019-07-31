@@ -35,12 +35,12 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
 		@SuppressWarnings("unchecked")
-		List<FeedingSchedule> feedingSchedules = (List<FeedingSchedule>) request.getAttribute("feedingSchedules");
+		List<Object> feedingSchedules = (List<Object>) request.getAttribute("feedingSchedules");
 //		Object feedingSchedules = request.getSession().getAttribute("feedingSchedules");
 		System.out.println("feedingSchedules: " + feedingSchedules);
-		FeedingSchedule ID1 = feedingSchedules.get(0);
+		Object schedule1 = feedingSchedules.get(0);
 		System.out.println("schedule1 : ");
-		System.out.println(ID1);
+		System.out.println(schedule1);
 		
 		/*		// figure out logic later
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
