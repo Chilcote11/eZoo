@@ -37,6 +37,7 @@
 					<th class="text-center">Weight(lbs)</th>
 					<th class="text-center">Type</th>
 					<th class="text-center">Health Status</th>
+					<th class="text-center">Animal ID</th>
 					<th class="text-center">Feeding Schedule ID</th>
 				</tr>
 			</thead>
@@ -58,6 +59,7 @@
 						
 						<td><c:out value="${animal.type}" /></td>
 						<td><c:out value="${animal.healthStatus}" /></td>
+						<td><fmt:formatNumber value="${animal.animalID}"/></td>
 						<td><fmt:formatNumber value="${animal.feedingScheduleID}"/></td>
 					</tr>
 				</c:forEach>

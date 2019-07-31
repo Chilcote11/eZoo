@@ -28,12 +28,12 @@
 			<table class="table table-striped table-hover table-responsive ezoo-datatable">
 				<thead>
 					<tr>
-						<th class="text-center"></th>
 						<th class="text-center">Schedule ID</th>
 						<th class="text-center">Feeding Time</th>
 						<th class="text-center">Recurrence</th>
 						<th class="text-center">Food</th>
 						<th class="text-center">Notes</th>
+            <th class="text-center"></th>
 					</tr>
 				</thead>
 				<tbody>

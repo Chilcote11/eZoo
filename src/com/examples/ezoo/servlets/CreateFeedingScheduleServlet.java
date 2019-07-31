@@ -57,7 +57,7 @@ public class CreateFeedingScheduleServlet extends HttpServlet {
 			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 			request.getSession().setAttribute("messageClass", "alert-success");
 //			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-			response.sendRedirect("animalCare");		// animal care servlet? "animalCare"
+			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
 		} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			
