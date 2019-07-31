@@ -34,10 +34,15 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
-//		List<FeedingSchedule> feedingSchedules = request.getAttribute("feedingSchedules");
-		Object feedingSchedules = request.getSession().getAttribute("feedingSchedules");
+		@SuppressWarnings("unchecked")
+		List<FeedingSchedule> feedingSchedules = (List<FeedingSchedule>) request.getAttribute("feedingSchedules");
+//		Object feedingSchedules = request.getSession().getAttribute("feedingSchedules");
 		System.out.println("feedingSchedules: " + feedingSchedules);
-		/*
+		FeedingSchedule ID1 = feedingSchedules.get(0);
+		System.out.println("schedule1 : ");
+		System.out.println(ID1);
+		
+		/*		// figure out logic later
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
 		String feedingTime = request.getParameter("feedingTime");
@@ -59,7 +64,7 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 			dao.deleteFeedingSchedule(scheduleToDelete);
 			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
 			request.getSession().setAttribute("messageClass", "alert-success");*/
-			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
+			response.sendRedirect("feedingSchedules");		// need this
 		/*} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			
