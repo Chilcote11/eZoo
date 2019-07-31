@@ -51,42 +51,4 @@ public class FeedingSchedulesServlet extends HttpServlet {
 				// I'll need to create this at some point
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Get Parameters
-		// We MUST convert to int since parameters are always Strings
-		
-		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
-		
-		String feedingTime = request.getParameter("feedingTime");
-		String recurrence = request.getParameter("recurrence");
-		String food = request.getParameter("food");
-		String notes = request.getParameter("notes");
-		
-		// Create a FeedingSchedule object from the parameters
-		FeedingSchedule scheduleToDelete = new FeedingSchedule(
-				scheduleID,
-				feedingTime,
-				recurrence,
-				food,
-				notes);
-		
-		// Call DAO method
-		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
-		try {
-			dao.deleteFeedingSchedule(scheduleToDelete);
-			request.getSession().setAttribute("message",  "Feeding schedule successfully removed");
-			request.getSession().setAttribute("messageClass", "alert-success");
-//			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-			// change the message
-			request.getSession().setAttribute("message",  "There was a problem creating the feeding schedule at this time");
-			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
-		}
-		
-	}
 }

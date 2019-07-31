@@ -28,7 +28,7 @@
 			<table class="table table-striped table-hover table-responsive ezoo-datatable">
 				<thead>
 					<tr>
-						<th class="text-center">Remove</th>
+						<th class="text-center"></th>
 						<th class="text-center">Schedule ID</th>
 						<th class="text-center">Feeding Time</th>
 						<th class="text-center">Recurrence</th>
@@ -39,13 +39,13 @@
 				<tbody>
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
-							<td><button type="submit" class="btn btn-primary">Delete</button>
 							<td><fmt:formatNumber value="${schedule.scheduleID}"/></td>
 							
 							<td><c:out value="${schedule.feedingTime}" /></td>
 							<td><c:out value="${schedule.recurrence}" /></td>
 							<td><c:out value="${schedule.food}" /></td>
-							<td><c:out value="${schedule.notes}" /></td>	
+							<td><c:out value="${schedule.notes}" /></td>
+							<td><button type="submit" class="btn btn-primary">Delete</button>	
 						</tr>
 					</c:forEach>
 				</tbody>
