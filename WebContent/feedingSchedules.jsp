@@ -22,31 +22,36 @@
  
 		<h1>eZoo <small>Feeding Schedules</small></h1>
 		<hr class="paw-primary">
-		<table class="table table-striped table-hover table-responsive ezoo-datatable">
-			<thead>
-				<tr>
-					<th class="text-center">Remove</th>
-					<th class="text-center">Schedule ID</th>
-					<th class="text-center">Feeding Time</th>
-					<th class="text-center">Recurrence</th>
-					<th class="text-center">Food</th>
-					<th class="text-center">Notes</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="schedule" items="${feedingSchedules}">
+		
+		<form action="deleteFeedingSchedule" method="post">
+		
+			<table class="table table-striped table-hover table-responsive ezoo-datatable">
+				<thead>
 					<tr>
-						<td><button type="submit" class="btn btn-primary">Delete</button>
-						<td><fmt:formatNumber value="${schedule.feedingScheduleID}"/></td>
-						
-						<td><c:out value="${schedule.feedingTime}" /></td>
-						<td><c:out value="${schedule.recurrence}" /></td>
-						<td><c:out value="${schedule.food}" /></td>
-						<td><c:out value="${schedule.notes}" /></td>	
+						<th class="text-center">Remove</th>
+						<th class="text-center">Schedule ID</th>
+						<th class="text-center">Feeding Time</th>
+						<th class="text-center">Recurrence</th>
+						<th class="text-center">Food</th>
+						<th class="text-center">Notes</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>	
+				</thead>
+				<tbody>
+					<c:forEach var="schedule" items="${feedingSchedules}">
+						<tr>
+							<td><button type="submit" class="btn btn-primary">Delete</button>
+							<td><fmt:formatNumber value="${schedule.feedingScheduleID}"/></td>
+							
+							<td><c:out value="${schedule.feedingTime}" /></td>
+							<td><c:out value="${schedule.recurrence}" /></td>
+							<td><c:out value="${schedule.food}" /></td>
+							<td><c:out value="${schedule.notes}" /></td>	
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			
+		</form>	
 	  </div>
 	</header>
 	
