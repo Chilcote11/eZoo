@@ -40,7 +40,7 @@
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
 							<td><button type="submit" class="btn btn-primary">Delete</button>
-							<td><fmt:formatNumber value="${schedule.feedingScheduleID}"/></td>
+							<td><fmt:formatNumber value="${schedule.scheduleID}"/></td>
 							
 							<td><c:out value="${schedule.feedingTime}" /></td>
 							<td><c:out value="${schedule.recurrence}" /></td>
