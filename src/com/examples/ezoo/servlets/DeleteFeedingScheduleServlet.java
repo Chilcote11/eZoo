@@ -37,10 +37,10 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		@SuppressWarnings("unchecked")
 		List<FeedingSchedule> feedingSchedules = (List<FeedingSchedule>) request.getAttribute("feedingSchedules");
 //		Object feedingSchedules = request.getSession().getAttribute("feedingSchedules");
-		System.out.println("feedingSchedules: " + feedingSchedules);
+		System.out.println("feedingSchedules: " + feedingSchedules);		// prints: "feedingSchedules: null"
 		FeedingSchedule schedule1 = feedingSchedules.get(0);
 		System.out.println("schedule1 : ");
-		System.out.println(schedule1);
+		System.out.println(schedule1);		// NullPointerException thrown at this line
 		
 		/*		// figure out logic later
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
