@@ -2,6 +2,7 @@ package com.examples.ezoo.servlets;
 
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +34,10 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
-		
+//		List<FeedingSchedule> feedingSchedules = request.getAttribute("feedingSchedules");
+		Object feedingSchedules = request.getSession().getAttribute("feedingSchedules");
+		System.out.println("feedingSchedules: " + feedingSchedules);
+		/*
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
 		String feedingTime = request.getParameter("feedingTime");
@@ -54,9 +58,9 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		try {
 			dao.deleteFeedingSchedule(scheduleToDelete);
 			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
-			request.getSession().setAttribute("messageClass", "alert-success");
+			request.getSession().setAttribute("messageClass", "alert-success");*/
 			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-		} catch(SQLIntegrityConstraintViolationException e) {
+		/*} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			
 			// change the message
@@ -71,6 +75,6 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("deleteFeedingSchedule.jsp").forward(request, response);
 		}
-		
+		*/
 	}
 }
