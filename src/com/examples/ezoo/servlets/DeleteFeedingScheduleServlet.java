@@ -74,14 +74,14 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 			// change the message
 			request.getSession().setAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("deleteFeedingSchedule.jsp").forward(request, response);
+			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			// change the message
 			request.getSession().setAttribute("message",  "There was a problem deleting the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("deleteFeedingSchedule.jsp").forward(request, response);
+			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 		}
 		
 	}
