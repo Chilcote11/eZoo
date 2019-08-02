@@ -1,6 +1,7 @@
 package com.examples.ezoo.servlets;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,22 +32,8 @@ public class FeedingSchedulesServlet extends HttpServlet {
 
 		// Populate the list into a variable that will be stored in the session
 		request.getSession().setAttribute("feedingSchedules", feedingSchedules);
-		
-		/*Animal largest = new Animal();
-		for (Animal a : animals)
-			if (a.getWeight() > largest.getWeight())
-				largest = a;
-		request.getSession().setAttribute("largestAnimal", largest);
-		
-		Animal longest = new Animal();
-		for (Animal a : animals)
-			if (a.getName().length() > longest.getName().length())
-				longest = a;
-		request.getSession().setAttribute("longestNamedAnimal", longest);
-		*/
-					// maybe do things like this sometime?
-		
+				
 		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
-				// I'll need to create this at some point
 	}
+		
 }
