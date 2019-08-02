@@ -67,8 +67,6 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
 		try {
-			dao.deleteFeedingSchedule(scheduleToDelete);
-			
 			// remove feeding schedule from all corresponding animals
 			List<Animal> animals = animalDAO.getAllAnimals();
 			for (Animal animal : animals) {
@@ -76,6 +74,9 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 					dao.removeFeedingSchedule(animal);
 				}
 			}
+			
+			// delete the feeding schedule
+			dao.deleteFeedingSchedule(scheduleToDelete);
 			
 			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
 			request.getSession().setAttribute("messageClass", "alert-success");
