@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.DAOUtilities;
 import com.examples.ezoo.dao.FeedingScheduleDAO;
+import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
 
@@ -63,8 +65,18 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		
 		// Call DAO method
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
+		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
 		try {
 			dao.deleteFeedingSchedule(scheduleToDelete);
+			
+			// remove feeding schedule from all corresponding animals
+			List<Animal> animals = animalDAO.getAllAnimals();
+			for (Animal animal : animals) {
+				if (animal.getFeedingScheduleID() == scheduleToDelete.getScheduleID()) {
+					dao.removeFeedingSchedule(animal);
+				}
+			}
+			
 			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
 			request.getSession().setAttribute("messageClass", "alert-success");
 			response.sendRedirect("feedingSchedules");		// need this
