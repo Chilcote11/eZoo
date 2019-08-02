@@ -47,10 +47,6 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		
 		// after input
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
-		System.out.println("scheduleID from form: " + scheduleID);
-		
-		/*		// figure out logic later
-		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
 		String feedingTime = request.getParameter("feedingTime");
 		String recurrence = request.getParameter("recurrence");
@@ -70,9 +66,9 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 		try {
 			dao.deleteFeedingSchedule(scheduleToDelete);
 			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
-			request.getSession().setAttribute("messageClass", "alert-success");*/
+			request.getSession().setAttribute("messageClass", "alert-success");
 			response.sendRedirect("feedingSchedules");		// need this
-		/*} catch(SQLIntegrityConstraintViolationException e) {
+		} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			
 			// change the message
@@ -87,6 +83,6 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("deleteFeedingSchedule.jsp").forward(request, response);
 		}
-		*/
+		
 	}
 }
