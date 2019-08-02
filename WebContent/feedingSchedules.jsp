@@ -45,7 +45,7 @@
 							<td><c:out value="${schedule.notes}" /></td>
 							<td>
 								<form action="deleteFeedingSchedule" method="post">
-									<input type="hidden" value="${schedule.scheduleID}" name="scheduleId" />
+									<input type="hidden" value="${schedule.scheduleID}" name="scheduleID" />
 									<button type="submit" class="btn btn-primary">Delete</button>
 								</form>
 							</td>									
