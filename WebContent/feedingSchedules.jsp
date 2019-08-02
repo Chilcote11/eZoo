@@ -43,9 +43,12 @@
 							<td><c:out value="${schedule.recurrence}" /></td>
 							<td><c:out value="${schedule.food}" /></td>
 							<td><c:out value="${schedule.notes}" /></td>
-							<form action="deleteFeedingSchedule" method="post">
-								<td><button type="submit" class="btn btn-primary">Delete</button>
-							</form>									
+							<td>
+								<form action="deleteFeedingSchedule" method="post">
+									<input type="hidden" value="${schedule.scheduleID}" name="scheduleId" />
+									<button type="submit" class="btn btn-primary">Delete</button>
+								</form>
+							</td>									
 						</tr>
 					</c:forEach>
 				</tbody>
