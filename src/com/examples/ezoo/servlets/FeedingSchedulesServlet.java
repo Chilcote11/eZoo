@@ -46,7 +46,7 @@ public class FeedingSchedulesServlet extends HttpServlet {
 						comma = ", ";
 					}
 					animalsWithSchedule += comma + animal.getName() + 
-							"[" + animal.getFeedingScheduleID() + "]";
+							"[" + animal.getAnimalID() + "]";	
 				}
 			}
 			schedule.setAnimals(animalsWithSchedule); // remember, this never makes it to database
