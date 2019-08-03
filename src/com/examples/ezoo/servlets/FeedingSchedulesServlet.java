@@ -2,6 +2,7 @@ package com.examples.ezoo.servlets;
 
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,10 +32,12 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		// Grab a list of Feeding Schedules from the Database
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
+		Collections.sort(feedingSchedules);			// sort 
 		
 		// Grab all animals by feeding schedule
 		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
 		List<Animal> animals = animalDAO.getAllAnimals();
+		Collections.sort(animals);
 		for (FeedingSchedule schedule : feedingSchedules) {
 			String animalsWithSchedule = "";
 			int count = 0;
