@@ -35,6 +35,22 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		// Grab all animals by feeding schedule
 		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
 		List<Animal> animals = animalDAO.getAllAnimals();
+		for (FeedingSchedule schedule : feedingSchedules) {
+			String animalsWithSchedule = "";
+			int count = 0;
+			for (Animal animal : animals) {
+				if (schedule.getScheduleID() == animal.getFeedingScheduleID()) {
+					count++;
+					String comma = "";
+					if (count > 1) {
+						comma = ", ";
+					}
+					animalsWithSchedule += comma + animal.getName() + 
+							"[" + animal.getFeedingScheduleID() + "]";
+				}
+			}
+			schedule.setAnimals(animalsWithSchedule); // remember, this never makes it to database
+		}
 
 		// Populate the list into a variable that will be stored in the session
 		request.getSession().setAttribute("feedingSchedules", feedingSchedules);
