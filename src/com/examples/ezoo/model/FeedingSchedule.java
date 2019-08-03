@@ -9,7 +9,6 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	private String recurrence = "";
 	private String food = "";
 	private String notes = "";
-	private List<Animal> animals;		// not sure how to intialize this
 	
 	public FeedingSchedule() {}
 	
@@ -60,17 +59,6 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
-	
-	public List<Animal> getAnimals() {
-		return animals;
-	}
-	
-	// this should really never be used
-	// only necessary in some parts of the DAO to ensure storage of all feeding schedule fields
-	// setting (or "assigning") will be done using a different method altogether
-	public void setAnimals() {
-		this.animals = animals;
 	}
 		
 	@Override
