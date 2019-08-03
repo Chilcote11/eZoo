@@ -9,6 +9,8 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	private String recurrence = "";
 	private String food = "";
 	private String notes = "";
+	private String animals = "";		// NEVER USE IN DAO
+										// Useful in servlets, specifically FeedingSchedulesServlet
 	
 	public FeedingSchedule() {}
 	
@@ -61,6 +63,14 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 		this.notes = notes;
 	}
 		
+	public String getAnimals() {
+		return animals;
+	}
+
+	public void setAnimals(String animals) {
+		this.animals = animals;
+	}
+
 	@Override
 	public String toString() {
 		if (this.scheduleID != 0)

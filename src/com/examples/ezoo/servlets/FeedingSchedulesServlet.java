@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.DAOUtilities;
 import com.examples.ezoo.dao.FeedingScheduleDAO;
+import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
 
@@ -29,6 +31,10 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		// Grab a list of Feeding Schedules from the Database
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
+		
+		// Grab all animals by feeding schedule
+		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
+		List<Animal> animals = animalDAO.getAllAnimals();
 
 		// Populate the list into a variable that will be stored in the session
 		request.getSession().setAttribute("feedingSchedules", feedingSchedules);
