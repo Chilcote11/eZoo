@@ -1,5 +1,7 @@
 package com.examples.ezoo.model;
 
+import java.util.List;
+
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	
 	private int scheduleID = 0;
@@ -7,6 +9,8 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	private String recurrence = "";
 	private String food = "";
 	private String notes = "";
+	private String animals = "";		// NEVER USE IN DAO
+										// Useful in servlets, specifically FeedingSchedulesServlet
 	
 	public FeedingSchedule() {}
 	
@@ -58,7 +62,15 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
+		
+	public String getAnimals() {
+		return animals;
+	}
+
+	public void setAnimals(String animals) {
+		this.animals = animals;
+	}
+
 	@Override
 	public String toString() {
 		if (this.scheduleID != 0)
