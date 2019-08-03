@@ -1,5 +1,7 @@
 package com.examples.ezoo.model;
 
+import java.util.List;
+
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	
 	private int scheduleID = 0;
@@ -7,6 +9,7 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	private String recurrence = "";
 	private String food = "";
 	private String notes = "";
+	private List<Animal> animals = new ArrayList<Animal>;
 	
 	public FeedingSchedule() {}
 	
@@ -59,6 +62,10 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 		this.notes = notes;
 	}
 	
+	public List<Animal> getAnimals() {
+		return animals;
+	}
+		
 	@Override
 	public String toString() {
 		if (this.scheduleID != 0)
