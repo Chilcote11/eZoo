@@ -33,7 +33,6 @@
 						<th class="text-center">Food</th>
 						<th class="text-center">Notes</th>
 						<th class="text-center">Animals Assigned</th>
-            <th class="text-center"></th>
 					</tr>
 				</thead>
 				<tbody>

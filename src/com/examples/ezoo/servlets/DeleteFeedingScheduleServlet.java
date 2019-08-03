@@ -36,18 +36,6 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
-		
-		// before input 
-		/*@SuppressWarnings("unchecked")
-		List<FeedingSchedule> feedingSchedules = (List<FeedingSchedule>) request.getAttribute("feedingSchedules");
-//		Object feedingSchedules = request.getSession().getAttribute("feedingSchedules");
-		System.out.println("feedingSchedules: " + feedingSchedules);		// prints: "feedingSchedules: null"
-		FeedingSchedule schedule1 = feedingSchedules.get(0);
-		System.out.println("schedule1 : ");
-		System.out.println(schedule1);		// NullPointerException thrown at this line
-		*/
-		
-		// after input
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
 		String feedingTime = request.getParameter("feedingTime");

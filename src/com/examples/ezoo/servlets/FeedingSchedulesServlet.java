@@ -32,9 +32,9 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		// Grab a list of Feeding Schedules from the Database
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
-		Collections.sort(feedingSchedules);			// sort 
+		Collections.sort(feedingSchedules);			// sort. This is unnecessary. Line 40 is not 
 		
-		// Grab all animals by feeding schedule
+		// Populate `animals` field of each feeding schedule
 		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
 		List<Animal> animals = animalDAO.getAllAnimals();
 		Collections.sort(animals);
@@ -52,7 +52,7 @@ public class FeedingSchedulesServlet extends HttpServlet {
 							"[" + animal.getAnimalID() + "]";	
 				}
 			}
-			schedule.setAnimals(animalsWithSchedule); // remember, this never makes it to database
+			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
 		}
 
 		// Populate the list into a variable that will be stored in the session
