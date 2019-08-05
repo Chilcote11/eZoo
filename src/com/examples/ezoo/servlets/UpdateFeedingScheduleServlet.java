@@ -43,7 +43,7 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 				oldFood,
 				oldNotes);
 		
-		request.getSession().setAttribute("oldFeedingSchedule", oldFeedingSchedule);
+		request.getSession().setAttribute("oldFeedingSchedule", (Object) oldFeedingSchedule);
 		
 		request.getRequestDispatcher("updateFeedingSchedule.jsp").forward(request, response);
 	}
@@ -52,6 +52,8 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
+		
+		FeedingSchedule oldFeedingSchedule = (FeedingSchedule) request.getSession().getAttribute("oldFeedingSchedule");
 		
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
