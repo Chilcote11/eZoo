@@ -12,5 +12,6 @@ public interface FeedingScheduleDAO {
 	List<FeedingSchedule> getAllFeedingSchedules();
 	FeedingSchedule getFeedingSchedule(Animal animal);				// gets feeding schedule for a specific animal
 	void assignFeedingSchedule(FeedingSchedule feedingSchedule, Animal animal) throws Exception;						// assigns feeding schedule 
-	void removeFeedingSchedule(Animal animal) throws Exception;						// remove feeding schedule from a given animal 
+	void removeFeedingSchedule(Animal animal) throws Exception;						// remove feeding schedule from a given animal
+	void updateFeedingSchedule(FeedingSchedule schedule) throws Exception;
 }
