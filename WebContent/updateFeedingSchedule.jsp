@@ -31,12 +31,12 @@
 		      <input type="number" class="form-control" id="scheduleID" name="scheduleID" placeholder="ScheduleID" required="required"/>
 		    </div>
 		  </div>
+		  
 		  <div class="form-group">
 		    <label for="feedingTime" class="col-sm-4 control-label">Time</label>
 		    <div class="col-sm-4">
 		      <input type="text" class="form-control" id="feedingTime" name="feedingTime" placeholder="FeedingTime" required="required"/>
 		    </div>
-		  </div>
 		  </div>
 		  <div class="form-group">
 		    <label for="recurrence" class="col-sm-4 control-label">Recurrence</label>
