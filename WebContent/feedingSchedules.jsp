@@ -40,7 +40,7 @@
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
 							<td>
-								<form action="updateFeedingSchedule" method="post">
+								<form action="updateFeedingSchedule" method="get"">
 									<input type="hidden" value="${schedule.scheduleID}" name="scheduleID" />
 									<input type="hidden" value="${schedule.feedingTime}" name="feedingTime" />
 									<input type="hidden" value="${schedule.recurrence}" name="recurrence" />
