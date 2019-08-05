@@ -25,12 +25,14 @@
 		
 		<form action="updateFeedingSchedule" method="post" class="form-horizontal">
 		
+		<!-- 
 		  <div class="form-group">
 		    <label for="scheduleID" class="col-sm-4 control-label">Feeding Schedule ID</label>
 		    <div class="col-sm-4">
 		      <input type="number" class="form-control" id="scheduleID" name="scheduleID" placeholder="ScheduleID" required="required"/>
 		    </div>
 		  </div>
+	  	-->
 		  
 		  <div class="form-group">
 		    <label for="feedingTime" class="col-sm-4 control-label">Time</label>
