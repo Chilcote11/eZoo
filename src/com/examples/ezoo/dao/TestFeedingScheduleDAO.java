@@ -8,7 +8,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 /*
  * This test class assumes:
  * 		There are no feeding schedules with ID 400 or 401 already existing
- * 		A feeding schedule with id=1 exists (preferrably containing giraffes)
+ * 		A feeding schedule with id=1 exists (preferrably containing giraffes as food)
  * 		Leo starts with id=1 and feeding_schedule = 1 (eating giraffes)
  * 		Animal(id=4) exists (preferrably named "hungry") and is originally assigned no feeding schedule
  * 
@@ -33,11 +33,19 @@ public class TestFeedingScheduleDAO {
 			System.out.println(e);
 		}
 	    
+	    // test updateFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception
+	    feedingSchedule1.setRecurrence("weekly");	    
+	    try {
+	    	dao.updateFeedingSchedule(feedingSchedule1);
+	    } catch ( Exception e ) {
+	    	System.out.println(e);
+	    }
+	    
 	    
 	    // test getAllFeedingSchedules()
 	    List<FeedingSchedule> allFeedingSchedules = dao.getAllFeedingSchedules();
 	    Collections.sort(allFeedingSchedules);										// Don't forget to sort
-	    for (int i = 0; i < allFeedingSchedules.size(); i++){
+	    for (int i = 0; i < allFeedingSchedules.size(); i++) {
 	      FeedingSchedule f = allFeedingSchedules.get(i);
 	      System.out.println(f);
 	    }
