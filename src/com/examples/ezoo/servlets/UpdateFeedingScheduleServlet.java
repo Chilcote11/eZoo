@@ -55,7 +55,8 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 		
 		FeedingSchedule oldFeedingSchedule = (FeedingSchedule) request.getSession().getAttribute("oldFeedingSchedule");
 		
-		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
+//		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
+		int scheduleID = oldFeedingSchedule.getScheduleID();
 		
 		String feedingTime = request.getParameter("feedingTime");
 		String recurrence = request.getParameter("recurrence");
