@@ -63,7 +63,7 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 		String food = request.getParameter("food");
 		String notes = request.getParameter("notes");
 		
-		//testing
+		/*//testing parameter retrieval
 		System.out.println("update" + "\n" +
 				"scheduleID: " + scheduleID + "\n" +
 				"feedingTime: " + feedingTime + "\n" +
@@ -71,9 +71,10 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 				"food: " + food + "\n" +
 				"notes: " + notes);
 		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
+		*/
 		
 		// Create a FeedingSchedule object from the parameters
-		/*FeedingSchedule scheduleToUpdate = new FeedingSchedule(
+		FeedingSchedule scheduleToUpdate = new FeedingSchedule(
 				scheduleID,
 				feedingTime,
 				recurrence,
@@ -92,7 +93,7 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 			request.getSession().setAttribute("message",  "There was a problem updating the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("updateFeedingSchedule.jsp").forward(request, response);
-		}*/
+		}
 		
 	}
 	
