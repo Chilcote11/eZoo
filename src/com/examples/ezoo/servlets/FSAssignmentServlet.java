@@ -2,6 +2,7 @@ package com.examples.ezoo.servlets;
 
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ import com.examples.ezoo.model.FeedingSchedule;
  * Servlet implementation class FSAssignmentServlet
  * 		calls the DAO method to assign/remove a feeding schedule from a given animal
  */
-@WebServlet("/FSAssignement")
+@WebServlet("/FSAssignment")
 public class FSAssignmentServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;		// default
@@ -35,53 +36,39 @@ public class FSAssignmentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
-		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
+		int animalID = Integer.parseInt(request.getParameter("animalID"));
 		
-		String feedingTime = request.getParameter("feedingTime");
-		String recurrence = request.getParameter("recurrence");
-		String food = request.getParameter("food");
-		String notes = request.getParameter("notes");
-		
-		// Create a FeedingSchedule object from the parameters
-		FeedingSchedule scheduleToDelete = new FeedingSchedule(
-				scheduleID,
-				feedingTime,
-				recurrence,
-				food,
-				notes);
-		
-		// Call DAO method
-		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
+		// Call DAO methods
 		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
+		FeedingScheduleDAO FSDAO = DAOUtilities.getFeedingScheduleDAO();
+
 		try {
-			// remove feeding schedule from all corresponding animals
+			// animalDAO has no "getAnimalByID" method, so here's a work-around
+			// could choose to go add one later, wouldn't be too hard
 			List<Animal> animals = animalDAO.getAllAnimals();
-			for (Animal animal : animals) {
-				if (animal.getFeedingScheduleID() == scheduleToDelete.getScheduleID()) {
-					dao.removeFeedingSchedule(animal);
-				}
+			Collections.sort(animals);		// unnecessary, but I like it
+			Animal animal = new Animal();
+			for (Animal a : animals) {
+				if (a.getAnimalID() == animalID)
+					animal = a;
 			}
 			
-			// delete the feeding schedule
-			dao.deleteFeedingSchedule(scheduleToDelete);
+			// unassignment logic
+			if (animal.getFeedingScheduleID() > 0) {
+				FSDAO.removeFeedingSchedule(animal);
+				request.getSession().setAttribute("message",  "Feeding schedule successfully removed");
+			}
 			
-			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
+			
 			request.getSession().setAttribute("messageClass", "alert-success");
-			response.sendRedirect("feedingSchedules");		// need this
-		} catch(SQLIntegrityConstraintViolationException e) {
-			e.printStackTrace();
-			
-			// change the message
-			request.getSession().setAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
-			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
+			response.sendRedirect("animalCare");
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			// change the message
-			request.getSession().setAttribute("message",  "There was a problem deleting the feeding schedule at this time");
+			request.getSession().setAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
+			request.getRequestDispatcher("animalCareHome.jsp").forward(request, response);
 		}
 		
 	}
