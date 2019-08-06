@@ -148,13 +148,10 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 			stmt = connection.prepareStatement(sql);
 			
 			stmt.setInt(1, animal.getFeedingScheduleID());
-			//System.out.println(animal.getFeedingScheduleID());
-						
-			//ResultSet rs = stmt.executeQuery(sql);
-			//ResultSet rs = stmt.executeUpdate();
-			ResultSet rs = stmt.executeQuery();			// checking if this works..
+
+			ResultSet rs = stmt.executeQuery();
 			
-			while (rs.next()) { 			// I don't think there's any need for a while loop here?
+			while (rs.next()) {
 				feedingSchedule.setScheduleID(rs.getInt("schedule_id"));
 				feedingSchedule.setFeedingTime(rs.getString("feeding_time"));
 				feedingSchedule.setRecurrence(rs.getString("recurrence"));
