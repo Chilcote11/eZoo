@@ -63,8 +63,17 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 		String food = request.getParameter("food");
 		String notes = request.getParameter("notes");
 		
+		//testing
+		System.out.println("update" + "\n" +
+				"scheduleID: " + scheduleID + "\n" +
+				"feedingTime: " + feedingTime + "\n" +
+				"recurrence: " + recurrence + "\n" +
+				"food: " + food + "\n" +
+				"notes: " + notes);
+		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
+		
 		// Create a FeedingSchedule object from the parameters
-		FeedingSchedule scheduleToSave = new FeedingSchedule(
+		/*FeedingSchedule scheduleToUpdate = new FeedingSchedule(
 				scheduleID,
 				feedingTime,
 				recurrence,
@@ -74,26 +83,16 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 		// Call DAO method
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		try {
-			dao.saveFeedingSchedule(scheduleToSave);
-			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
+			dao.updateFeedingSchedule(scheduleToUpdate);
+			request.getSession().setAttribute("message",  "Feeding schedule successfully updated");
 			request.getSession().setAttribute("messageClass", "alert-success");
-//			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-		} catch(SQLIntegrityConstraintViolationException e) {
-			e.printStackTrace();
-			
-			// change the message
-			request.getSession().setAttribute("message",  "Id of " + scheduleToSave.getScheduleID() + " is already in use");
-			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
+			response.sendRedirect("feedingSchedules");
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			// change the message
-			request.getSession().setAttribute("message",  "There was a problem creating the feeding schedule at this time");
+			request.getSession().setAttribute("message",  "There was a problem updating the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
-			request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
-		}
+			request.getRequestDispatcher("updateFeedingSchedule.jsp").forward(request, response);
+		}*/
 		
 	}
 	
