@@ -41,6 +41,10 @@
 							<td>
 								<form action="FSAssignment" method="post"">
 									<input type="hidden" value="${schedule.scheduleID}" name="scheduleID" />
+									<input type="hidden" value="${schedule.feedingTime}" name="feedingTime" />
+									<input type="hidden" value="${schedule.recurrence}" name="recurrence" />
+									<input type="hidden" value="${schedule.food}" name="food" />
+									<input type="hidden" value="${schedule.notes}" name="notes" />
 									<input type="hidden" value="${animalID}" name="animalID" />
 									<button type="submit" class="btn btn-primary">Assign</button>
 								</form>
