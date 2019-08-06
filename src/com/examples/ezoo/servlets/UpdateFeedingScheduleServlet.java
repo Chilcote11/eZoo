@@ -15,8 +15,9 @@ import com.examples.ezoo.model.FeedingSchedule;
 
 
 /**
- * Servlet implementation class CreateFeedingScheduleServlet
- * 		call the DAO method to create a new feeding schedule in the database
+ * Servlet implementation class UpdateFeedingScheduleServlet
+ * 		call the DAO method to update a feeding schedule in the database
+ * 		accessed from feedingSchedules.jsp
  * 		
  */
 @WebServlet("/updateFeedingSchedule")

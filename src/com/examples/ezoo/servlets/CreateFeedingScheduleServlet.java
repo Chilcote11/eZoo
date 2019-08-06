@@ -17,6 +17,8 @@ import com.examples.ezoo.model.FeedingSchedule;
 /**
  * Servlet implementation class CreateFeedingScheduleServlet
  * 		call the DAO method to create a new feeding schedule in the database
+ * 		corresponds to createFeedingSchedule jsp
+ * 		assessed from main drop down menu on animalCare page
  * 		
  */
 @WebServlet("/createFeedingSchedule")
@@ -34,7 +36,6 @@ public class CreateFeedingScheduleServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Get Parameters
 		// We MUST convert to int since parameters are always Strings
-		
 		int scheduleID = Integer.parseInt(request.getParameter("scheduleID"));
 		
 		String feedingTime = request.getParameter("feedingTime");
@@ -56,24 +57,19 @@ public class CreateFeedingScheduleServlet extends HttpServlet {
 			dao.saveFeedingSchedule(scheduleToSave);
 			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 			request.getSession().setAttribute("messageClass", "alert-success");
-//			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
-			response.sendRedirect("feedingSchedules");		// animal care servlet? "animalCare"
+			response.sendRedirect("feedingSchedules");
 		} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
-			
 			// change the message
 			request.getSession().setAttribute("message",  "Id of " + scheduleToSave.getScheduleID() + " is already in use");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 			// change the message
 			request.getSession().setAttribute("message",  "There was a problem creating the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
 		}
-		
 	}
-	
 }

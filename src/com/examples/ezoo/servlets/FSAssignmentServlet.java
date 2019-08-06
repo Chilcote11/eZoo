@@ -21,6 +21,13 @@ import com.examples.ezoo.model.FeedingSchedule;
 /**
  * Servlet implementation class FSAssignmentServlet
  * 		calls the DAO method to assign/remove a feeding schedule from a given animal
+ * 		"unassignment" logic (post method only) accessed from animalCare page
+ * 		"assignment" logic (uses both get and post) accessed from animalCare page
+ * 			but then redirects to (gets) assignFeedingSchedule Servlet.  from there
+ * 			a feeding schedule is chosen to assign (post)
+ * 
+ * Potential future update:
+ * 		add a new dao method to get an animal by its unique ID (see lines 84, 85)
  */
 @WebServlet("/FSAssignment")
 public class FSAssignmentServlet extends HttpServlet {
@@ -113,7 +120,6 @@ public class FSAssignmentServlet extends HttpServlet {
 			response.sendRedirect("animalCare");
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 			// change the message
 			request.getSession().setAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
