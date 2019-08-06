@@ -63,16 +63,6 @@ public class UpdateFeedingScheduleServlet extends HttpServlet {
 		String food = request.getParameter("food");
 		String notes = request.getParameter("notes");
 		
-		/*//testing parameter retrieval
-		System.out.println("update" + "\n" +
-				"scheduleID: " + scheduleID + "\n" +
-				"feedingTime: " + feedingTime + "\n" +
-				"recurrence: " + recurrence + "\n" +
-				"food: " + food + "\n" +
-				"notes: " + notes);
-		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
-		*/
-		
 		// Create a FeedingSchedule object from the parameters
 		FeedingSchedule scheduleToUpdate = new FeedingSchedule(
 				scheduleID,
