@@ -248,7 +248,45 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		if (success == 0) {
 			throw new Exception("Remove feeding schedule from animal failed: +" + animal);
 		}
+	}
+	
+	@Override
+	public void updateFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		int success = 0;
 		
+		try {
+			connection = DAOUtilities.getConnection();
+			String sql = "UPDATE feeding_schedules SET feeding_time = ?, recurrence = ?,"
+					+ " food = ?, notes = ? WHERE schedule_id = ?";
+			
+			// Setup PreparedStatement
+			stmt = connection.prepareStatement(sql);
+			
+			// Add parameters from animals into PreparedStatement
+			stmt.setString(1,  feedingSchedule.getFeedingTime());
+			stmt.setString(2,  feedingSchedule.getRecurrence());
+			stmt.setString(3,  feedingSchedule.getFood());
+			stmt.setString(4,  feedingSchedule.getNotes());
+			stmt.setInt(5,  feedingSchedule.getScheduleID());
+			
+			success = stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (success == 0)
+			throw new Exception("Update feeding schedule failed: " + feedingSchedule);
 	}
 
 }
