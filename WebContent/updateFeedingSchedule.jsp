@@ -33,7 +33,9 @@
 		    </div>
 		  </div>
 	  	-->
-		  
+		  <div>
+		  	<c:out value="${oldFeedingSchedule.scheduleID}" /></td>
+		  </div>
 		  <div class="form-group">
 		    <label for="feedingTime" class="col-sm-4 control-label">Time</label>
 		    <div class="col-sm-4">
