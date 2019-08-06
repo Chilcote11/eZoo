@@ -33,11 +33,14 @@
 		    </div>
 		  </div>
 	  	-->
-		  <h1>
+		  <!-- <h1>
 		  	<small>
 		  		<c:out value="Schedule ID: ${oldFeedingSchedule.scheduleID}" /></td>
 		  	</small>
-		  </h1>
+		  </h1> -->
+  		  <div style="font-size: 2em">
+		  	<c:out value="Schedule ID: ${oldFeedingSchedule.scheduleID}" /></td>
+		  </div>
 		  <div class="form-group">
 		    <label for="feedingTime" class="col-sm-4 control-label">Time</label>
 		    <div class="col-sm-4">
