@@ -89,6 +89,7 @@ public class FSAssignmentServlet extends HttpServlet {
 				FSDAO.removeFeedingSchedule(animal);
 				request.getSession().setAttribute("message",  "Feeding schedule successfully removed");
 			}
+			// assignment logic
 			else {
 				int id = Integer.parseInt(request.getParameter("scheduleID")); 
 				String time = request.getParameter("feedingTime");
