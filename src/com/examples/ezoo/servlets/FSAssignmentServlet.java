@@ -27,10 +27,19 @@ public class FSAssignmentServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;		// default
 	
-	/*@Override
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
-	}*/
+		int animalID = Integer.parseInt(request.getParameter("animalID"));
+		
+		// Grab a list of Feeding Schedules from the Database
+		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
+		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
+		
+		request.getSession().setAttribute("feedingSchedules", feedingSchedules);
+		
+		request.getRequestDispatcher("assignFeedingSchedule.jsp").forward(request, response);
+	}
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
