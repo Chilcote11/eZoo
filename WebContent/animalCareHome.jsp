@@ -39,6 +39,7 @@
 					<th class="text-center">Health Status</th>
 					<th class="text-center">Animal ID</th>
 					<th class="text-center">Feeding Schedule ID</th>
+					<th class="text-center">Feeding Schedule Assignment</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -61,6 +62,20 @@
 						<td><c:out value="${animal.healthStatus}" /></td>
 						<td><fmt:formatNumber value="${animal.animalID}"/></td>
 						<td><fmt:formatNumber value="${animal.feedingScheduleID}"/></td>
+						<td>
+							<c:if test="${animal.feedingScheduleID == 0}">
+								<form action="assignFeedingSchedule" method="get"">
+									<input type="hidden" value="${animal.animalID}" name="animalID" />
+									<button type="submit" class="btn btn-primary">Assign</button>
+								</form>
+							</c:if>
+							<c:if test="${animal.feedingScheduleID >= 1}">
+								<form action="unassignFeedingSchedule" method="post"">
+									<input type="hidden" value="${animal.animalID}" name="animalID" />
+									<button type="submit" class="btn btn-primary">Unassign</button>
+								</form>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
