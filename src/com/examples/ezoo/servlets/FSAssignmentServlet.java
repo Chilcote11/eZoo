@@ -34,8 +34,30 @@ public class FSAssignmentServlet extends HttpServlet {
 		// Grab a list of Feeding Schedules from the Database
 		FeedingScheduleDAO dao = DAOUtilities.getFeedingScheduleDAO();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
+
+		// Populate `animals` field of each feeding schedule
+		AnimalDAO animalDAO = DAOUtilities.getAnimalDAO();
+		List<Animal> animals = animalDAO.getAllAnimals();
+		Collections.sort(animals);
+		for (FeedingSchedule schedule : feedingSchedules) {
+			String animalsWithSchedule = "";
+			int count = 0;
+			for (Animal animal : animals) {
+				if (schedule.getScheduleID() == animal.getFeedingScheduleID()) {
+					count++;
+					String comma = "";
+					if (count > 1) {
+						comma = ", ";
+					}
+					animalsWithSchedule += comma + animal.getName() + 
+							"[" + animal.getAnimalID() + "]";	
+				}
+			}
+			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
+		}
 		
 		request.getSession().setAttribute("feedingSchedules", feedingSchedules);
+		request.getSession().setAttribute("animalID", animalID);
 		
 		request.getRequestDispatcher("assignFeedingSchedule.jsp").forward(request, response);
 	}
