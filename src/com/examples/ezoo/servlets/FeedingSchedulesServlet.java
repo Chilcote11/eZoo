@@ -20,6 +20,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 
 /**
  * Servlet implementation class FeedingSchedulesServlet
+ * 		accessed in main drop down menu of animalCare page
  */
 @WebServlet(description = "This servlet is the main interface into the Feeding Schedules System", urlPatterns = { "/feedingSchedules" })
 public class FeedingSchedulesServlet extends HttpServlet {
@@ -61,4 +62,5 @@ public class FeedingSchedulesServlet extends HttpServlet {
 		request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 	}
 		
+	// no need for "doPost" method; "get" is the only action ever used
 }

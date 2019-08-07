@@ -49,7 +49,7 @@
 		  <div class="form-group">
 		    <label for="notes" class="col-sm-4 control-label">Notes</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="notes" name="notes" placeholder="Notes" required="required"/>
+		      <input type="text" class="form-control" id="notes" name="notes" placeholder="Notes"/>
 		    </div>
 		  </div>
 		  <div class="form-group">

@@ -34,7 +34,6 @@ public class AddAnimalServlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("id"));
 		
 		String name = request.getParameter("name");
-
 		String kingdom = request.getParameter("kingdom");
 		String phylum = request.getParameter("phylum");
 		String clazz = request.getParameter("clazz");
@@ -75,27 +74,20 @@ public class AddAnimalServlet extends HttpServlet {
 			request.getSession().setAttribute("message", "Animal successfully created");
 			request.getSession().setAttribute("messageClass", "alert-success");
 			response.sendRedirect("animalCare");
-
-
 		}catch(SQLIntegrityConstraintViolationException e){
-			e.printStackTrace();
-			
+			e.printStackTrace();			
 			//change the message
 			request.getSession().setAttribute("message", "Id of " + animalToSave.getAnimalID() + " is already in use");
 			request.getSession().setAttribute("messageClass", "alert-danger");
-			
+			// redirect
 			request.getRequestDispatcher("addAnimal.jsp").forward(request, response);
-			
 		}catch (Exception e){
 			e.printStackTrace();
-			
 			//change the message
 			request.getSession().setAttribute("message", "There was a problem creating the animal at this time");
 			request.getSession().setAttribute("messageClass", "alert-danger");
-			
+			// redirect
 			request.getRequestDispatcher("addAnimal.jsp").forward(request, response);
-
 		}
 	}
-
 }

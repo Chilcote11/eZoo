@@ -21,16 +21,15 @@ import com.examples.ezoo.model.FeedingSchedule;
  * Servlet implementation class DeleteFeedingScheduleServlet
  * 		calls the DAO method to remove a feeding schedule from the database
  * 		and removes all references to that feeding schedule from Animals in the database
+ * 		no corresponding jsp
+ * 		accessed from feedingSchedules.jsp
  */
 @WebServlet("/deleteFeedingSchedule")
 public class DeleteFeedingScheduleServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;		// default
 	
-	/*@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("createFeedingSchedule.jsp").forward(request, response);
-	}*/
+	// no need for doGet method; "post" is the only action ever used
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,19 +70,16 @@ public class DeleteFeedingScheduleServlet extends HttpServlet {
 			response.sendRedirect("feedingSchedules");		// need this
 		} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
-			
 			// change the message
 			request.getSession().setAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 			// change the message
 			request.getSession().setAttribute("message",  "There was a problem deleting the feeding schedule at this time");
 			request.getSession().setAttribute("messageClass",  "alert-danger");
 			request.getRequestDispatcher("feedingSchedules.jsp").forward(request, response);
 		}
-		
 	}
 }
