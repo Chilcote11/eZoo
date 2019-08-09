@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>eZoo</name>
+  <url>http://maven.apache.org</url>
   <description>A simple application for managing a zoo</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
