@@ -8,16 +8,21 @@ import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.AnimalDAOImpl;
 import com.examples.ezoo.dao.DAOUtilities;
 
+
+@Configuration						// from Spring
+@EnableTransactionManagement		// specifies that Spring will manage database transactions
 public class Config {
 
 	@Bean
@@ -57,8 +62,5 @@ public class Config {
 	public BeanPostProcessor persistenceTranslation() {					// from Spring
 		return new PersistenceExceptionTranslationPostProcessor();		// from Spring
 	}
-	
-	
-	
-	
+
 }
