@@ -161,6 +161,10 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 	@Override
 	public FeedingSchedule getFeedingSchedule(Animal animal) {
 		
+		if (animal.getFeedingScheduleID() == null) {
+			return null;
+		}
+		
 		Session session = sessionFactory.openSession();		
 		FeedingSchedule feedingSchedule = sessionFactory.getCurrentSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
 		
