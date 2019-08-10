@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.query.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +33,9 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 
 	@Override		// checked and tested
 	public void saveFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
-		Connection connection = null;
+		sessionFactory.getCurrentSession().save(feedingSchedule);
+		
+		/*Connection connection = null;
 		PreparedStatement stmt = null;
 		int success = 0;
 		
@@ -66,13 +70,14 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		if (success == 0) {
 			// then update didn't occur, throw an exception
 			throw new Exception("Save feeding schedule failed: " + feedingSchedule);
-		}
-		
+		}*/
 	}
 
 	@Override
 	public void deleteFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
-		Connection connection = null;
+		sessionFactory.getCurrentSession().delete(feedingSchedule);
+		
+		/*Connection connection = null;
 		PreparedStatement stmt = null;
 		int success = 0;
 		
@@ -102,13 +107,16 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		
 		if (success == 0) {
 			throw new Exception("Delete feeding schedule failed: +" + feedingSchedule);
-		}
-		
+		}*/
 	}
 
 	@Override // checked
 	public List<FeedingSchedule> getAllFeedingSchedules() {
-		List<FeedingSchedule> feedingSchedules = new ArrayList<>();
+		Session session = sessionFactory.openSession();
+		Query<FeedingSchedule> results = session.createQuery("from FeedingSchedule");
+		List<FeedingSchedule> feedingSchedules = results.list();		
+		
+		/*List<FeedingSchedule> feedingSchedules = new ArrayList<>();
 		Connection connection = null;
 		Statement stmt = null;
 
@@ -146,8 +154,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
-
+		}*/
 		return feedingSchedules;
 	}
 
