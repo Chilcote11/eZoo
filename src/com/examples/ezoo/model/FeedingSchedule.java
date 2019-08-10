@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="feeding_schedules")
@@ -19,7 +20,7 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	@Column private String food = "";
 	@Column private String notes = "";
 	
-	private String animals = "";		// NEVER USE IN DAO
+	@Transient private String animals = "";		// NEVER USE IN DAO
 										// Useful in servlets, specifically FeedingSchedulesServlet
 	
 	public FeedingSchedule() {}
@@ -72,7 +73,8 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-		
+	
+	@Transient
 	public String getAnimals() {
 		return animals;
 	}
