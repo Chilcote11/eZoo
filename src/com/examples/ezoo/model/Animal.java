@@ -3,8 +3,11 @@ package com.examples.ezoo.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="ANIMALS")
+//@Entity(name="ANIMALS")
+@Entity
+@Table(name="ANIMALS")
 public class Animal implements Comparable<Animal> {
 	
 	@Id private long animalID = 0L;
