@@ -4,10 +4,13 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+import com.examples.ezoo.dao.AnimalDAO;
+import com.examples.ezoo.dao.AnimalDAOImpl;
 import com.examples.ezoo.dao.DAOUtilities;
 
 public class Config {
@@ -31,6 +34,13 @@ public class Config {
 		props.setProperty("dialect", "org.hibernate.dialect.PostgreSQL95Dialect");	// newest dialect for PostgreSQL I could find
 		factoryBean.setHibernateProperties(props);
 		return factoryBean;
+	}
+	
+	@Bean
+	public AnimalDAO animalDAO (SessionFactory sessionFactory) {
+		AnimalDAOImpl dao = new AnimalDAOImpl();
+		dao.setSessionFactory(sessionFactory);
+		return dao;
 	}
 	
 	
