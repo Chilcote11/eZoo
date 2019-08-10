@@ -40,7 +40,6 @@ public class AnimalDAOImpl implements AnimalDAO {
 
 	@Override
 	public void saveAnimal(Animal animal) throws Exception {
-		System.out.println("Saving Animal");
 		sessionFactory.getCurrentSession().save(animal);
 	}
 
