@@ -47,9 +47,5 @@ public class TestAnimalDAO {
 		for (Animal a : animals) {
 			System.out.println(a);
 		}
-		
-		
-		
 	}
-
 }
