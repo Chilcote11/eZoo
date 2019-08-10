@@ -31,7 +31,7 @@ public class TestAnimalDAO {
 				1D,
 				"dog",
 				"Healthy",
-				0
+				1
 				);
 		try {
 			dao.saveAnimal(animalToSave);
