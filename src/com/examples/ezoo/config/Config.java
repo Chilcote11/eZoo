@@ -6,7 +6,9 @@ import javax.jms.Session;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -50,5 +52,13 @@ public class Config {
 	public PlatformTransactionManager txManager(SessionFactory sessionFactory) {		// import from Spring
 		return new HibernateTransactionManager(sessionFactory);
 	}
+	
+	@Bean
+	public BeanPostProcessor persistenceTranslation() {					// from Spring
+		return new PersistenceExceptionTranslationPostProcessor();		// from Spring
+	}
+	
+	
+	
 	
 }
