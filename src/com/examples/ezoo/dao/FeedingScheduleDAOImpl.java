@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,16 @@ import com.examples.ezoo.model.FeedingSchedule;
 @Repository
 @Transactional
 public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
+	
+	private SessionFactory sessionFactory;		// from Spring
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	@Override		// checked and tested
 	public void saveFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
