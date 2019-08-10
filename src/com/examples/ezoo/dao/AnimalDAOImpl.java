@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.query.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,16 @@ public class AnimalDAOImpl implements AnimalDAO {
 
 	@Override
 	public List<Animal> getAllAnimals() {
+
+		Session session = sessionFactory.openSession();
+//		Query results = session.createQuery("from Animal");		// can omit SELECT in HQL
+//		List<Animal> animals = (ArrayList<Animal>) results.list();
+		
+//		 could also do this (replacing lines 37, 38):
+		Query<Animal> results = session.createQuery("from Animal");		// can omit SELECT in HQL
+		List<Animal> animals = results.list();
+		
+		/*
 		List<Animal> animals = new ArrayList<>();
 		Connection connection = null;
 		Statement stmt = null;
@@ -81,7 +93,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 				e.printStackTrace();
 			}
 		}
-
+		*/
 		return animals;
 	}
 
