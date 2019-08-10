@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Animal;
@@ -24,7 +25,7 @@ public class TestFeedingScheduleDAO {
 
 	public static void main(String[] args) {
 	    
-		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = (FeedingScheduleDAO) context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = (AnimalDAO) context.getBean(AnimalDAO.class);
 	    
@@ -137,6 +138,8 @@ public class TestFeedingScheduleDAO {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	    
+	    context.close();
 	    
 	}
 }
