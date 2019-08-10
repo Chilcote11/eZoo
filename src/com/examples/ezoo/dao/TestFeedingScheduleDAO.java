@@ -2,6 +2,11 @@ package com.examples.ezoo.dao;
 
 import java.util.Collections;
 import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
@@ -19,8 +24,9 @@ public class TestFeedingScheduleDAO {
 
 	public static void main(String[] args) {
 	    
-		FeedingScheduleDAO dao = new FeedingScheduleDAOImpl();
-		AnimalDAO animalDAO = new AnimalDAOImpl();
+		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		FeedingScheduleDAO dao = (FeedingScheduleDAO) context.getBean(FeedingScheduleDAO.class);
+		AnimalDAO animalDAO = (AnimalDAO) context.getBean(AnimalDAO.class);
 	    
 	    
 	    // test saveFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception
