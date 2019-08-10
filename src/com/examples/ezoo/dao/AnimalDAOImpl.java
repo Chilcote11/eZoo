@@ -87,6 +87,11 @@ public class AnimalDAOImpl implements AnimalDAO {
 
 	@Override
 	public void saveAnimal(Animal animal) throws Exception {
+		
+		System.out.println("Saving Animal");
+		sessionFactory.getCurrentSession().save(animal);
+		
+		/*
 		Connection connection = null;
 		PreparedStatement stmt = null;
 		int success = 0;
@@ -135,7 +140,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 			// then update didn't occur, throw an exception
 			throw new Exception("Insert animal failed: " + animal);
 		}
-
+		*/
 	}
 
 }
