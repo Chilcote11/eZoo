@@ -17,6 +17,11 @@ public class DAOUtilities {
 	private static final String CONNECTION_PASSWORD = "password";
 	private static final String URL = "jdbc:postgresql://localhost:5432/eZoo";
 	
+	// getters for Config.java
+	public static String getUsername() { return DAOUtilities.CONNECTION_USERNAME; }
+	public static String getPassword() { return DAOUtilities.CONNECTION_PASSWORD; }
+	public static String getURL() { return DAOUtilities.URL; }
+	
 	private static AnimalDAOImpl animalDAOImpl;
 	private static FeedingScheduleDAOImpl feedingScheduleDAOImpl;
 	private static Connection connection;
