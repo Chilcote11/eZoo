@@ -2,12 +2,15 @@ package com.examples.ezoo.config;
 
 import java.util.Properties;
 
+import javax.jms.Session;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.AnimalDAOImpl;
@@ -43,5 +46,9 @@ public class Config {
 		return dao;
 	}
 	
+	@Bean
+	public PlatformTransactionManager txManager(SessionFactory sessionFactory) {		// import from Spring
+		return new HibernateTransactionManager(sessionFactory);
+	}
 	
 }
