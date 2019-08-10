@@ -24,7 +24,7 @@ public class Animal implements Comparable<Animal> {
 	@Column private String type = "";
 	@Column private String healthStatus = "";
 
-	@Column private int feeding_schedule = 0;		// may need to add other annotation since this is a FK
+	@Column(name="feeding_schedule") private int feedingScheduleID = 0;		// may need to add other annotation since this is a FK
 	
 	public Animal(){}
 
@@ -45,7 +45,7 @@ public class Animal implements Comparable<Animal> {
 		this.weight = weight;
 		this.type = type;
 		this.healthStatus = healthStatus;
-		this.feeding_schedule = feedingScheduleID;
+		this.feedingScheduleID = feedingScheduleID;
 	}
 
 	public long getAnimalID() {
@@ -153,11 +153,11 @@ public class Animal implements Comparable<Animal> {
 	}
 
 	public int getFeedingScheduleID() {
-		return feeding_schedule;
+		return feedingScheduleID;
 	}
 
 	public void setFeedingScheduleID(int feedingScheduleID) {
-		this.feeding_schedule = feedingScheduleID;
+		this.feedingScheduleID = feedingScheduleID;
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public class Animal implements Comparable<Animal> {
 		return "Animal [animalID=" + animalID + ", name=" + name + ", taxKingdom=" + taxKingdom + ", taxPhylum="
 				+ taxPhylum + ", taxClass=" + taxClass + ", taxOrder=" + taxOrder + ", taxFamily=" + taxFamily
 				+ ", taxGenus=" + taxGenus + ", taxSpecies=" + taxSpecies + ", height=" + height + ", weight=" + weight
-				+ ", type=" + type + ", healthStatus=" + healthStatus + ", feedingScheduleID=" + feeding_schedule + "]";
+				+ ", type=" + type + ", healthStatus=" + healthStatus + ", feedingScheduleID=" + feedingScheduleID + "]";
 	}
 
 	@Override

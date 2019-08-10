@@ -18,7 +18,7 @@ public class TestAnimalDAO {
 		
 		// test saveAnimal method
 		Animal animalToSave = new Animal(
-				400,
+				401,
 				"jack",
 				"dog", 
 				"dog", 
@@ -40,14 +40,14 @@ public class TestAnimalDAO {
 			e.printStackTrace();
 		}
 		
-		// test getAllAnimals method
+////		 test getAllAnimals method
 //		List<Animal> animals = dao.getAllAnimals();
 //		Collections.sort(animals);
 //		System.out.println("Animals printed below:");
 //		for (Animal a : animals) {
 //			System.out.println(a);
 //		}
-		
+//		
 		
 		
 	}
