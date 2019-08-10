@@ -8,8 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.examples.ezoo.model.Animal;
 
+@Repository
+@Transactional
 public class AnimalDAOImpl implements AnimalDAO {
 
 	@Override
