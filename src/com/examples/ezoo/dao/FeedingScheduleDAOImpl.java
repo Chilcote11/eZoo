@@ -8,9 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
+@Repository
+@Transactional
 public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 
 	@Override		// checked and tested
