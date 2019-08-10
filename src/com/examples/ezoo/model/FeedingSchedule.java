@@ -11,8 +11,10 @@ import javax.persistence.Table;
 @Table(name="feeding_schedules")
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	
-	@Id private int scheduleID = 0;
-	@Column private String feedingTime = "";
+	@Id 
+	@Column(name="schedule_id") private int scheduleID = 0;
+	
+	@Column(name="feeding_time") private String feedingTime = "";
 	@Column private String recurrence = "";
 	@Column private String food = "";
 	@Column private String notes = "";
