@@ -160,7 +160,11 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 
 	@Override
 	public FeedingSchedule getFeedingSchedule(Animal animal) {
-		FeedingSchedule feedingSchedule = new FeedingSchedule();
+		
+		Session session = sessionFactory.openSession();		
+		FeedingSchedule feedingSchedule = sessionFactory.getCurrentSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
+		
+		/*FeedingSchedule feedingSchedule = new FeedingSchedule();
 		Connection connection = null;
 		PreparedStatement stmt = null;
 		
@@ -194,7 +198,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		return feedingSchedule;
 		
@@ -202,7 +206,16 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 
 	@Override
 	public void assignFeedingSchedule(FeedingSchedule feedingSchedule, Animal animal) throws Exception {
-		Connection connection = null;
+		
+		Session session = sessionFactory.openSession();	
+		session.beginTransaction();
+		Query query = session.createQuery("UPDATE Animal SET feedingScheduleID = :Schedule_ID WHERE animalID = :Animal_ID");
+		query.setParameter("Schedule_ID", feedingSchedule.getScheduleID());
+		query.setParameter("Animal_ID", animal.getAnimalID());
+		query.executeUpdate();
+		session.getTransaction().commit();
+		
+		/*Connection connection = null;
 		PreparedStatement stmt = null;
 		int success = 0;
 		
@@ -232,12 +245,21 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		}
 		
 		if (success == 0)
-			throw new Exception("Assign feeding schedule failed: " + animal);
+			throw new Exception("Assign feeding schedule failed: " + animal);*/
 	}
 
 	@Override
 	public void removeFeedingSchedule(Animal animal) throws Exception { 		// remove means set = null?
-		Connection connection = null;
+		
+		Session session = sessionFactory.openSession();	
+		session.beginTransaction();
+		Query query = session.createQuery("UPDATE Animal SET feedingScheduleID = :Schedule_ID WHERE animalID = :Animal_ID");
+		query.setParameter("Schedule_ID", null);
+		query.setParameter("Animal_ID", animal.getAnimalID());
+		query.executeUpdate();
+		session.getTransaction().commit();
+		
+		/*Connection connection = null;
 		PreparedStatement stmt = null;
 		int success = 0;
 		
@@ -267,12 +289,25 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		
 		if (success == 0) {
 			throw new Exception("Remove feeding schedule from animal failed: +" + animal);
-		}
+		}*/
 	}
 	
 	@Override
 	public void updateFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
-		Connection connection = null;
+		
+		Session session = sessionFactory.openSession();	
+		session.beginTransaction();
+		Query query = session.createQuery("UPDATE FeedingSchedule SET feedingTime = :FT, "
+				+ "recurrence = :R, food = :F, notes = :N WHERE scheduleID = :ID");
+		query.setParameter("FT", feedingSchedule.getFeedingTime());
+		query.setParameter("R", feedingSchedule.getRecurrence());
+		query.setParameter("F", feedingSchedule.getFood());
+		query.setParameter("N", feedingSchedule.getNotes());
+		query.setParameter("ID", feedingSchedule.getScheduleID());
+		query.executeUpdate();
+		session.getTransaction().commit();
+		
+		/*Connection connection = null;
 		PreparedStatement stmt = null;
 		int success = 0;
 		
@@ -306,7 +341,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		}
 		
 		if (success == 0)
-			throw new Exception("Update feeding schedule failed: " + feedingSchedule);
+			throw new Exception("Update feeding schedule failed: " + feedingSchedule);*/
 	}
 
 }
