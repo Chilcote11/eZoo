@@ -1,25 +1,33 @@
 package com.examples.ezoo.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//@Entity(name="ANIMALS")
+@Entity
+@Table(name="ANIMALS")
 public class Animal implements Comparable<Animal> {
 	
-	private long animalID = 0L;
-	private String name = "";
+	@Id private long animalID = 0L;
+	@Column private String name = "";
 	
-	private String taxKingdom = "";
-	private String taxPhylum = "";
-	private String taxClass = "";
-	private String taxOrder = "";
-	private String taxFamily = "";
-	private String taxGenus = "";
-	private String taxSpecies = "";
+	@Column private String taxKingdom = "";
+	@Column private String taxPhylum = "";
+	@Column private String taxClass = "";
+	@Column private String taxOrder = "";
+	@Column private String taxFamily = "";
+	@Column private String taxGenus = "";
+	@Column private String taxSpecies = "";
 	
-	private double height = 0D;
-	private double weight = 0D;
+	@Column private double height = 0D;
+	@Column private double weight = 0D;
 	
-	private String type = "";
-	private String healthStatus = "";
-	// added by Cory
-	private int feedingScheduleID = 0;
+	@Column private String type = "";
+	@Column private String healthStatus = "";
+
+	@Column(name="feeding_schedule", nullable = true) private Integer feedingScheduleID = 0;		// may need to add other annotation since this is a FK
 	
 	public Animal(){}
 
@@ -147,11 +155,11 @@ public class Animal implements Comparable<Animal> {
 		this.healthStatus = healthStatus;
 	}
 
-	public int getFeedingScheduleID() {
+	public Integer getFeedingScheduleID() {
 		return feedingScheduleID;
 	}
 
-	public void setFeedingScheduleID(int feedingScheduleID) {
+	public void setFeedingScheduleID(Integer feedingScheduleID) {
 		this.feedingScheduleID = feedingScheduleID;
 	}
 
