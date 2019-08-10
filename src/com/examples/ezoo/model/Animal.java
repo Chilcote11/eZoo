@@ -27,7 +27,7 @@ public class Animal implements Comparable<Animal> {
 	@Column private String type = "";
 	@Column private String healthStatus = "";
 
-	@Column(name="feeding_schedule", nullable = true) private int feedingScheduleID = 0;		// may need to add other annotation since this is a FK
+	@Column(name="feeding_schedule", nullable = true) private Integer feedingScheduleID = 0;		// may need to add other annotation since this is a FK
 	
 	public Animal(){}
 
@@ -155,11 +155,11 @@ public class Animal implements Comparable<Animal> {
 		this.healthStatus = healthStatus;
 	}
 
-	public int getFeedingScheduleID() {
+	public Integer getFeedingScheduleID() {
 		return feedingScheduleID;
 	}
 
-	public void setFeedingScheduleID(int feedingScheduleID) {
+	public void setFeedingScheduleID(Integer feedingScheduleID) {
 		this.feedingScheduleID = feedingScheduleID;
 	}
 
