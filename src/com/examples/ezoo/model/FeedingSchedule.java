@@ -2,13 +2,21 @@ package com.examples.ezoo.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="feeding_schedules")
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	
-	private int scheduleID = 0;
-	private String feedingTime = "";
-	private String recurrence = "";
-	private String food = "";
-	private String notes = "";
+	@Id private int scheduleID = 0;
+	@Column private String feedingTime = "";
+	@Column private String recurrence = "";
+	@Column private String food = "";
+	@Column private String notes = "";
+	
 	private String animals = "";		// NEVER USE IN DAO
 										// Useful in servlets, specifically FeedingSchedulesServlet
 	
