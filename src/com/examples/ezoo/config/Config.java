@@ -19,6 +19,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.AnimalDAOImpl;
 import com.examples.ezoo.dao.DAOUtilities;
+import com.examples.ezoo.dao.FeedingScheduleDAO;
+import com.examples.ezoo.dao.FeedingScheduleDAOImpl;
 
 
 @Configuration						// from Spring
@@ -49,6 +51,12 @@ public class Config {
 	@Bean
 	public AnimalDAO animalDAO (SessionFactory sessionFactory) {
 		AnimalDAOImpl dao = new AnimalDAOImpl();
+		dao.setSessionFactory(sessionFactory);
+		return dao;
+	}
+	
+	@Bean FeedingScheduleDAO feedingScheduleDAO (SessionFactory sessionFactory) {
+		FeedingScheduleDAOImpl dao = new FeedingScheduleDAOImpl();
 		dao.setSessionFactory(sessionFactory);
 		return dao;
 	}

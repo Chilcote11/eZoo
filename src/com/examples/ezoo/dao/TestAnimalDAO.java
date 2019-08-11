@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Animal;
@@ -13,7 +14,7 @@ public class TestAnimalDAO {
 	
 	public static void main(String[] args) {
 //		AnimalDAO dao = new AnimalDAOImpl(); // this won't work.. need application context
-		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO dao = (AnimalDAO) context.getBean(AnimalDAO.class);
 		
 		// test saveAnimal method
@@ -47,5 +48,7 @@ public class TestAnimalDAO {
 		for (Animal a : animals) {
 			System.out.println(a);
 		}
+		
+		context.close();
 	}
 }

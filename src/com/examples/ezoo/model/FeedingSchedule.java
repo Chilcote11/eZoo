@@ -2,14 +2,25 @@ package com.examples.ezoo.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="feeding_schedules")
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	
-	private int scheduleID = 0;
-	private String feedingTime = "";
-	private String recurrence = "";
-	private String food = "";
-	private String notes = "";
-	private String animals = "";		// NEVER USE IN DAO
+	@Id 
+	@Column(name="schedule_id") private int scheduleID = 0;
+	
+	@Column(name="feeding_time") private String feedingTime = "";
+	@Column private String recurrence = "";
+	@Column private String food = "";
+	@Column private String notes = "";
+	
+	@Transient private String animals = "";		// NEVER USE IN DAO
 										// Useful in servlets, specifically FeedingSchedulesServlet
 	
 	public FeedingSchedule() {}
@@ -62,7 +73,8 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-		
+	
+	@Transient
 	public String getAnimals() {
 		return animals;
 	}

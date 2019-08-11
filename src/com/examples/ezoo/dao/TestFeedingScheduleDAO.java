@@ -2,6 +2,12 @@ package com.examples.ezoo.dao;
 
 import java.util.Collections;
 import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+
+import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
@@ -13,14 +19,18 @@ import com.examples.ezoo.model.FeedingSchedule;
  * 		Animal(id=4) exists (preferrably named "hungry") and is originally assigned no feeding schedule
  * 
  * This test class makes changes, but resets all values to their original state upon completion
+ * 
+ * !!! REMEMBER TO SORT !!!
+ * 			your assignments and removals won't work if you don't
  */
 
 public class TestFeedingScheduleDAO {
 
 	public static void main(String[] args) {
 	    
-		FeedingScheduleDAO dao = new FeedingScheduleDAOImpl();
-		AnimalDAO animalDAO = new AnimalDAOImpl();
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		FeedingScheduleDAO dao = (FeedingScheduleDAO) context.getBean(FeedingScheduleDAO.class);
+		AnimalDAO animalDAO = (AnimalDAO) context.getBean(AnimalDAO.class);
 	    
 	    
 	    // test saveFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception
@@ -62,18 +72,7 @@ public class TestFeedingScheduleDAO {
 	    
 	    // test assignFeedingSchedule(Animal animal) throws Exception
 	    try {
-	    	/*for (FeedingSchedule schedule : allFeedingSchedules) {
-	    		if (schedule.getScheduleID() == 1)	{		// feeding schedule 1 food = giraffes
-	    			for (Animal animal : animals) {
-	    				if (animal.getAnimalID() == 4) {	// animal 4 is hungry
-	    					dao.assignFeedingSchedule(schedule, animal);		// feed the hungry animal giraffes
-	    				}
-	    			}
-	    		}
-	    	}*/	
-	    	// if these lists were sorted, the line below could replace the previous 9:
 	    	dao.assignFeedingSchedule(allFeedingSchedules.get(1-1), animals.get(4-1));
-					// UPDATE: using comparable interface and sorting the list (see line 47)
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -81,12 +80,6 @@ public class TestFeedingScheduleDAO {
 	    
 	    // test removeFeedingSchedule(Animal animal) throws Exception
 	    try {
-	    	/*for (Animal animal : animals) {
-				if (animal.getAnimalID() == 1) {	// animal 1 is Leo
-					dao.removeFeedingSchedule(animal);		// Leo could lose some weight
-				}
-			}*/
-	    		// UPDATE: animals is now sorted
 	    	dao.removeFeedingSchedule(animals.get(1-1));
 		} catch (Exception e) {
 			System.out.println(e);
@@ -105,32 +98,17 @@ public class TestFeedingScheduleDAO {
 	    
 	    // the statements below reset values back to their original state
 	    try {
-	    	/*for (FeedingSchedule schedule : allFeedingSchedules) {
-	    		if (schedule.getScheduleID() == 1)	{		// feeding schedule 1 has giraffes
-	    			for (Animal animal : animals) {
-	    				if (animal.getAnimalID() == 1) {	// animal 1 is Leo
-	    					dao.assignFeedingSchedule(schedule, animal);		// let the lion eat
-	    				}
-	    			}
-	    		}
-	    	}*/
-	    		// UPDATE: both animals and feeding schedules are now sorted
 	    	dao.assignFeedingSchedule(allFeedingSchedules.get(1-1), animals.get(1-1));		// let the lion eat
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	    try {
-	    	/*for (Animal animal : animals) {
-				if (animal.getAnimalID() == 4) {	// animal 4 is hungry
-					dao.removeFeedingSchedule(animal);		// hungry back on diet
-				}
-			}*/
-	    		// UPDATE: animals is now sorted
 	    	dao.removeFeedingSchedule(animals.get(4-1));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	    
+	    context.close();
 	    
 	}
 }
