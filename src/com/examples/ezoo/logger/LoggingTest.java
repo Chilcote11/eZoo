@@ -10,7 +10,7 @@ public class LoggingTest {
 
 	public static void main(String[] args) {
 		
-		String log4ConfPath = "C:/Software Stuff/Revature/eZoo/eZoo Files/src/log4j.properties";
+		String log4ConfPath = "C:/Software Stuff/Revature/eZoo/eZoo Files/log4j.properties";
 		PropertyConfigurator.configure(log4ConfPath);
 		
 		// The default logging level is DUBUG - this should be printed
