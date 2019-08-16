@@ -20,7 +20,9 @@ Though unlikely to ever benefit a real zoo, this project has served me well as a
 ## Tools and Frameworks Used
 
 Developed using Eclipse, Maven, PostgreSQL, HTML & CSS (bootstrap, mostly) JSPs, and JDBC for data access objects
+
 Recently upgraded to use Spring and Hibernate instead of JDBC, greatly simplifying the data access layer
+
 Currently implementing Spring Framework’s MVC and security features, Log4J for logging, and JavaScript to improve JSPs
 
 
