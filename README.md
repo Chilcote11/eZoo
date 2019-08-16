@@ -26,7 +26,7 @@ Recently upgraded to use Spring and Hibernate instead of JDBC, greatly simplifyi
 Currently implementing Spring Framework’s MVC and security features, Log4J for logging, and JavaScript to improve JSPs
 
 
-## Deployment Instructions (unfinished, more to come!)
+## Deployment Instructions
 
 To run this application, you'll need Java8 or later, Eclipse, Wildly server, and PostgreSQL.
 - Instructions for installing these technologies can be found in SETUP.docx
