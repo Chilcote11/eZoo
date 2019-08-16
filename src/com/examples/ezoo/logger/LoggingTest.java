@@ -7,19 +7,15 @@ import org.apache.logging.log4j.core.config.Configurator;
 
 public class LoggingTest {
 	
-//	private static Logger Log = Logger.getLogger(LoggingTest.class.getName());
 	private static Logger Log = LogManager.getLogger(LoggingTest.class.getName());
 
 	public static void main(String[] args) {
-		
-//		String log4ConfPath = "C:/Software Stuff/Revature/eZoo/eZoo Files/log4j.properties";
-//		PropertyConfigurator.configure(log4ConfPath);
 		
 		// The default logging level is DUBUG - this should be printed
 		Log.debug("Debug message");
 		
 		// Raise the logging level to FATAL
-//		Log.setLevel(Level.FATAL);		// no setLevel method for this Logger
+//		Log.setLevel(Level.FATAL);								// no setLevel method for this Logger
 //		Configurator.setAllLevels(LogManager.getRootLogger().getName(), Level.FATAL);		// changes level universally
 		Configurator.setLevel(Log.getName(), Level.FATAL);		// changes level for current class
 		
