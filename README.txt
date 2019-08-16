@@ -7,11 +7,8 @@
 *	- Application Description
 *	- Tools and Frameworks used
 *	- Deployment Instructions
-*	-		JBoss 7.x
-*	-		Tomcat 8.x
-*	- 		WebLogic 12.x
+		Maven
 * 	- Licenses
-*	- Miscellaneous
 *
 ***************************************************
 
@@ -31,28 +28,25 @@
 	Currently implementing Spring Framework’s MVC and security features, Log4J for logging, and JavaScript to improve JSPs
 
 
-3. 	Instructions (unfinished, more to come!)
-	
-	After unzipping this folder structure, please IMPORT
-	the project into Eclipse using the import wizard.
-	
-	Afterwards, you will setup your Application Server 
-	(either JBoss, Tomcat, or WebLogic)
-	
+3. 	Deployment Instructions (unfinished, more to come!)
 
-3.1	JBoss
+	To run this application, you'll need Jav8 or later, Eclipse, Wildly server, and PostgreSQL.
+		Instructions for installing these technologies can be found in SETUP.docx
+		
+	You'll also need Maven 3 if running anything after version 1 (branch: eZoo100)
+		Be aware that version 2 is still in development, so some functionality may not yet be implemented
+			
 
-
-
-3.2	Tomcat
-
-	To deploy the application on Tomcat server, you can
-	right-click on the project and select Run As...
+3.1	Maven 3 installation
 	
-	select Run on Server and choose the appropriate
-	installation of Tomcat.
+	Linux Installation with `apt`:
+	- sudo apt install maven
 	
-3.3 WebLogic
+	Windows Installation
+	- Download the binary zip archive from: https://maven.apache.org/download.cgi
+	- Extract files to some known location, could be C:\Program Files\Maven\
+	- Add `C:\Program Files\Maven\apache-maven-3.*.*\bin` to the system `PATH` variable
+	- mvn --version in a new terminal window should now show the Maven 3 version installed as well as the Java version it recognizes
 
 
 4	Licenses
@@ -73,5 +67,3 @@
 	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-5	Miscellaneous
