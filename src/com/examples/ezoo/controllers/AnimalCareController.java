@@ -17,7 +17,7 @@ import com.examples.ezoo.model.Animal;
 public class AnimalCareController {
 
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
-	public String animalCare(Model model) {
+	public String DisplayAnimalCare(Model model) {
 		
 		// Grab a list of Animals from the Database
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
