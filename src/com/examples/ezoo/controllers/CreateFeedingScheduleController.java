@@ -27,6 +27,7 @@ public class CreateFeedingScheduleController {
 	public String createFeedingSchedule(/*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/) {
 		
 		// Get Parameters
+		// all of this may be unnecessary.. could just say dao.saveFeedingSchedule(newFS);... I think
 		int scheduleID = newFS.getScheduleID();
 		String feedingTime = newFS.getFeedingTime();
 		String recurrence = newFS.getRecurrence();
