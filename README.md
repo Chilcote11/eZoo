@@ -26,7 +26,7 @@ Currently implementing Spring Framework’s MVC and security features, Log4J for
 
 ## Deployment Instructions (unfinished, more to come!)
 
-To run this application, you'll need Jav8 or later, Eclipse, Wildly server, and PostgreSQL.
+To run this application, you'll need Java8 or later, Eclipse, Wildly server, and PostgreSQL.
 - Instructions for installing these technologies can be found in SETUP.docx
 
 You'll also need Maven 3 if running anything after version 1 (branch: eZoo100)
