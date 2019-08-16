@@ -10,7 +10,7 @@ Last Updated: August 2019
 
 ## Application Description: 
 
-This is the eZoo application!  A JavaEE MVC application designed to manage a virtual zoo’s animals and events with an easy-to-use user interface for employees and customers
+Welcome to the eZoo application!  A JavaEE MVC application designed to manage a virtual zoo’s animals and events with an easy-to-use user interface for employees and customers
 
 Revature, a company committed to training entry-level software developers, provided the original template for this project (now making up around 10% of the overall application).  A few instructional videos and several hundred Google searches later, the first version of this application was birthed (see `branch: eZoo100`).  From there the application has been, and is still in the process of being upgraded to utilize the tools and frameworks listed below.
 
