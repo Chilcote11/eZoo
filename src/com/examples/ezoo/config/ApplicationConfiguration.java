@@ -11,7 +11,7 @@ public class ApplicationConfiguration extends AbstractAnnotationConfigDispatcher
 	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { RootConfiguration.class };
+		return new Class<?>[] { RootConfiguration.class, Config.class};
 	}
 
 	@Override
