@@ -18,14 +18,26 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class CreateFeedingScheduleController {
 
 	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.GET)
-	public String DisplayCreateFeedingScheduleForm(Model model) {
+	public String DisplayCreateFeedingScheduleForm(Model model
+			, @ModelAttribute("message") String messge
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
+		
 		model.addAttribute("newFeedingSchedule", new FeedingSchedule());
 		return "createFeedingSchedule";		
 	}
 	
 	@RequestMapping(value="createFeedingSchedule", method=RequestMethod.GET)
-	public String createFeedingSchedule(/*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/) {
+	public String createFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/
+			, @ModelAttribute("message") String messge
+			, @ModelAttribute("messageClass") String messageClass) {
 		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
 		
 		// Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
@@ -36,18 +48,24 @@ public class CreateFeedingScheduleController {
 			dao.saveFeedingSchedule(newFS);
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
+			model.addAttribute("message",  "Feeding schedule successfully created");
+			model.addAttribute("messageClass", "alert-success");
 			return "feedingSchedules";
 		} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			// change the message
 //			request.getSession().setAttribute("message",  "Id of " + scheduleToSave.getScheduleID() + " is already in use");
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
+			model.addAttribute("message",  "Id of " + newFS.getScheduleID() + " is already in use");
+			model.addAttribute("messageClass",  "alert-danger");
 			return "createFeedingSchedule";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// change the message
 //			request.getSession().setAttribute("message",  "There was a problem creating the feeding schedule at this time");
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
+			model.addAttribute("message",  "There was a problem creating the feeding schedule at this time");
+			model.addAttribute("messageClass",  "alert-danger");
 			return "createFeedingSchedule";
 		}
 	}

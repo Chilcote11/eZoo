@@ -16,13 +16,26 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class UpdateFeedingScheduleController {
 
 	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.GET)
-	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate) {
+	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
+		
 		model.addAttribute("scheduleToUpdate", scheduleToUpdate);	// transfer
 		return "updateFeedingSchedule";
 	}
 	
 	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.POST)
-	public String updateFeedingSchedule(/*@Valid*/ @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate/*, Errors errors*/) {
+	public String updateFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate/*, Errors errors*/
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
@@ -34,11 +47,15 @@ public class UpdateFeedingScheduleController {
 			dao.updateFeedingSchedule(scheduleToUpdate);
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully updated");
 //			request.getSession().setAttribute("messageClass", "alert-success");
+			model.addAttribute("message",  "Feeding schedule successfully updated");
+			model.addAttribute("messageClass", "alert-success");
 			return "feedingSchedules";
 		} catch (Exception e) {
 			e.printStackTrace();
 //			request.getSession().setAttribute("message",  "There was a problem updating the feeding schedule at this time");
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
+			model.addAttribute("message",  "There was a problem updating the feeding schedule at this time");
+			model.addAttribute("messageClass",  "alert-danger");
 			return "updateFeedingSchedules";
 		}
 	}

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,7 +18,13 @@ import com.examples.ezoo.model.Animal;
 public class AnimalCareController {
 
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
-	public String DisplayAnimalCare(Model model) {
+	public String DisplayAnimalCare(Model model
+			, @ModelAttribute("message") String messge
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
 		
 		// Grab a list of Animals from the Database
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);

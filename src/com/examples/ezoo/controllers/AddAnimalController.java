@@ -19,12 +19,11 @@ import com.examples.ezoo.model.Animal;
 public class AddAnimalController {
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.GET)
-	public String DisplayAddAnimalForm(Model model) {
+	public String DisplayAddAnimalForm(Model model
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// these 4 lines may be useful in dealing with message attributes
-		// but as far as I know, message isn't initialized before now
-//			, @ModelAttribute("message") String message, 
-//			@ModelAttribute("messageClass") String messageClass) {
+		// not setting in new model for now
 //		model.addAttribute("message", message);
 //		model.addAttribute("messageClass", messageClass);
 		

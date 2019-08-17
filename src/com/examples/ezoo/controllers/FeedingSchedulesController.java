@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,7 +21,13 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class FeedingSchedulesController {
 	
 	@RequestMapping(value="/feedingSchedules", method=RequestMethod.GET)
-	public String DisplayFeedingSchedules(Model model) {
+	public String DisplayFeedingSchedules(Model model
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);

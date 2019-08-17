@@ -32,7 +32,13 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class FSAssignmentController {
 
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animalID") long animalID) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animalID") long animalID
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
@@ -76,7 +82,13 @@ public class FSAssignmentController {
 	}
 	
 	@RequestMapping(value="FSAssignment", method=RequestMethod.POST)
-	public String assignFeedingSchedule(@ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
+	public String assignFeedingSchedule(Model model, @ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		// not setting in new model for now.. though they'll never be set here
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
@@ -99,6 +111,7 @@ public class FSAssignmentController {
 			if (animal.getFeedingScheduleID() > 0) {
 				FSDAO.removeFeedingSchedule(animal);
 //				request.getSession().setAttribute("message",  "Feeding schedule successfully removed");
+				model.addAttribute("message",  "Feeding schedule successfully removed");
 			}
 			// assignment logic
 			else {
@@ -106,15 +119,19 @@ public class FSAssignmentController {
 				FSDAO.assignFeedingSchedule(fs, animal);
 				
 //				request.getSession().setAttribute("message",  "Feeding schedule successfully assigned");
+				model.addAttribute("message",  "Feeding schedule successfully assigned");
 			}
 			
 //			request.getSession().setAttribute("messageClass", "alert-success");
+			model.addAttribute("messageClass", "alert-success");
 			return "animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// change the message
 //			request.getSession().setAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
+			model.addAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
+			model.addAttribute("messageClass",  "alert-danger");
 			return "animalCare";
 		}
 		
