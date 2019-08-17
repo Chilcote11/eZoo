@@ -16,8 +16,8 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class UpdateFeedingScheduleController {
 
 	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.GET)
-	public String DisplayUpdatePage(Model model) {
-		model.addAttribute("scheduleToUpdate", new FeedingSchedule());
+	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate) {
+		model.addAttribute("scheduleToUpdate", scheduleToUpdate);	// transfer
 		return "updateFeedingSchedule";
 	}
 	

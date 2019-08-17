@@ -55,6 +55,9 @@ public class FeedingSchedulesController {
 		// need this, because there is no GET method for the delete action
 		model.addAttribute("scheduleToDelete", new FeedingSchedule());
 		
+		// need this to send the correct feeding schedule to update page
+		model.addAttribute("scheduleToUpdate", new FeedingSchedule());
+		
 		return "feedingSchedules";
 	}
 }
