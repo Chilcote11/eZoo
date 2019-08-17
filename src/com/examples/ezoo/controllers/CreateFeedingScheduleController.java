@@ -48,7 +48,7 @@ public class CreateFeedingScheduleController {
 			dao.saveFeedingSchedule(newFS);
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
-			model.addAttribute("message",  "Feeding schedule successfully created");
+			model.addAttribute("message",  "Feeding schedule successfully created 123");
 			model.addAttribute("messageClass", "alert-success");
 			return "feedingSchedules";
 		} catch(SQLIntegrityConstraintViolationException e) {
