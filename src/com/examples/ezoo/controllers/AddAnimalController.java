@@ -35,46 +35,13 @@ public class AddAnimalController {
 			return "animalCare";
 		}*/
 		
-		//Get Parameters
-		long id = newAnimal.getAnimalID();
-		String name = newAnimal.getName();
-		String kingdom = newAnimal.getTaxKingdom();
-		String phylum = newAnimal.getTaxPhylum();
-		String clazz = newAnimal.getTaxClass();
-		String order = newAnimal.getTaxOrder();
-		String family = newAnimal.getTaxFamily();
-		String genus = newAnimal.getTaxGenus();
-		String species = newAnimal.getTaxSpecies();
-		String type = newAnimal.getType();
-		String healthStatus = newAnimal.getHealthStatus();
-		double height = newAnimal.getHeight();
-		double weight = newAnimal.getWeight();
-		int feedingScheduleID = newAnimal.getFeedingScheduleID();
-		
-		//Create an Animal object from the parameters
-		Animal animalToSave = new Animal(
-				id, 
-				name, 
-				kingdom,
-				phylum,
-				clazz,
-				order,
-				family,
-				genus,
-				species,
-				height,
-				weight,
-				type,
-				healthStatus, 
-				feedingScheduleID);
-		
 		//Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO dao = context.getBean(AnimalDAO.class);
 		context.close();
 		// TODO: deal with the message attribute commented out below
 		try {
-			dao.saveAnimal(animalToSave);
+			dao.saveAnimal(newAnimal);
 //			request.getSession().setAttribute("message", "Animal successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			return "animalCare";
