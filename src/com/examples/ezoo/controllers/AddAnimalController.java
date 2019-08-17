@@ -20,12 +20,22 @@ public class AddAnimalController {
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.GET)
 	public String DisplayAddAnimalForm(Model model) {
+		
+		// these 4 lines may be useful in dealing with message attributes
+		// but as far as I know, message isn't initialized before now
+//			, @ModelAttribute("message") String message, 
+//			@ModelAttribute("messageClass") String messageClass) {
+//		model.addAttribute("message", message);
+//		model.addAttribute("messageClass", messageClass);
+		
 		model.addAttribute("newAnimal", new Animal());
 		return "addAnimal";		
 	}
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.POST)
-	public String addAnimal(/*@Valid*/ @ModelAttribute("newAnimal") Animal newAnimal/*, Errors errors*/) {
+	public String addAnimal(Model model,/*@Valid*/ @ModelAttribute("newAnimal") Animal newAnimal, /*, Errors errors*/
+			@ModelAttribute("message") String message, 
+			@ModelAttribute("messageClass") String messageClass) {
 		
 		// used to handle validation later on
 		/*if (errors.hasErrors())
@@ -44,12 +54,16 @@ public class AddAnimalController {
 			dao.saveAnimal(newAnimal);
 //			request.getSession().setAttribute("message", "Animal successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
+			model.addAttribute("message", "Animal successfully created");
+			model.addAttribute("messageClass", "alert-success");
 			return "animalCare";
 		}catch(SQLIntegrityConstraintViolationException e){
 			e.printStackTrace();			
 			//change the message
 //			request.getSession().setAttribute("message", "Id of " + animalToSave.getAnimalID() + " is already in use");
 //			request.getSession().setAttribute("messageClass", "alert-danger");
+			model.addAttribute("message", "Id of " + newAnimal.getAnimalID() + " is already in use");
+			model.addAttribute("messageClass", "alert-danger");
 			// redirect
 			return "addAnimal";
 		}catch (Exception e){
@@ -57,6 +71,8 @@ public class AddAnimalController {
 			//change the message
 //			request.getSession().setAttribute("message", "There was a problem creating the animal at this time");
 //			request.getSession().setAttribute("messageClass", "alert-danger");
+			model.addAttribute("message", "There was a problem creating the animal at this time");
+			model.addAttribute("messageClass", "alert-danger");
 			// redirect
 			return "addAnimal";
 		}
