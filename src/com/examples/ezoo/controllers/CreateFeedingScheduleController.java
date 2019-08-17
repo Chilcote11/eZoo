@@ -30,7 +30,7 @@ public class CreateFeedingScheduleController {
 		return "createFeedingSchedule";		
 	}
 	
-	@RequestMapping(value="createFeedingSchedule", method=RequestMethod.POST)
+	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.POST)
 	public String createFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/
 			, @ModelAttribute("message") String messge
 			, @ModelAttribute("messageClass") String messageClass) {

@@ -20,7 +20,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 @Controller
 public class DeleteFeedingScheduleController {
 
-	@RequestMapping(value="deleteFeedingSchedule", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteFeedingSchedule", method=RequestMethod.POST)
 	public String deleteFeedingSchedule(Model model, @ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete
 			, @ModelAttribute("message") String messge
 			, @ModelAttribute("messageClass") String messageClass) {

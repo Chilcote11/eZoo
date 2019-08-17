@@ -81,7 +81,7 @@ public class FSAssignmentController {
 		return "assingFeedingSchedule";
 	}
 	
-	@RequestMapping(value="FSAssignment", method=RequestMethod.POST)
+	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)
 	public String assignFeedingSchedule(Model model, @ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
