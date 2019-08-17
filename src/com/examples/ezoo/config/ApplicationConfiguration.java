@@ -6,7 +6,7 @@ public class ApplicationConfiguration extends AbstractAnnotationConfigDispatcher
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/"};
+		return new String[] {"localhost:8080/eZoo/"};
 	}
 	
 	@Override
