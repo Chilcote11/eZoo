@@ -61,8 +61,13 @@ public class FSAssignmentController {
 			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
 		}
 		
-		// Populate the list into a variable that will be stored in the session
+		// Populate the list into a variable that will be stored in the model
 		model.addAttribute("feedingSchedules", feedingSchedules);
+		model.addAttribute("scheduleIDToAssign");
+		model.addAttribute("feedingTimeToAssign");
+		model.addAttribute("recurrenceToAssign");
+		model.addAttribute("foodToAssign");
+		model.addAttribute("notesToAssign");
 		model.addAttribute("animalID", animalID);
 		
 		return "assingFeedingSchedule";
