@@ -43,7 +43,7 @@
 						<tr>
 							<td>
 								<!-- animalID field prevents me from using commandName="scheduleToAssign" here -->
-								<sf:form action="FSAssignment" commandName="scheduleToSave" method="post"">
+								<sf:form action="FSAssignment" commandName="scheduleToAssign" method="post"">
 									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
 									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
 									<sf:hidden path="recurrence" value="${schedule.recurrence}" />

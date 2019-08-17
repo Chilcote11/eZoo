@@ -24,7 +24,7 @@ public class AnimalCareController {
 		AnimalDAO dao = context.getBean(AnimalDAO.class);
 		List<Animal> animals = dao.getAllAnimals();
 
-		// Populate the list into a variable that will be stored in the session
+		// Populate the list into a variable that will be stored in the model object
 		model.addAttribute("animals", animals);
 		
 		Animal largest = new Animal();
@@ -40,6 +40,8 @@ public class AnimalCareController {
 		model.addAttribute("longestNamedAnimal", longest);
 				
 		context.close();
+		
+		model.addAttribute("animalID", 0L);			// needed for animal care page
 		
 		return "animalCare";
 	}

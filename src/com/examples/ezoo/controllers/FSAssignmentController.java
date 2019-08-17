@@ -68,7 +68,7 @@ public class FSAssignmentController {
 //		model.addAttribute("foodToAssign", "");
 //		model.addAttribute("notesToAssign", "");
 //		 don't need lines above, animalID can be removed from the form since its already added below
-		model.addAttribute("scheduleToSave", new FeedingSchedule());
+		model.addAttribute("scheduleToAssign", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		model.addAttribute("animalID", animalID);
 		
