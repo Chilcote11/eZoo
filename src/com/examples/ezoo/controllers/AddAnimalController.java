@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.dao.AnimalDAO;
-import com.examples.ezoo.dao.DAOUtilities;
 import com.examples.ezoo.model.Animal;
 
 @Controller
