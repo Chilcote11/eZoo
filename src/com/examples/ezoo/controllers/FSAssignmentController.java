@@ -32,7 +32,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class FSAssignmentController {
 
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, /*@Valid*/ @ModelAttribute("animalID") long animalID/*, Errors errors*/) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animalID") long animalID) {
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
@@ -62,19 +62,21 @@ public class FSAssignmentController {
 		}
 		
 		// Populate the list into a variable that will be stored in the model
+//		model.addAttribute("scheduleIDToAssign", 0);
+//		model.addAttribute("feedingTimeToAssign", "");
+//		model.addAttribute("recurrenceToAssign", "");
+//		model.addAttribute("foodToAssign", "");
+//		model.addAttribute("notesToAssign", "");
+//		 don't need lines above, animalID can be removed from the form since its already added below
+		model.addAttribute("scheduleToSave", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
-		model.addAttribute("scheduleIDToAssign");
-		model.addAttribute("feedingTimeToAssign");
-		model.addAttribute("recurrenceToAssign");
-		model.addAttribute("foodToAssign");
-		model.addAttribute("notesToAssign");
 		model.addAttribute("animalID", animalID);
 		
 		return "assingFeedingSchedule";
 	}
 	
 	@RequestMapping(value="FSAssignment", method=RequestMethod.POST)
-	public String assignFeedingSchedule(/*@Valid*/ @ModelAttribute("animalID") long animalID, @ModelAttribute("fs") FeedingSchedule fs/*, Errors errors*/) {
+	public String assignFeedingSchedule(@ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);

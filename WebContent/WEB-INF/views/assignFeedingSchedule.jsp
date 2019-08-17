@@ -43,13 +43,13 @@
 						<tr>
 							<td>
 								<!-- animalID field prevents me from using commandName="scheduleToAssign" here -->
-								<sf:form action="FSAssignment" method="post"">
-									<sf:hidden path="scheduleIDToAssign" value="${schedule.scheduleID}" />
-									<sf:hidden path="feedingTimeToAssign" value="${schedule.feedingTime}" />
-									<sf:hidden path="recurrenceToAssign" value="${schedule.recurrence}" />
-									<sf:hidden path="foodToAssign" value="${schedule.food}" />
-									<sf:hidden path="notesToAssign" value="${schedule.notes}" />
-									<sf:hidden path="animalID" value="${animalID}" />
+								<sf:form action="FSAssignment" commandName="scheduleToSave" method="post"">
+									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
+									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
+									<sf:hidden path="recurrence" value="${schedule.recurrence}" />
+									<sf:hidden path="food" value="${schedule.food}" />
+									<sf:hidden path="notes" value="${schedule.notes}" />
+									<!-- <sf:hidden path="animalID" value="${animalID}" /> -->
 									<sf:button type="submit" class="btn btn-primary">Assign</sf:button>
 								</sf:form>
 							</td>
