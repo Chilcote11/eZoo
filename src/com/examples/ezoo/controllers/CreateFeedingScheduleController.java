@@ -26,21 +26,6 @@ public class CreateFeedingScheduleController {
 	@RequestMapping(value="createFeedingSchedule", method=RequestMethod.GET)
 	public String createFeedingSchedule(/*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/) {
 		
-		// Get Parameters
-		// all of this may be unnecessary.. could just say dao.saveFeedingSchedule(newFS);... I think
-		int scheduleID = newFS.getScheduleID();
-		String feedingTime = newFS.getFeedingTime();
-		String recurrence = newFS.getRecurrence();
-		String food = newFS.getFood();
-		String notes = newFS.getNotes();
-		
-		// Create a FeedingSchedule object from the parameters
-		FeedingSchedule scheduleToSave = new FeedingSchedule(
-				scheduleID,
-				feedingTime,
-				recurrence,
-				food,
-				notes);
 		
 		// Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
@@ -48,7 +33,7 @@ public class CreateFeedingScheduleController {
 		context.close();
 		// TODO: deal with the message attribute commented out below
 		try {
-			dao.saveFeedingSchedule(scheduleToSave);
+			dao.saveFeedingSchedule(newFS);
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			return "feedingSchedules";
