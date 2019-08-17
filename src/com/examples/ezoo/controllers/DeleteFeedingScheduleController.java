@@ -39,26 +39,26 @@ public class DeleteFeedingScheduleController {
 			List<Animal> animals = animalDAO.getAllAnimals();
 			for (Animal animal : animals) {
 				if (animal.getFeedingScheduleID() == scheduleToDelete.getScheduleID()) {
-					dao.removeFeedingSchedule(animal);
+//					dao.removeFeedingSchedule(animal);
 				}
 			}
 			
 			// delete the feeding schedule
-			dao.deleteFeedingSchedule(scheduleToDelete);
+//			dao.deleteFeedingSchedule(scheduleToDelete);
 			
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
 //			request.getSession().setAttribute("messageClass", "alert-success");
-			model.addAttribute("message",  "Feeding schedule successfully deleted");
+			model.addAttribute("message",  "Feeding schedule successfully deleted 123");
 			model.addAttribute("messageClass", "alert-success");
 			return "feedingSchedules";
-		} catch(SQLIntegrityConstraintViolationException e) {
-			e.printStackTrace();
-			// change the message
-//			request.getSession().setAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
-//			request.getSession().setAttribute("messageClass",  "alert-danger");
-			model.addAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
-			model.addAttribute("messageClass",  "alert-danger");
-			return "feedingSchedules";
+//		} catch(SQLIntegrityConstraintViolationException e) {
+//			e.printStackTrace();
+//			// change the message
+////			request.getSession().setAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
+////			request.getSession().setAttribute("messageClass",  "alert-danger");
+//			model.addAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
+//			model.addAttribute("messageClass",  "alert-danger");
+//			return "feedingSchedules";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// change the message

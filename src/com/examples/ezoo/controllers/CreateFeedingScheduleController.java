@@ -56,7 +56,7 @@ public class CreateFeedingScheduleController {
 			// change the message
 //			request.getSession().setAttribute("message",  "Id of " + scheduleToSave.getScheduleID() + " is already in use");
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
-			model.addAttribute("message",  "Id of " + newFS.getScheduleID() + " is already in use");
+			model.addAttribute("message",  "Id of " + newFS.getScheduleID() + " is already in use 123");
 			model.addAttribute("messageClass",  "alert-danger");
 			return "createFeedingSchedule";
 		} catch (Exception e) {
