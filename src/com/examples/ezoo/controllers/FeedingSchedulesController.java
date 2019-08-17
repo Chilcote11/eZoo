@@ -52,6 +52,9 @@ public class FeedingSchedulesController {
 		// Populate the list into a variable that will be stored in the session
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		
+		// need this, because there is no GET method for the delete action
+		model.addAttribute("scheduleToDelete", new FeedingSchedule());
+		
 		return "feedingSchedules";
 	}
 }

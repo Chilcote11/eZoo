@@ -20,7 +20,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class DeleteFeedingScheduleController {
 
 	@RequestMapping(value="deleteFeedingSchedule", method=RequestMethod.POST)
-	public String deleteFeedingSchedule(/*@Valid*/ @ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete/*, Errors errors*/) {
+	public String deleteFeedingSchedule(@ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete) {
 		
 		// Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
