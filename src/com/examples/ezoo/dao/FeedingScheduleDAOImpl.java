@@ -37,10 +37,11 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 
 	@Override // checked
 	public List<FeedingSchedule> getAllFeedingSchedules() {
-//		Session session = sessionFactory.openSession();				// need to close? no warning..	
-		Session session = sessionFactory.getCurrentSession();		// should fix exception I get when opening feedingSchedules.jsp
+		Session session = sessionFactory.openSession();				// need to close? no warning..
+//		Session session = sessionFactory.getCurrentSession();		// should fix exception I get when opening feedingSchedules.jsp
 		Query<FeedingSchedule> results = session.createQuery("from FeedingSchedule");
 		List<FeedingSchedule> feedingSchedules = results.list();
+		session.close();
 		return feedingSchedules;
 	}
 
