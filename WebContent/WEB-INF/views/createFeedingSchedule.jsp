@@ -26,7 +26,7 @@
 		<h1>eZoo <small>Create Feeding Schedule</small></h1>
 		<hr class="paw-primary">
 		
-		<sf:form action="createFeedingSchedule" commandName="newFeedingSchedule" method="post" class="form-horizontal">
+		<sf:form action="createFeedingSchedule" modelAttribute="newFeedingSchedule" method="post" class="form-horizontal">
 		
 		  <div class="form-group">
 		    <sf:label path="scheduleID" class="col-sm-4 control-label">Feeding Schedule ID</sf:label>

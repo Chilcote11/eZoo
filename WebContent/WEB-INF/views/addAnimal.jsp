@@ -26,7 +26,7 @@
 		<h1>eZoo <small>Add Animal</small></h1>
 		<hr class="paw-primary">
 		
-		<sf:form action="addAnimal" commandName="newAnimal" method="post" class="form-horizontal">
+		<sf:form action="addAnimal" modelAttribute="newAnimal" method="post" class="form-horizontal">
 		
 		  <div class="form-group">
 		    <sf:label path="id" class="col-sm-4 control-label">ID</sf:label>

@@ -26,7 +26,7 @@
 		<h1>eZoo <small>Update Feeding Schedule</small></h1>
 		<hr class="paw-primary">
 		
-		<sf:form action="updateFeedingSchedule" commandName="scheduleToUpdate" method="post" class="form-horizontal">
+		<sf:form action="updateFeedingSchedule" modelAttribute="scheduleToUpdate" method="post" class="form-horizontal">
 		
   		  <div style="font-size: 2em">
 		  	<c:out value="Schedule ID: ${scheduleToUpdate.scheduleID}" /></td>
