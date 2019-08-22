@@ -32,7 +32,7 @@ public class FeedingSchedulesController {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
-		context.close();
+//		context.close();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
 		
 		// Populate `animals` field of each feeding schedule
@@ -65,6 +65,7 @@ public class FeedingSchedulesController {
 		// need this to send the correct feeding schedule to update page
 		model.addAttribute("scheduleToUpdate", new FeedingSchedule());
 		
+		context.close();
 		return "feedingSchedules";
 	}
 }

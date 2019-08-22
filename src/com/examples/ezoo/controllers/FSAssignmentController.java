@@ -43,7 +43,7 @@ public class FSAssignmentController {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
-		context.close();
+//		context.close();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
 		
 		// Populate `animals` field of each feeding schedule
@@ -78,6 +78,7 @@ public class FSAssignmentController {
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		model.addAttribute("animalID", animalID);
 		
+		context.close();
 		return "assingFeedingSchedule";
 	}
 	
@@ -93,7 +94,7 @@ public class FSAssignmentController {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
 		FeedingScheduleDAO FSDAO = context.getBean(FeedingScheduleDAO.class);
-		context.close();
+//		context.close();
 		// TODO: deal with the message attribute commented out below
 		
 		try {
@@ -124,6 +125,7 @@ public class FSAssignmentController {
 			
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("messageClass", "alert-success");
+			context.close();
 			return "animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,6 +134,7 @@ public class FSAssignmentController {
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
 			model.addAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
+			context.close();
 			return "animalCare";
 		}
 		

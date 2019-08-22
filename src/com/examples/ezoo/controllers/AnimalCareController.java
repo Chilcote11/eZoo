@@ -45,11 +45,10 @@ public class AnimalCareController {
 			if (a.getName().length() > longest.getName().length())
 				longest = a;
 		model.addAttribute("longestNamedAnimal", longest);
-				
-		context.close();
 		
 		model.addAttribute("animalID", 0L);			// needed for animal care page
 		
+		context.close();
 		return "animalCare";
 	}
 }

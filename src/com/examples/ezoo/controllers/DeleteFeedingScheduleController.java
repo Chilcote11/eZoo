@@ -33,7 +33,7 @@ public class DeleteFeedingScheduleController {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
-		context.close();
+//		context.close();
 		try {
 			// remove feeding schedule from all corresponding animals
 			List<Animal> animals = animalDAO.getAllAnimals();
@@ -50,6 +50,7 @@ public class DeleteFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("message",  "Feeding schedule successfully deleted 123");
 			model.addAttribute("messageClass", "alert-success");
+			context.close();
 			return "feedingSchedules";
 //		} catch(SQLIntegrityConstraintViolationException e) {
 //			e.printStackTrace();
@@ -58,6 +59,7 @@ public class DeleteFeedingScheduleController {
 ////			request.getSession().setAttribute("messageClass",  "alert-danger");
 //			model.addAttribute("message",  "Id of " + scheduleToDelete.getScheduleID() + " does not exist");
 //			model.addAttribute("messageClass",  "alert-danger");
+//			context.close();
 //			return "feedingSchedules";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +68,7 @@ public class DeleteFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
 			model.addAttribute("message",  "There was a problem deleting the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
+			context.close();
 			return "feedingSchedules";
 		}
 	}

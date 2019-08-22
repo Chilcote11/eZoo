@@ -42,10 +42,11 @@ public class CreateFeedingScheduleController {
 		// Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
-		context.close();
+//		context.close();
 		// TODO: deal with the message attribute commented out below
 		try {
 			dao.saveFeedingSchedule(newFS);
+			context.close();
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("message",  "Feeding schedule successfully created 123");
@@ -58,6 +59,7 @@ public class CreateFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
 			model.addAttribute("message",  "Id of " + newFS.getScheduleID() + " is already in use 123");
 			model.addAttribute("messageClass",  "alert-danger");
+			context.close();
 			return "createFeedingSchedule";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +68,7 @@ public class CreateFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
 			model.addAttribute("message",  "There was a problem creating the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
+			context.close();
 			return "createFeedingSchedule";
 		}
 	}

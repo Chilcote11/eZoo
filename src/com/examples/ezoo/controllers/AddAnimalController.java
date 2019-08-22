@@ -46,10 +46,11 @@ public class AddAnimalController {
 		//Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO dao = context.getBean(AnimalDAO.class);
-		context.close();
+//		context.close();
 		// TODO: deal with the message attribute commented out below
 		try {
 			dao.saveAnimal(newAnimal);
+			context.close();
 //			request.getSession().setAttribute("message", "Animal successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("message", "Animal successfully created");
@@ -63,6 +64,7 @@ public class AddAnimalController {
 			model.addAttribute("message", "Id of " + newAnimal.getAnimalID() + " is already in use");
 			model.addAttribute("messageClass", "alert-danger");
 			// redirect
+			context.close();
 			return "addAnimal";
 		}catch (Exception e){
 			e.printStackTrace();
@@ -72,6 +74,7 @@ public class AddAnimalController {
 			model.addAttribute("message", "There was a problem creating the animal at this time");
 			model.addAttribute("messageClass", "alert-danger");
 			// redirect
+			context.close();
 			return "addAnimal";
 		}
 	}

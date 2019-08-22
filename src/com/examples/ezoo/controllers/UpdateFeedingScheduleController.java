@@ -39,7 +39,7 @@ public class UpdateFeedingScheduleController {
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
-		context.close();
+//		context.close();
 		// TODO: deal with the message attribute commented out below
 		
 		// Call DAO method
@@ -49,6 +49,7 @@ public class UpdateFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("message",  "Feeding schedule successfully updated");
 			model.addAttribute("messageClass", "alert-success");
+			context.close();
 			return "feedingSchedules";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,6 +57,7 @@ public class UpdateFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
 			model.addAttribute("message",  "There was a problem updating the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
+			context.close();
 			return "updateFeedingSchedules";
 		}
 	}
