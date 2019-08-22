@@ -73,7 +73,7 @@
 								</sf:form>
 							</c:if>
 							<c:if test="${animal.feedingScheduleID >= 1}">
-								<sf:form action="FSAssignment" modelAttribute="animalID" method="post"">
+								<sf:form action="FSAssignment" modelAttribute="animalID" method="post">
 									<sf:hidden path="animalID" value="${animal.animalID}"/>
 									<sf:button type="submit" class="btn btn-primary">Unassign</sf:button>
 								</sf:form>
