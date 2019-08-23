@@ -54,14 +54,16 @@ public class FSAssignmentController {
 			String animalsWithSchedule = "";
 			int count = 0;
 			for (Animal a : animals) {
-				if (schedule.getScheduleID() == a.getFeedingScheduleID()) {
-					count++;
-					String comma = "";
-					if (count > 1) {
-						comma = ", ";
+				if (a.getFeedingScheduleID() != null) {
+					if (schedule.getScheduleID() == a.getFeedingScheduleID()) {
+						count++;
+						String comma = "";
+						if (count > 1) {
+							comma = ", ";
+						}
+						animalsWithSchedule += comma + a.getName() + 
+								"[" + a.getAnimalID() + "]";	
 					}
-					animalsWithSchedule += comma + a.getName() + 
-							"[" + a.getAnimalID() + "]";	
 				}
 			}
 			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
@@ -79,7 +81,7 @@ public class FSAssignmentController {
 		model.addAttribute("animal", animal);
 		
 		context.close();
-		return "assingFeedingSchedule";
+		return "assignFeedingSchedule";
 	}
 	
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)

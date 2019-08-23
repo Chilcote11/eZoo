@@ -43,14 +43,16 @@ public class FeedingSchedulesController {
 			String animalsWithSchedule = "";
 			int count = 0;
 			for (Animal animal : animals) {
-				if (schedule.getScheduleID() == animal.getFeedingScheduleID()) {
-					count++;
-					String comma = "";
-					if (count > 1) {
-						comma = ", ";
+				if (animal.getFeedingScheduleID() != null) {
+					if (schedule.getScheduleID() == animal.getFeedingScheduleID()) {
+						count++;
+						String comma = "";
+						if (count > 1) {
+							comma = ", ";
+						}
+						animalsWithSchedule += comma + animal.getName() + 
+								"[" + animal.getAnimalID() + "]";	
 					}
-					animalsWithSchedule += comma + animal.getName() + 
-							"[" + animal.getAnimalID() + "]";	
 				}
 			}
 			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
