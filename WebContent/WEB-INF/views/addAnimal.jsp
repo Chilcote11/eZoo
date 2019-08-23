@@ -30,19 +30,19 @@
 		  <div class="form-group">
 		    <sf:label path="animalID" class="col-sm-4 control-label">ID</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="number" class="form-control" path="animalID" placeholder="ID" required="required"/>
+		      <sf:input class="form-control" path="animalID"/><sf:errors path="animalID"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="name" class="col-sm-4 control-label">Name</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="name" placeholder="Name" required="required"/>
+		      <sf:input class="form-control" path="name"/><sf:errors path="name"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="healthStatus" class="col-sm-4 control-label">Health</sf:label>
 		    <div class="col-sm-4">
-				<sf:select required="required" path="healthStatus" class="form-control">
+				<sf:select path="healthStatus" class="form-control">
 					<sf:option value="Healthy">
 						Healthy
 					</sf:option>
@@ -56,12 +56,13 @@
 						Dead
 					</sf:option>
 				</sf:select>
+				<sf:errors path="healthStatus"/>
 			</div>	
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="type" class="col-sm-4 control-label">Type</sf:label>
 		    <div class="col-sm-4">
-				<sf:select required="required" path="type" class="form-control">
+				<sf:select path="type" class="form-control">
 					<sf:option value="Mammal (Terrestrial)">
 						Mammal (Terrestrial)
 					</sf:option>
@@ -84,66 +85,67 @@
 						Bird
 					</sf:option>
 				</sf:select>
+				<sf:errors path="type"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="height" class="col-sm-4 control-label">Height (in)</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="number" step="0.01" class="form-control" path="height" placeholder="Height" required="required"/>
+		      <sf:input step="0.01" class="form-control" path="height" /><sf:errors path="height"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="weight" class="col-sm-4 control-label">Weight (lb)</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="number" step="0.01" class="form-control" path="weight" placeholder="Weight" required="required"/>
+		      <sf:input step="0.01" class="form-control" path="weight" /><sf:errors path="weight"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxKingdom" class="col-sm-4 control-label">Kingdom</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxKingdom" placeholder="Kingdom" required="required"/>
+		      <sf:input class="form-control" path="taxKingdom" /><sf:errors path="taxKingdom"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxPhylum" class="col-sm-4 control-label">Phylum</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxPhylum" placeholder="Phylum" required="required"/>
+		      <sf:input class="form-control" path="taxPhylum" /><sf:errors path="taxPhylum"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxClass" class="col-sm-4 control-label">Class</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxClass" placeholder="Class" required="required"/>
+		      <sf:input class="form-control" path="taxClass" /><sf:errors path="taxClass"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxOrder" class="col-sm-4 control-label">Order</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxOrder" placeholder="Order" required="required"/>
+		      <sf:input class="form-control" path="taxOrder" /><sf:errors path="taxOrder"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxFamily" class="col-sm-4 control-label">Family</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxFamily" placeholder="Family" required="required"/>
+		      <sf:input class="form-control" path="taxFamily" /><sf:errors path="taxFamily"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxGenus" class="col-sm-4 control-label">Genus</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxGenus" placeholder="Genus" required="required"/>
+		      <sf:input class="form-control" path="taxGenus" /><sf:errors path="taxGenus"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="taxSpecies" class="col-sm-4 control-label">Species</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="taxSpecies" placeholder="Species" required="required"/>
+		      <sf:input class="form-control" path="taxSpecies" /><sf:errors path="taxSpecies"/>
 		    </div>
 		  </div>
   		  <div class="form-group">
 		    <sf:label path="feedingScheduleID" class="col-sm-4 control-label">FeedingScheduleID</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="number" class="form-control" path="feedingScheduleID" placeholder="FeedingScheduleID"/>
+		      <sf:input class="form-control" path="feedingScheduleID"/><sf:errors path="feedingScheduleID"/>
 		    </div>
 		  </div>
 		  <div class="form-group">
