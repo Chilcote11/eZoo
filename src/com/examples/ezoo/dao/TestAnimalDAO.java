@@ -49,6 +49,18 @@ public class TestAnimalDAO {
 			System.out.println(a);
 		}
 		
+		// test deleteAnimal method
+		try {
+			dao.deleteAnimal(animalToSave);
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		System.out.println("Animals printed below after deleting Jack:");
+		for (Animal a : dao.getAllAnimals()) {
+			System.out.println(a);	// unsorted, but results are correct
+		}
+		
 		context.close();
 	}
 }
