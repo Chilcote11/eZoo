@@ -50,11 +50,11 @@ public class AddAnimalController {
 		// TODO: deal with the message attribute commented out below
 		try {
 			dao.saveAnimal(newAnimal);
-			context.close();
 //			request.getSession().setAttribute("message", "Animal successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("message", "Animal successfully created");
 			model.addAttribute("messageClass", "alert-success");
+			context.close();
 			return "animalCare";
 		}catch(SQLIntegrityConstraintViolationException e){
 			e.printStackTrace();			
