@@ -22,6 +22,8 @@ public interface AnimalDAO {
 	 * @param animalToSave
 	 */
 	void saveAnimal(Animal animalToSave) throws Exception;
+	
+	void deleteAnimal(Animal animalToDelete) throws Exception;
 
 	
 }
