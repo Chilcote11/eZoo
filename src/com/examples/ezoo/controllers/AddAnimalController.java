@@ -55,7 +55,7 @@ public class AddAnimalController {
 			model.addAttribute("message", "Animal successfully created");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
-			return "animalCare";
+			return "redirect:/animalCare";
 		}catch(SQLIntegrityConstraintViolationException e){
 			e.printStackTrace();			
 			//change the message

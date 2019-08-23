@@ -124,7 +124,7 @@ public class FSAssignmentController {
 			
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
-			return "animalCare";
+			return "redirect:/animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// change the message

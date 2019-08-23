@@ -50,7 +50,7 @@ public class UpdateFeedingScheduleController {
 			model.addAttribute("message",  "Feeding schedule successfully updated");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
-			return "feedingSchedules";
+			return "redirect:/feedingSchedules";
 		} catch (Exception e) {
 			e.printStackTrace();
 //			request.getSession().setAttribute("message",  "There was a problem updating the feeding schedule at this time");

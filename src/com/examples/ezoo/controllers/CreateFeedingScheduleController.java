@@ -51,7 +51,7 @@ public class CreateFeedingScheduleController {
 //			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("message",  "Feeding schedule successfully created");
 			model.addAttribute("messageClass", "alert-success");
-			return "feedingSchedules";
+			return "redirect:/feedingSchedules";
 		} catch(SQLIntegrityConstraintViolationException e) {
 			e.printStackTrace();
 			// change the message

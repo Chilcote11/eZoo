@@ -53,7 +53,7 @@ public class DeleteFeedingScheduleController {
 			model.addAttribute("message",  "Feeding schedule successfully deleted");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
-			return "feedingSchedules";
+			return "redirect:/feedingSchedules";
 //		} catch(SQLIntegrityConstraintViolationException e) {
 //			e.printStackTrace();
 //			// change the message
@@ -71,7 +71,7 @@ public class DeleteFeedingScheduleController {
 			model.addAttribute("message",  "There was a problem deleting the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
-			return "feedingSchedules";
+			return "redirect:/feedingSchedules";
 		}
 	}
 }
