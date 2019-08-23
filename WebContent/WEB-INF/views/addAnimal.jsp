@@ -28,7 +28,7 @@
 		<sf:form action="addAnimal" modelAttribute="newAnimal" method="post" class="form-horizontal">
 		
 		  <div class="form-group">
-		    <sf:label path="id" class="col-sm-4 control-label">ID</sf:label>
+		    <sf:label path="animalID" class="col-sm-4 control-label">ID</sf:label>
 		    <div class="col-sm-4">
 		      <sf:input type="number" class="form-control" path="animalID" placeholder="ID" required="required"/>
 		    </div>
@@ -57,6 +57,7 @@
 					</sf:option>
 				</sf:select>
 			</div>	
+		  </div>
 		  <div class="form-group">
 		    <sf:label path="type" class="col-sm-4 control-label">Type</sf:label>
 		    <div class="col-sm-4">
