@@ -32,7 +32,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class FSAssignmentController {
 
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animalID") long animalID) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal animal) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
@@ -53,15 +53,15 @@ public class FSAssignmentController {
 		for (FeedingSchedule schedule : feedingSchedules) {
 			String animalsWithSchedule = "";
 			int count = 0;
-			for (Animal animal : animals) {
-				if (schedule.getScheduleID() == animal.getFeedingScheduleID()) {
+			for (Animal a : animals) {
+				if (schedule.getScheduleID() == a.getFeedingScheduleID()) {
 					count++;
 					String comma = "";
 					if (count > 1) {
 						comma = ", ";
 					}
-					animalsWithSchedule += comma + animal.getName() + 
-							"[" + animal.getAnimalID() + "]";	
+					animalsWithSchedule += comma + a.getName() + 
+							"[" + a.getAnimalID() + "]";	
 				}
 			}
 			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
@@ -73,17 +73,17 @@ public class FSAssignmentController {
 //		model.addAttribute("recurrenceToAssign", "");
 //		model.addAttribute("foodToAssign", "");
 //		model.addAttribute("notesToAssign", "");
-//		 don't need lines above, animalID can be removed from the form since its already added below
+//		 don't need lines above, animalToAssign can be removed from the form since its already added below
 		model.addAttribute("scheduleToAssign", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
-		model.addAttribute("animalID", animalID);
+		model.addAttribute("animal", animal);
 		
 		context.close();
 		return "assingFeedingSchedule";
 	}
 	
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)
-	public String assignFeedingSchedule(Model model, @ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
+	public String assignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToAssign, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
@@ -104,7 +104,7 @@ public class FSAssignmentController {
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
 			for (Animal a : animals) {
-				if (a.getAnimalID() == animalID)
+				if (a.getAnimalID() == animalToAssign.getAnimalID())
 					animal = a;
 			}
 			
