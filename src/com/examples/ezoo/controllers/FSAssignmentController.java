@@ -32,13 +32,13 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class FSAssignmentController {
 
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animalID") long animalID
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animalID") long animalID) {
+//			, @ModelAttribute("message") String message
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not setting in new model for now
-//		model.addAttribute("message", message);
-//		model.addAttribute("messageClass", messageClass);
+		// clear in new model
+		model.addAttribute("message", null);
+		model.addAttribute("messageClass", null);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
@@ -83,11 +83,11 @@ public class FSAssignmentController {
 	}
 	
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)
-	public String assignFeedingSchedule(Model model, @ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String assignFeedingSchedule(Model model, @ModelAttribute("animalID") long animalID, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
+//			, @ModelAttribute("message") String message
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not setting in new model for now.. though they'll never be set here
+		// not clearing in new model for now.. though they'll never be cleared here
 //		model.addAttribute("message", message);
 //		model.addAttribute("messageClass", messageClass);
 		

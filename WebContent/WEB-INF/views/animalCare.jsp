@@ -16,10 +16,6 @@
 	<c:choose>
 	<c:when test="${not empty message }">
 	  <p class="alert ${messageClass}">${message }</p>
-	<%
-	  model.addAttribute("message", null);
-	  model.addAttribute("messageClass", null);
-	%>
 	</c:when>
 	</c:choose>
 	

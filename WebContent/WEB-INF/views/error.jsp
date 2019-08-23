@@ -19,10 +19,6 @@
 		<p>
 		  Your code threw an exception <i class="fa fa-frown-o fa-3"></i>
 		</p>
-	<%
-	  session.setAttribute("message", null);
-	  session.setAttribute("messageClass", null);
-	%>
 
 	  </div>
 	</header>

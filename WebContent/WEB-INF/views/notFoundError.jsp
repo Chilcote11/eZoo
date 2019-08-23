@@ -19,10 +19,6 @@
 		<p>
 		  Cannot find requested resource
 		</p>
-	<%
-	  session.setAttribute("message", null);
-	  session.setAttribute("messageClass", null);
-	%>
 
 	  </div>
 	</header>

@@ -18,22 +18,22 @@ import com.examples.ezoo.model.Animal;
 public class AddAnimalController {
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.GET)
-	public String DisplayAddAnimalForm(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAddAnimalForm(Model model) {
+//			, @ModelAttribute("message") String message
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not setting in new model for now
-//		model.addAttribute("message", message);
-//		model.addAttribute("messageClass", messageClass);
+		// clear in new model
+		model.addAttribute("message", null);
+		model.addAttribute("messageClass", null);
 		
 		model.addAttribute("newAnimal", new Animal());
 		return "addAnimal";		
 	}
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.POST)
-	public String addAnimal(Model model,/*@Valid*/ @ModelAttribute("newAnimal") Animal newAnimal, /*, Errors errors*/
-			@ModelAttribute("message") String message, 
-			@ModelAttribute("messageClass") String messageClass) {
+	public String addAnimal(Model model,/*@Valid*/ @ModelAttribute("newAnimal") Animal newAnimal /*, Errors errors*/) {
+//			, @ModelAttribute("message") String message 
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// used to handle validation later on
 		/*if (errors.hasErrors())

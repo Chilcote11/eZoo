@@ -21,9 +21,9 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class DeleteFeedingScheduleController {
 
 	@RequestMapping(value="/deleteFeedingSchedule", method=RequestMethod.POST)
-	public String deleteFeedingSchedule(Model model, @ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete
-			, @ModelAttribute("message") String messge
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String deleteFeedingSchedule(Model model, @ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete) {
+//			, @ModelAttribute("message") String messge
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// not setting in new model for now
 //		model.addAttribute("message", message);

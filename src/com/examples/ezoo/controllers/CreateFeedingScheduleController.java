@@ -18,22 +18,22 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class CreateFeedingScheduleController {
 
 	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.GET)
-	public String DisplayCreateFeedingScheduleForm(Model model
-			, @ModelAttribute("message") String messge
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayCreateFeedingScheduleForm(Model model) {
+//			, @ModelAttribute("message") String messge
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not setting in new model for now
-//		model.addAttribute("message", message);
-//		model.addAttribute("messageClass", messageClass);
+		// clear in new model
+		model.addAttribute("message", null);
+		model.addAttribute("messageClass", null);
 		
 		model.addAttribute("newFeedingSchedule", new FeedingSchedule());
 		return "createFeedingSchedule";		
 	}
 	
 	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.POST)
-	public String createFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/
-			, @ModelAttribute("message") String messge
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String createFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/) {
+//			, @ModelAttribute("message") String messge
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// not setting in new model for now
 //		model.addAttribute("message", message);

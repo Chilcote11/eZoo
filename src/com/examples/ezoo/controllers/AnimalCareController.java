@@ -18,13 +18,13 @@ import com.examples.ezoo.model.Animal;
 public class AnimalCareController {
 
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
-	public String DisplayAnimalCare(Model model
-			, @ModelAttribute("message") String messge
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAnimalCare(Model model) {
+//			, @ModelAttribute("message") String messge
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not setting in new model for now
-//		model.addAttribute("message", message);
-//		model.addAttribute("messageClass", messageClass);
+		// clear in new model
+		model.addAttribute("message", null);
+		model.addAttribute("messageClass", null);
 		
 		// Grab a list of Animals from the Database
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);

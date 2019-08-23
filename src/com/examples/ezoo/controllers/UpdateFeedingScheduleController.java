@@ -16,22 +16,22 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class UpdateFeedingScheduleController {
 
 	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.GET)
-	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate) {
+//			, @ModelAttribute("message") String message
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not setting in new model for now
-//		model.addAttribute("message", message);
-//		model.addAttribute("messageClass", messageClass);
+		// clear in new model
+		model.addAttribute("message", null);
+		model.addAttribute("messageClass", null);
 		
 		model.addAttribute("scheduleToUpdate", scheduleToUpdate);	// transfer
 		return "updateFeedingSchedule";
 	}
 	
 	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.POST)
-	public String updateFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate/*, Errors errors*/
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String updateFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate/*, Errors errors*/) {
+//			, @ModelAttribute("message") String message
+//			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// not setting in new model for now
 //		model.addAttribute("message", message);
