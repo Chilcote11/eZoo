@@ -2,14 +2,19 @@ package com.examples.ezoo.controllers;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.dao.AnimalDAO;
@@ -85,8 +90,9 @@ public class FSAssignmentController {
 		return "assignFeedingSchedule";
 	}
 	
-	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)
-	public String assignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToAssign, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
+	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST/*, consumes= {MediaType.APPLICATION_FORM_URLENCODED_VALUE}*/)
+//	public String assignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToAssign, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
+	public /*@ResponseBody*/ String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs, @RequestParam Map<String, Integer> animalID, @RequestParam Map<String, String> anythingElse) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
@@ -105,14 +111,15 @@ public class FSAssignmentController {
 			// could choose to go add one later, wouldn't be too hard
 			List<Animal> animals = animalDAO.getAllAnimals();
 			System.out.println("----- following lines from FSAssignmentController's POST method -----");
-			System.out.println("animal received from GET in POST method: " + animalToAssign);
+			System.out.println("animalID received from GET in POST method: " + animalID);
+			System.out.println("anythingElse? : " + anythingElse);
 			System.out.println("model.containsAttribute(\"animal\")" + model.containsAttribute("animal"));
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
 			System.out.println("all animals:");
 			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID populated
 				System.out.println(a);
-				if (a.getAnimalID() == animalToAssign.getAnimalID()) {
+				if (a.getAnimalID() == animalID.get(animalID)) {
 					animal = a;
 					System.out.println("selected animal (animal): " + animal);
 					System.out.println("selected animal (a): " + a);
