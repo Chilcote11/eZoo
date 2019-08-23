@@ -4,28 +4,32 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 //@Entity(name="ANIMALS")
 @Entity
 @Table(name="ANIMALS")
 public class Animal implements Comparable<Animal> {
 	
-	@Id private long animalID = 0L;
-	@Column private String name = "";
+	@Id 
+	@NotNull 
+	private long animalID = 0L;
 	
-	@Column private String taxKingdom = "";
-	@Column private String taxPhylum = "";
-	@Column private String taxClass = "";
-	@Column private String taxOrder = "";
-	@Column private String taxFamily = "";
-	@Column private String taxGenus = "";
-	@Column private String taxSpecies = "";
+	@Column @NotNull private String name = "";
 	
-	@Column private double height = 0D;
-	@Column private double weight = 0D;
+	@Column @NotNull private String taxKingdom = "";
+	@Column @NotNull private String taxPhylum = "";
+	@Column @NotNull private String taxClass = "";
+	@Column @NotNull private String taxOrder = "";
+	@Column @NotNull private String taxFamily = "";
+	@Column @NotNull private String taxGenus = "";
+	@Column @NotNull private String taxSpecies = "";
 	
-	@Column private String type = "";
-	@Column private String healthStatus = "";
+	@Column @NotNull private double height = 0D;
+	@Column @NotNull private double weight = 0D;
+	
+	@Column @NotNull private String type = "";
+	@Column @NotNull private String healthStatus = "";
 
 	@Column(name="feeding_schedule", nullable = true) private Integer feedingScheduleID = 0;		// may need to add other annotation since this is a FK
 	

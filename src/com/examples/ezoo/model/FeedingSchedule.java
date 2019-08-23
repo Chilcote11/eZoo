@@ -7,18 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="feeding_schedules")
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	
-	@Id 
-	@Column(name="schedule_id") private int scheduleID = 0;
+	@Id @Column(name="schedule_id") 
+	@NotNull private int scheduleID = 0;
 	
-	@Column(name="feeding_time") private String feedingTime = "";
-	@Column private String recurrence = "";
-	@Column private String food = "";
-	@Column private String notes = "";
+	@Column(name="feeding_time") @NotNull private String feedingTime = "";
+	@Column @NotNull private String recurrence = "";
+	@Column @NotNull private String food = "";
+	@Column private String notes = "";		// need to add something for nullable?
 	
 	@Transient private String animals = "";		// NEVER USE IN DAO
 										// Useful in servlets, specifically FeedingSchedulesServlet
