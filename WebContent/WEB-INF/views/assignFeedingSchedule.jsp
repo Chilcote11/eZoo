@@ -45,7 +45,6 @@
 									<sf:hidden path="recurrence" value="${schedule.recurrence}" />
 									<sf:hidden path="food" value="${schedule.food}" />
 									<sf:hidden path="notes" value="${schedule.notes}" />
-									<!-- <sf:hidden path="animalID" value="${animalID}" /> -->
 									<sf:button type="submit" class="btn btn-primary">Assign</sf:button>
 								</sf:form>
 							</td>
