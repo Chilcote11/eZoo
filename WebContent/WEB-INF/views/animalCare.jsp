@@ -62,7 +62,7 @@
 						<td><fmt:formatNumber value="${animal.animalID}"/></td>
 						<td><fmt:formatNumber value="${animal.feedingScheduleID}"/></td>
 						<td>
-							<c:if test="${animal.feedingScheduleID == 0}">
+							<c:if test="${animal.feedingScheduleID == 0 || animal.feedingScheduleID == null}">
 								<sf:form action="FSAssignment" modelAttribute="animal" method="get">
 									<sf:hidden path="animalID" value="${animal.animalID}"/>
 									<sf:button type="submit" class="btn btn-primary">Assign</sf:button>
