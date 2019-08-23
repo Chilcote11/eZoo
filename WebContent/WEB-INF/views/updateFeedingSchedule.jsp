@@ -26,6 +26,7 @@
 		
   		  <div style="font-size: 2em">
 		  	<c:out value="Schedule ID: ${scheduleToUpdate.scheduleID}" /></td>
+		  	<sf:hidden path="scheduleID" value="${scheduleToUpdate.scheduleID}" />
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="feedingTime" class="col-sm-4 control-label">Time</sf:label>
