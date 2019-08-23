@@ -27,16 +27,16 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 
 	@Override		// checked and tested
 	public void saveFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
-//		sessionFactory.getCurrentSession().save(feedingSchedule);
-		sessionFactory.openSession().save(feedingSchedule);
-		sessionFactory.getCurrentSession().close();
+		sessionFactory.getCurrentSession().save(feedingSchedule);
+//		sessionFactory.openSession().save(feedingSchedule);
+//		sessionFactory.getCurrentSession().close();
 	}
 
 	@Override
 	public void deleteFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
-//		sessionFactory.getCurrentSession().delete(feedingSchedule);
-		sessionFactory.openSession().delete(feedingSchedule);
-		sessionFactory.getCurrentSession().close();
+		sessionFactory.getCurrentSession().delete(feedingSchedule);
+//		sessionFactory.openSession().delete(feedingSchedule);
+//		sessionFactory.getCurrentSession().close();
 	}
 
 	@Override // checked
@@ -56,9 +56,9 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 			return null;
 		}
 				
-//		FeedingSchedule feedingSchedule = sessionFactory.getCurrentSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
-		FeedingSchedule feedingSchedule = sessionFactory.openSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
-		sessionFactory.getCurrentSession().close();
+		FeedingSchedule feedingSchedule = sessionFactory.getCurrentSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
+//		FeedingSchedule feedingSchedule = sessionFactory.openSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
+//		sessionFactory.getCurrentSession().close();
 		
 		return feedingSchedule;	
 	}
