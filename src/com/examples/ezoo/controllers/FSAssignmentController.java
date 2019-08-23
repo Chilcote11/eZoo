@@ -103,11 +103,20 @@ public class FSAssignmentController {
 			// animalDAO has no "getAnimalByID" method, so here's a work-around
 			// could choose to go add one later, wouldn't be too hard
 			List<Animal> animals = animalDAO.getAllAnimals();
+			System.out.println("----- following lines from FSAssignmentController's POST method -----");
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
+			System.out.println("all animals:");
 			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID populated
-				if (a.getAnimalID() == animalToAssign.getAnimalID())
+				System.out.println(a);
+				if (a.getAnimalID() == animalToAssign.getAnimalID()) {
 					animal = a;
+					System.out.println("selected animal (animal): " + animal);
+					System.out.println("selected animal (a): " + a);
+					// neither of the lines above are ever printed
+					// the animalID = zero from line 131 below.
+					// something strange going on here
+				}
 			}
 			
 			// unassignment logic
@@ -118,12 +127,11 @@ public class FSAssignmentController {
 			}
 			// assignment logic
 			else {
-				
-				FSDAO.assignFeedingSchedule(fs, animal);
-				System.out.println("----- following lines from FSAssignmentController's POST method -----");
+//				System.out.println("----- following lines from FSAssignmentController's POST method -----");
 				System.out.println("fs: " + fs);
 				System.out.println("animal: " + animal);
 				System.out.println("----- end of statements from FSAssignmentController -----");
+				FSDAO.assignFeedingSchedule(fs, animal);
 				
 //				request.getSession().setAttribute("message",  "Feeding schedule successfully assigned");
 				model.addAttribute("message",  "Feeding schedule successfully assigned");
