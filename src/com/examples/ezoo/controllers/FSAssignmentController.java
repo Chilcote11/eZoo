@@ -120,6 +120,10 @@ public class FSAssignmentController {
 			else {
 				
 				FSDAO.assignFeedingSchedule(fs, animal);
+				System.out.println("----- following lines from FSAssignmentController's POST method -----");
+				System.out.println("fs: " + fs);
+				System.out.println("animal: " + animal);
+				System.out.println("----- end of statements from FSAssignmentController -----");
 				
 //				request.getSession().setAttribute("message",  "Feeding schedule successfully assigned");
 				model.addAttribute("message",  "Feeding schedule successfully assigned");
