@@ -79,6 +79,7 @@ public class FSAssignmentController {
 		model.addAttribute("scheduleToAssign", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		model.addAttribute("animal", animal);
+		System.out.println("animal from GET method: " + animal);
 		
 		context.close();
 		return "assignFeedingSchedule";
@@ -104,6 +105,8 @@ public class FSAssignmentController {
 			// could choose to go add one later, wouldn't be too hard
 			List<Animal> animals = animalDAO.getAllAnimals();
 			System.out.println("----- following lines from FSAssignmentController's POST method -----");
+			System.out.println("animal received from GET in POST method: " + animalToAssign);
+			System.out.println("model.containsAttribute(\"animal\")" + model.containsAttribute("animal"));
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
 			System.out.println("all animals:");
