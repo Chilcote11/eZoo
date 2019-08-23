@@ -105,7 +105,7 @@ public class FSAssignmentController {
 			List<Animal> animals = animalDAO.getAllAnimals();
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
-			for (Animal a : animals) {
+			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID populated
 				if (a.getAnimalID() == animalToAssign.getAnimalID())
 					animal = a;
 			}
