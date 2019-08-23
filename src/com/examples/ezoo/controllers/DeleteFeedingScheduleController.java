@@ -38,17 +38,19 @@ public class DeleteFeedingScheduleController {
 			// remove feeding schedule from all corresponding animals
 			List<Animal> animals = animalDAO.getAllAnimals();
 			for (Animal animal : animals) {
-				if (animal.getFeedingScheduleID() == scheduleToDelete.getScheduleID()) {
-//					dao.removeFeedingSchedule(animal);
+				if (animal.getFeedingScheduleID() != null) {
+					if (animal.getFeedingScheduleID() == scheduleToDelete.getScheduleID()) {
+						dao.removeFeedingSchedule(animal);
+					}
 				}
 			}
 			
 			// delete the feeding schedule
-//			dao.deleteFeedingSchedule(scheduleToDelete);
+			dao.deleteFeedingSchedule(scheduleToDelete);
 			
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully deleted");
 //			request.getSession().setAttribute("messageClass", "alert-success");
-			model.addAttribute("message",  "Feeding schedule successfully deleted 123");
+			model.addAttribute("message",  "Feeding schedule successfully deleted");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
 			return "feedingSchedules";

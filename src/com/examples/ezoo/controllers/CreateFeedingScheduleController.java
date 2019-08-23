@@ -49,7 +49,7 @@ public class CreateFeedingScheduleController {
 			context.close();
 //			request.getSession().setAttribute("message",  "Feeding schedule successfully created");
 //			request.getSession().setAttribute("messageClass", "alert-success");
-			model.addAttribute("message",  "Feeding schedule successfully created 123");
+			model.addAttribute("message",  "Feeding schedule successfully created");
 			model.addAttribute("messageClass", "alert-success");
 			return "feedingSchedules";
 		} catch(SQLIntegrityConstraintViolationException e) {
@@ -57,7 +57,7 @@ public class CreateFeedingScheduleController {
 			// change the message
 //			request.getSession().setAttribute("message",  "Id of " + scheduleToSave.getScheduleID() + " is already in use");
 //			request.getSession().setAttribute("messageClass",  "alert-danger");
-			model.addAttribute("message",  "Id of " + newFS.getScheduleID() + " is already in use 123");
+			model.addAttribute("message",  "Id of " + newFS.getScheduleID() + " is already in use");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
 			return "createFeedingSchedule";

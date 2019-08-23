@@ -53,7 +53,7 @@
 		  </div>
 		  <div class="form-group">
 		    <div class="col-sm-offset-4 col-sm-1">
-		      <sf:button type="submit" class="btn btn-primary">Update</button>
+		      <sf:button type="submit" class="btn btn-primary">Update</sf:button>
 		    </div>
 		  </div>
 		</sf:form>
