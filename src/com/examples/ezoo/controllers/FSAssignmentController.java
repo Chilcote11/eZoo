@@ -35,6 +35,10 @@ import com.examples.ezoo.model.FeedingSchedule;
  */
 @Controller
 public class FSAssignmentController {
+	
+	Animal animalToAssign; 	// set in get method, used in POST method
+							// .. since I'm having so much trouble passing it into POST method
+							// this may not be best practice though. unsure what rules are
 
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
 	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal animal) {
@@ -83,8 +87,11 @@ public class FSAssignmentController {
 //		 don't need lines above, animalToAssign can be removed from the form since its already added below
 		model.addAttribute("scheduleToAssign", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
+		
 		model.addAttribute("animal", animal);
-		System.out.println("animal from GET method: " + animal);
+		animalToAssign = animal;
+		System.out.println("animal from GET method: " + animalToAssign);
+		
 		
 		context.close();
 		return "assignFeedingSchedule";
@@ -92,7 +99,8 @@ public class FSAssignmentController {
 	
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST/*, consumes= {MediaType.APPLICATION_FORM_URLENCODED_VALUE}*/)
 //	public String assignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToAssign, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
-	public /*@ResponseBody*/ String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs, @RequestParam Map<String, Integer> animalID, @RequestParam Map<String, String> anythingElse) {
+//	public /*@ResponseBody*/ String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs, @RequestParam Map<String, Integer> animalID) {
+	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
@@ -111,15 +119,14 @@ public class FSAssignmentController {
 			// could choose to go add one later, wouldn't be too hard
 			List<Animal> animals = animalDAO.getAllAnimals();
 			System.out.println("----- following lines from FSAssignmentController's POST method -----");
-			System.out.println("animalID received from GET in POST method: " + animalID);
-			System.out.println("anythingElse? : " + anythingElse);
+			System.out.println("animalID received from GET in POST method: " + animalToAssign);
 			System.out.println("model.containsAttribute(\"animal\")" + model.containsAttribute("animal"));
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
 			System.out.println("all animals:");
 			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID populated
 				System.out.println(a);
-				if (a.getAnimalID() == animalID.get(animalID)) {
+				if (a.getAnimalID() == animalToAssign.getAnimalID()) {
 					animal = a;
 					System.out.println("selected animal (animal): " + animal);
 					System.out.println("selected animal (a): " + a);
@@ -159,7 +166,7 @@ public class FSAssignmentController {
 			model.addAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
-			return "animalCare";
+			return "assignFeedingSchedule";
 		}
 		
 	}
