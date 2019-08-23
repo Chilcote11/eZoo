@@ -110,18 +110,9 @@ public class FSAssignmentController {
 				}
 			}
 			
-			// unassignment logic
-			if (animal.getFeedingScheduleID() != null && animal.getFeedingScheduleID() > 0) { // not null and not zero
-				FSDAO.removeFeedingSchedule(animal);
-				model.addAttribute("message",  "Feeding schedule successfully removed");
-			}
-			// assignment logic
-			else {
-				FSDAO.assignFeedingSchedule(fs, animal);
+			FSDAO.assignFeedingSchedule(fs, animal);
 				
-				model.addAttribute("message",  "Feeding schedule successfully assigned");
-			}
-			
+			model.addAttribute("message",  "Feeding schedule successfully assigned");	
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
 			return "redirect:/animalCare";
