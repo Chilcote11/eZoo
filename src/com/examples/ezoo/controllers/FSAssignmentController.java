@@ -111,7 +111,7 @@ public class FSAssignmentController {
 			}
 			
 			// unassignment logic
-			if (animal.getFeedingScheduleID() > 0) {
+			if (animal.getFeedingScheduleID() != null && animal.getFeedingScheduleID() > 0) { // not null and not zero
 				FSDAO.removeFeedingSchedule(animal);
 //				request.getSession().setAttribute("message",  "Feeding schedule successfully removed");
 				model.addAttribute("message",  "Feeding schedule successfully removed");

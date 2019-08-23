@@ -38,7 +38,6 @@
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
 							<td>
-								<!-- animalID field prevents me from using commandName="scheduleToAssign" here -->
 								<sf:form action="FSAssignment" modelAttribute="scheduleToAssign" method="post">
 									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
 									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
