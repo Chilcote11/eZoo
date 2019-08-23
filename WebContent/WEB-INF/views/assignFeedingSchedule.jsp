@@ -38,7 +38,7 @@
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
 							<td>
-								<sf:form action="FSAssignment" modelAttribute="scheduleToAssign" method="post">
+								<sf:form action="FSAssign" modelAttribute="scheduleToAssign" method="post">
 									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
 									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
 									<sf:hidden path="recurrence" value="${schedule.recurrence}" />

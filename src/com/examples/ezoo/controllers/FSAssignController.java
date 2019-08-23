@@ -34,13 +34,13 @@ import com.examples.ezoo.model.FeedingSchedule;
  * 		add a new dao method to get an animal by its unique ID (see lines 84, 85)
  */
 @Controller
-public class FSAssignmentController {
+public class FSAssignController {
 	
 	Animal animalToAssign; 	// set in get method, used in POST method
 							// .. since I'm having so much trouble passing it into POST method
 							// this may not be best practice though. unsure what rules are
 
-	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
+	@RequestMapping(value="/FSAssign", method=RequestMethod.GET)
 	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
@@ -88,7 +88,7 @@ public class FSAssignmentController {
 		return "assignFeedingSchedule";
 	}
 	
-	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)
+	@RequestMapping(value="/FSAssign", method=RequestMethod.POST)
 	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
