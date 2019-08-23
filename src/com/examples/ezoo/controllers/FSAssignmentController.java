@@ -41,7 +41,7 @@ public class FSAssignmentController {
 							// this may not be best practice though. unsure what rules are
 
 	@RequestMapping(value="/FSAssignment", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal animal) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
@@ -52,7 +52,6 @@ public class FSAssignmentController {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
-//		context.close();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
 		
 		// Populate `animals` field of each feeding schedule
@@ -78,91 +77,57 @@ public class FSAssignmentController {
 			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
 		}
 		
-		// Populate the list into a variable that will be stored in the model
-//		model.addAttribute("scheduleIDToAssign", 0);
-//		model.addAttribute("feedingTimeToAssign", "");
-//		model.addAttribute("recurrenceToAssign", "");
-//		model.addAttribute("foodToAssign", "");
-//		model.addAttribute("notesToAssign", "");
-//		 don't need lines above, animalToAssign can be removed from the form since its already added below
 		model.addAttribute("scheduleToAssign", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		
-		model.addAttribute("animal", animal);
-		animalToAssign = animal;
-		System.out.println("animal from GET method: " + animalToAssign);
+//		model.addAttribute("animal", animal);
+		animalToAssign = selectedAnimal;
 		
 		
 		context.close();
 		return "assignFeedingSchedule";
 	}
 	
-	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST/*, consumes= {MediaType.APPLICATION_FORM_URLENCODED_VALUE}*/)
-//	public String assignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToAssign, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
-//	public /*@ResponseBody*/ String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs, @RequestParam Map<String, Integer> animalID) {
+	@RequestMapping(value="/FSAssignment", method=RequestMethod.POST)
 	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// not clearing in new model for now.. though they'll never be cleared here
-//		model.addAttribute("message", message);
-//		model.addAttribute("messageClass", messageClass);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
 		FeedingScheduleDAO FSDAO = context.getBean(FeedingScheduleDAO.class);
-//		context.close();
-		// TODO: deal with the message attribute commented out below
 		
 		try {
 			// animalDAO has no "getAnimalByID" method, so here's a work-around
 			// could choose to go add one later, wouldn't be too hard
 			List<Animal> animals = animalDAO.getAllAnimals();
-			System.out.println("----- following lines from FSAssignmentController's POST method -----");
-			System.out.println("animalID received from GET in POST method: " + animalToAssign);
-			System.out.println("model.containsAttribute(\"animal\")" + model.containsAttribute("animal"));
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
-			System.out.println("all animals:");
 			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID populated
-				System.out.println(a);
 				if (a.getAnimalID() == animalToAssign.getAnimalID()) {
 					animal = a;
-					System.out.println("selected animal (animal): " + animal);
-					System.out.println("selected animal (a): " + a);
-					// neither of the lines above are ever printed
-					// the animalID = zero from line 131 below.
-					// something strange going on here
 				}
 			}
 			
 			// unassignment logic
 			if (animal.getFeedingScheduleID() != null && animal.getFeedingScheduleID() > 0) { // not null and not zero
 				FSDAO.removeFeedingSchedule(animal);
-//				request.getSession().setAttribute("message",  "Feeding schedule successfully removed");
 				model.addAttribute("message",  "Feeding schedule successfully removed");
 			}
 			// assignment logic
 			else {
-//				System.out.println("----- following lines from FSAssignmentController's POST method -----");
-				System.out.println("fs: " + fs);
-				System.out.println("animal: " + animal);
-				System.out.println("----- end of statements from FSAssignmentController -----");
 				FSDAO.assignFeedingSchedule(fs, animal);
 				
-//				request.getSession().setAttribute("message",  "Feeding schedule successfully assigned");
 				model.addAttribute("message",  "Feeding schedule successfully assigned");
 			}
 			
-//			request.getSession().setAttribute("messageClass", "alert-success");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
 			return "animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
 			// change the message
-//			request.getSession().setAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
-//			request.getSession().setAttribute("messageClass",  "alert-danger");
 			model.addAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
