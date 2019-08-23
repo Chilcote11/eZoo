@@ -41,16 +41,18 @@ public class AnimalDAOImpl implements AnimalDAO {
 
 	@Override
 	public void saveAnimal(Animal animal) throws Exception {
-		sessionFactory.getCurrentSession().save(animal);
-//		sessionFactory.openSession().save(animal);
-//		sessionFactory.getCurrentSession().close();
+//		sessionFactory.getCurrentSession().save(animal);
+		Session session = sessionFactory.openSession();
+		session.save(animal);
+		session.close();
 	}
 	
 	@Override
 	public void deleteAnimal(Animal animal) throws Exception {
-		sessionFactory.getCurrentSession().delete(animal);
-//		sessionFactory.openSession().delete(animal);
-//		sessionFactory.getCurrentSession().close();
+//		sessionFactory.getCurrentSession().delete(animal);
+		Session session = sessionFactory.openSession();
+		session.delete(animal);
+		session.close();
 	}
 
 }
