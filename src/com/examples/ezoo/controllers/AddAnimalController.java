@@ -2,10 +2,13 @@ package com.examples.ezoo.controllers;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import javax.validation.Valid;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,17 +34,15 @@ public class AddAnimalController {
 	}
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.POST)
-	public String addAnimal(Model model,/*@Valid*/ @ModelAttribute("newAnimal") Animal newAnimal /*, Errors errors*/) {
+	public String addAnimal(Model model, @Valid @ModelAttribute("newAnimal") Animal newAnimal, Errors errors) {
 //			, @ModelAttribute("message") String message 
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// used to handle validation later on
-		/*if (errors.hasErrors())
+		// used to handle validation later on ... its later on!
+		if (errors.hasErrors()) {
 			return "addAnimal";
-		else {
-			// save animal logic below goes here
-			return "animalCare";
-		}*/
+		}
+
 		
 		//Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
@@ -77,5 +78,6 @@ public class AddAnimalController {
 			context.close();
 			return "addAnimal";
 		}
+
 	}
 }
