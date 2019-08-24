@@ -21,9 +21,6 @@ public class FSUnassignController {
 
 	@RequestMapping(value="/FSUnassign", method=RequestMethod.POST)
 	public String unassignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToUnassign) {
-//			, @ModelAttribute("message") String message
-//			, @ModelAttribute("messageClass") String messageClass) {
-		
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
@@ -41,7 +38,6 @@ public class FSUnassignController {
 				}
 			}
 			
-			// unassignment logic
 			FSDAO.removeFeedingSchedule(animal);
 			model.addAttribute("message",  "Feeding schedule successfully removed");			
 			model.addAttribute("messageClass", "alert-success");
@@ -49,7 +45,6 @@ public class FSUnassignController {
 			return "redirect:/animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
-			// change the message
 			model.addAttribute("message",  "There was a problem unassigning the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();

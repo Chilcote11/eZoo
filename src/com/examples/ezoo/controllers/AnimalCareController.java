@@ -22,10 +22,6 @@ public class AnimalCareController {
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// clear in new model
-//		model.addAttribute("message", null);
-//		model.addAttribute("messageClass", null);
-		
 		// Grab a list of Animals from the Database
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO dao = context.getBean(AnimalDAO.class);

@@ -36,7 +36,7 @@ import com.examples.ezoo.model.FeedingSchedule;
 @Controller
 public class FSAssignController {
 	
-	Animal animalToAssign; 	// set in get method, used in POST method
+	Animal animalToAssign; 	// set in GET method, used in POST method
 							// .. since I'm having so much trouble passing it into POST method
 							// this may not be best practice though. unsure what rules are
 
@@ -44,10 +44,6 @@ public class FSAssignController {
 	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
-		
-		// clear in new model
-//		model.addAttribute("message", null);
-//		model.addAttribute("messageClass", null);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
@@ -80,7 +76,6 @@ public class FSAssignController {
 		model.addAttribute("scheduleToAssign", new FeedingSchedule());
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		
-//		model.addAttribute("animal", animal);
 		animalToAssign = selectedAnimal;
 		
 		
@@ -89,10 +84,7 @@ public class FSAssignController {
 	}
 	
 	@RequestMapping(value="/FSAssign", method=RequestMethod.POST)
-	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
-//			, @ModelAttribute("message") String message
-//			, @ModelAttribute("messageClass") String messageClass) {
-		
+	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {		
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
@@ -104,7 +96,7 @@ public class FSAssignController {
 			List<Animal> animals = animalDAO.getAllAnimals();
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();
-			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID populated
+			for (Animal a : animals) {		// need to fill in the gaps, animalToAssign only has ID field populated
 				if (a.getAnimalID() == animalToAssign.getAnimalID()) {
 					animal = a;
 				}
@@ -118,7 +110,6 @@ public class FSAssignController {
 			return "redirect:/animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
-			// change the message
 			model.addAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();

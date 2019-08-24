@@ -25,14 +25,9 @@ public class FeedingSchedulesController {
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
 		
-		// clear in new model
-//		model.addAttribute("message", null);
-//		model.addAttribute("messageClass", null);
-		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
-//		context.close();
 		List<FeedingSchedule> feedingSchedules = dao.getAllFeedingSchedules();
 		
 		// Populate `animals` field of each feeding schedule
@@ -58,7 +53,7 @@ public class FeedingSchedulesController {
 			schedule.setAnimals(animalsWithSchedule); // remember, this purposefully never makes it to database
 		}
 		
-		// Populate the list into a variable that will be stored in the session
+		// Populate the list into a variable that will be stored in the model
 		model.addAttribute("feedingSchedules", feedingSchedules);
 		
 		// need this, because there is no GET method for the delete action

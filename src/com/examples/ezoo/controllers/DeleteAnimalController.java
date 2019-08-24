@@ -25,14 +25,12 @@ public class DeleteAnimalController {
 		
 		try {
 			dao.deleteAnimal(animalToDelete);;
-
 			model.addAttribute("message",  "Animal successfully deleted");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
 			return "redirect:/animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			model.addAttribute("message",  "There was a problem deleting the animal at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
