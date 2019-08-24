@@ -46,8 +46,8 @@ public class AnimalCareController {
 				longest = a;
 		model.addAttribute("longestNamedAnimal", longest);
 		
-//		model.addAttribute("animalID", 0L);			// needed for animal care page
 		model.addAttribute("animal", new Animal());			// needed for animal care page
+				// used for deletion, assignment, and unassignment forms
 		
 		context.close();
 		return "animalCare";

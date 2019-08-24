@@ -24,6 +24,7 @@
 		<table class="table table-striped table-hover table-responsive ezoo-datatable">
 			<thead>
 				<tr>
+					<th class="text-center">Delete?</th>
 					<th class="text-center">Name</th>
 					<th class="text-center">Kingdom</th>
 					<th class="text-center">Phylum</th>
@@ -44,8 +45,13 @@
 			<tbody>
 				<c:forEach var="animal" items="${animals}">
 					<tr>
+						<td>
+							<sf:form action="deleteAnimal" modelAttribute="animal" method="post">
+								<sf:hidden path="animalID" value="${animal.animalID}"/>
+								<sf:button type="submit" class="btn btn-primary">Delete</sf:button>
+							</sf:form>
+						</td>
 						<td><c:out value="${animal.name}" /></td>
-						
 						<td><c:out value="${animal.taxKingdom}" /></td>
 						<td><c:out value="${animal.taxPhylum}" /></td>
 						<td><c:out value="${animal.taxClass}" /></td>
