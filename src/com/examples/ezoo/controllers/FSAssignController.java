@@ -41,13 +41,13 @@ public class FSAssignController {
 							// this may not be best practice though. unsure what rules are
 
 	@RequestMapping(value="/FSAssign", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal) {
-//			, @ModelAttribute("message") String message
-//			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// clear in new model
-		model.addAttribute("message", null);
-		model.addAttribute("messageClass", null);
+//		model.addAttribute("message", null);
+//		model.addAttribute("messageClass", null);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);

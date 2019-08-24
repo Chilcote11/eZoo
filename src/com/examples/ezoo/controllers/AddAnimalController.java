@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,13 +22,13 @@ import com.examples.ezoo.model.Animal;
 public class AddAnimalController {
 	
 	@RequestMapping(value="/addAnimal", method=RequestMethod.GET)
-	public String DisplayAddAnimalForm(Model model) {
-//			, @ModelAttribute("message") String message
-//			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAddAnimalForm(Model model
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// clear in new model
-		model.addAttribute("message", null);
-		model.addAttribute("messageClass", null);
+//		model.addAttribute("message", null);
+//		model.addAttribute("messageClass", null);
 		
 		model.addAttribute("newAnimal", new Animal());
 		return "addAnimal";		
@@ -57,7 +58,7 @@ public class AddAnimalController {
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
 			return "redirect:/animalCare";
-		}catch(SQLIntegrityConstraintViolationException e){
+		}catch(DataIntegrityViolationException e){
 			e.printStackTrace();			
 			//change the message
 //			request.getSession().setAttribute("message", "Id of " + animalToSave.getAnimalID() + " is already in use");

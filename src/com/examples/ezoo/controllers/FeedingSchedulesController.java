@@ -21,13 +21,13 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class FeedingSchedulesController {
 	
 	@RequestMapping(value="/feedingSchedules", method=RequestMethod.GET)
-	public String DisplayFeedingSchedules(Model model) {
-//			, @ModelAttribute("message") String message
-//			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayFeedingSchedules(Model model
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// clear in new model
-		model.addAttribute("message", null);
-		model.addAttribute("messageClass", null);
+//		model.addAttribute("message", null);
+//		model.addAttribute("messageClass", null);
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);

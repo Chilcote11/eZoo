@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,13 +22,13 @@ import com.examples.ezoo.model.FeedingSchedule;
 public class CreateFeedingScheduleController {
 
 	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.GET)
-	public String DisplayCreateFeedingScheduleForm(Model model) {
-//			, @ModelAttribute("message") String messge
-//			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayCreateFeedingScheduleForm(Model model
+			, @ModelAttribute("message") String messge
+			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// clear in new model
-		model.addAttribute("message", null);
-		model.addAttribute("messageClass", null);
+//		model.addAttribute("message", null);
+//		model.addAttribute("messageClass", null);
 		
 		model.addAttribute("newFeedingSchedule", new FeedingSchedule());
 		return "createFeedingSchedule";		
@@ -58,7 +59,7 @@ public class CreateFeedingScheduleController {
 			model.addAttribute("message",  "Feeding schedule successfully created");
 			model.addAttribute("messageClass", "alert-success");
 			return "redirect:/feedingSchedules";
-		} catch(SQLIntegrityConstraintViolationException e) {
+		} catch(DataIntegrityViolationException e) {
 			e.printStackTrace();
 			// change the message
 //			request.getSession().setAttribute("message",  "Id of " + scheduleToSave.getScheduleID() + " is already in use");
