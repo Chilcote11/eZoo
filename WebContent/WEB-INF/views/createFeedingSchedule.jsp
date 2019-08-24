@@ -27,31 +27,31 @@
 		  <div class="form-group">
 		    <sf:label path="scheduleID" class="col-sm-4 control-label">Feeding Schedule ID</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="number" class="form-control" path="scheduleID" placeholder="ScheduleID" required="required"/>
+		      <sf:input class="form-control" path="scheduleID"/><sf:errors path="scheduleID" />
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="feedingTime" class="col-sm-4 control-label">Time</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="feedingTime" placeholder="FeedingTime" required="required"/>
+		      <sf:input class="form-control" path="feedingTime" /><sf:errors path="feedingTime" />
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="recurrence" class="col-sm-4 control-label">Recurrence</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="recurrence" placeholder="Recurrence" required="required"/>
+		      <sf:input class="form-control" path="recurrence" /><sf:errors path="recurrence" />
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="food" class="col-sm-4 control-label">Food</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="food" placeholder="Food" required="required"/>
+		      <sf:input class="form-control" path="food" /><sf:errors path="food" />
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <sf:label path="notes" class="col-sm-4 control-label">Notes</sf:label>
 		    <div class="col-sm-4">
-		      <sf:input type="text" class="form-control" path="notes" placeholder="Notes"/>
+		      <sf:input class="form-control" path="notes" /><sf:errors path="notes" />
 		    </div>
 		  </div>
 		  <div class="form-group">

@@ -4,8 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 //@Entity(name="ANIMALS")
 @Entity
@@ -13,43 +15,29 @@ import javax.validation.constraints.NotNull;
 public class Animal implements Comparable<Animal> {
 	
 	@Id 
-	@NotNull 
+	@Min(1) @NotNull(message = "{animalID.notnull.validate}")
 	private Integer animalID = 0;
 	
-	@Column @NotEmpty(message = "name can't be empty") private String name = "";
+	@Column @NotEmpty(message = "{name.validate}") private String name = "";
 	
-	@Column @NotEmpty private String taxKingdom  = "";
-	@Column @NotEmpty private String taxPhylum = "";
-	@Column @NotEmpty private String taxClass = "";
-	@Column @NotEmpty private String taxOrder = "";
-	@Column @NotEmpty private String taxFamily = "";
-	@Column @NotEmpty private String taxGenus = "";
-	@Column @NotEmpty private String taxSpecies = "";
+	@Column @NotEmpty(message = "{kingdom.validate}") private String taxKingdom  = "";
+	@Column @NotEmpty(message = "{phylum.validate}") private String taxPhylum = "";
+	@Column @NotEmpty(message = "{class.validate}") private String taxClass = "";
+	@Column @NotEmpty(message = "{order.validate}") private String taxOrder = "";
+	@Column @NotEmpty(message = "{family.validate}") private String taxFamily = "";
+	@Column @NotEmpty(message = "{genus.validate}") private String taxGenus = "";
+	@Column @NotEmpty(message = "{species.validate}") private String taxSpecies = "";
 	
-	@Column @NotNull private Double height = 0D;
-	@Column @NotNull private Double weight = 0D;
+	@Column @NotNull(message = "{height.validate}") private Double height = 0D;
+	@Column @NotNull(message = "{weight.validate}") private Double weight = 0D;
 	
-	@Column @NotEmpty private String type = null;
-	@Column @NotEmpty private String healthStatus = null;
+	@Column @NotEmpty(message = "{type.validate}") private String type = null;
+	@Column @NotEmpty(message = "{health.validate}") private String healthStatus = null;
 
-	@Column(name="feeding_schedule", nullable = true) private Integer feedingScheduleID = null;		// may need to add other annotation since this is a FK
+	@Column(name="feeding_schedule", nullable = true) 
+	@Min(1) private Integer feedingScheduleID = null;		// may need to add other annotation since this is a FK
 	
-	public Animal() {
-		/*this.animalID = 0;
-		this.name = "";
-		this.taxKingdom = "";
-		this.taxPhylum = "";
-		this.taxClass = "";
-		this.taxOrder = "";
-		this.taxFamily = "";
-		this.taxGenus = "";
-		this.taxSpecies = "";
-		this.height = 0D;
-		this.weight = 0D;
-		this.type = "";
-		this.healthStatus = "";*/
-		// this.feedingScheduleID = null;
-	}
+	public Animal() {}
 
 	public Animal(Integer animalID, String name, String taxKingdom, String taxPhylum, String taxClass, String taxOrder,
 			String taxFamily, String taxGenus, String taxSpecies, double height, double weight, String type,

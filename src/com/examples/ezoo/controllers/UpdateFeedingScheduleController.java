@@ -1,9 +1,12 @@
 package com.examples.ezoo.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,13 +32,16 @@ public class UpdateFeedingScheduleController {
 	}
 	
 	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.POST)
-	public String updateFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate/*, Errors errors*/) {
+	public String updateFeedingSchedule(Model model, @Valid @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate, Errors errors) {
 //			, @ModelAttribute("message") String message
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// not setting in new model for now
 //		model.addAttribute("message", message);
 //		model.addAttribute("messageClass", messageClass);
+		
+		if (errors.hasErrors())
+			return "updateFeedingSchedule";
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);

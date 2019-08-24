@@ -2,10 +2,13 @@ package com.examples.ezoo.controllers;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import javax.validation.Valid;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,13 +34,16 @@ public class CreateFeedingScheduleController {
 	}
 	
 	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.POST)
-	public String createFeedingSchedule(Model model, /*@Valid*/ @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS/*, Errors errors*/) {
+	public String createFeedingSchedule(Model model, @Valid @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS, Errors errors) {
 //			, @ModelAttribute("message") String messge
 //			, @ModelAttribute("messageClass") String messageClass) {
 		
 		// not setting in new model for now
 //		model.addAttribute("message", message);
 //		model.addAttribute("messageClass", messageClass);
+		
+		if (errors.hasErrors())
+			return "createFeedingSchedule";
 		
 		// Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
