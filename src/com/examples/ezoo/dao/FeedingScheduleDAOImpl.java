@@ -36,7 +36,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		sessionFactory.openSession().save(feedingSchedule);
 //		sessionFactory.getCurrentSession().close();
 		
-		Log.daoLog(Origin.FSDAO_SAVE, Level.DEBUG, ": " + feedingSchedule);
+		Log.daoLog(Origin.FSDAO_SAVE, Level.DEBUG, feedingSchedule);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		sessionFactory.openSession().delete(feedingSchedule);
 //		sessionFactory.getCurrentSession().close();
 		
-		Log.daoLog(Origin.FSDAO_DELETE, Level.DEBUG, ": " + feedingSchedule);
+		Log.daoLog(Origin.FSDAO_DELETE, Level.DEBUG, feedingSchedule);
 	}
 
 	@Override // checked
@@ -74,7 +74,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		sessionFactory.getCurrentSession().close();
 		
 		Log.daoLog(Origin.FSDAO_GETBYANIMAL, Level.DEBUG, 
-				": \"" + animal.getName() + "[" + animal.getAnimalID() +  "]\""
+				"\"" + animal.getName() + "[" + animal.getAnimalID() +  "]\""
 				+ " --> scheduleID: " + feedingSchedule);
 		
 		return feedingSchedule;	
@@ -92,8 +92,8 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		session.close();
 		
 		Log.daoLog(Origin.FSDAO_ASSIGN, Level.DEBUG, 
-				"scheduleID: " + feedingSchedule.getScheduleID() +  
-				" assigned to " + animal.getName() + "[" + animal.getAnimalID() +  "]");
+				"assign FS[" + feedingSchedule.getScheduleID() +  
+				"] to " + animal.getName() + "[" + animal.getAnimalID() +  "]");
 	}
 
 	@Override
@@ -108,8 +108,8 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		session.close();
 		
 		Log.daoLog(Origin.FSDAO_UNASSIGN, Level.DEBUG, 
-				"Feeding schedule with ID: [" + animal.getFeedingScheduleID() + 
-				"] removed from: \"" + animal.getName() + "[" + animal.getAnimalID() +  "] ");
+				"remove FS[" + animal.getFeedingScheduleID() + 
+				"] from: \"" + animal.getName() + "[" + animal.getAnimalID() +  "]\"");
 	}
 	
 	@Override
@@ -127,6 +127,6 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		session.getTransaction().commit();
 		session.close();
 		
-		Log.daoLog(Origin.FSDAO_UPDATE, Level.DEBUG, ": " + feedingSchedule);
+		Log.daoLog(Origin.FSDAO_UPDATE, Level.DEBUG, feedingSchedule);
 	}
 }

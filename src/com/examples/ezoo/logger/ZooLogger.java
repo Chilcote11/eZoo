@@ -25,6 +25,7 @@ public class ZooLogger {
 	 * 			- controller navigation
 	 * 		- DEBUG
 	 * 			- all DAO logging
+	 * 		- TRACE
 	 * 		- ALL
 	 * */
 	
@@ -39,7 +40,7 @@ public class ZooLogger {
 	}
 	
 	private void basicLog(Origin origin, Level level, Object message) {
-		Object mssg = level + " " + origin + ": " + message;
+		Object mssg = "Level: " + level + " - " + origin + ": " + message;
 		Log.log(level, mssg);
 	}
 
