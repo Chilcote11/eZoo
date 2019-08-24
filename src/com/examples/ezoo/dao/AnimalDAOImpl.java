@@ -35,12 +35,24 @@ public class AnimalDAOImpl implements AnimalDAO {
 		Session session = sessionFactory.openSession();
 		Query<Animal> results = session.createQuery("from Animal");		// can omit SELECT in HQL
 		List<Animal> animals = results.list();
+		session.close();
 		return animals;
 	}
 
 	@Override
 	public void saveAnimal(Animal animal) throws Exception {
 		sessionFactory.getCurrentSession().save(animal);
+//		Session session = sessionFactory.openSession();
+//		session.save(animal);
+//		session.close();
+	}
+	
+	@Override
+	public void deleteAnimal(Animal animal) throws Exception {
+		sessionFactory.getCurrentSession().delete(animal);
+//		Session session = sessionFactory.openSession();
+//		session.delete(animal);
+//		session.close();
 	}
 
 }

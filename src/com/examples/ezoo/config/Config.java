@@ -2,7 +2,6 @@ package com.examples.ezoo.config;
 
 import java.util.Properties;
 
-import javax.jms.Session;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;

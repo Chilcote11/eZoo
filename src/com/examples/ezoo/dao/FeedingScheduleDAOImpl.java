@@ -28,18 +28,24 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 	@Override		// checked and tested
 	public void saveFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
 		sessionFactory.getCurrentSession().save(feedingSchedule);
+//		sessionFactory.openSession().save(feedingSchedule);
+//		sessionFactory.getCurrentSession().close();
 	}
 
 	@Override
 	public void deleteFeedingSchedule(FeedingSchedule feedingSchedule) throws Exception {
 		sessionFactory.getCurrentSession().delete(feedingSchedule);
+//		sessionFactory.openSession().delete(feedingSchedule);
+//		sessionFactory.getCurrentSession().close();
 	}
 
 	@Override // checked
 	public List<FeedingSchedule> getAllFeedingSchedules() {
-		Session session = sessionFactory.openSession();				// need to close? no warning..	
+		Session session = sessionFactory.openSession();				// need to close? no warning..YES
+//		Session session = sessionFactory.getCurrentSession();		// should fix exception I get when opening feedingSchedules.jsp
 		Query<FeedingSchedule> results = session.createQuery("from FeedingSchedule");
 		List<FeedingSchedule> feedingSchedules = results.list();
+		session.close();
 		return feedingSchedules;
 	}
 
@@ -51,6 +57,8 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		}
 				
 		FeedingSchedule feedingSchedule = sessionFactory.getCurrentSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
+//		FeedingSchedule feedingSchedule = sessionFactory.openSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
+//		sessionFactory.getCurrentSession().close();
 		
 		return feedingSchedule;	
 	}
@@ -64,6 +72,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		query.setParameter("Animal_ID", animal.getAnimalID());
 		query.executeUpdate();
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	@Override
@@ -75,6 +84,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		query.setParameter("Animal_ID", animal.getAnimalID());
 		query.executeUpdate();
 		session.getTransaction().commit();
+		session.close();
 	}
 	
 	@Override
@@ -90,5 +100,6 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		query.setParameter("ID", feedingSchedule.getScheduleID());
 		query.executeUpdate();
 		session.getTransaction().commit();
+		session.close();
 	}
 }

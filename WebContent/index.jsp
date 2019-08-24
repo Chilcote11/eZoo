@@ -7,7 +7,7 @@
  
 -->
 	
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
     <!-- Header -->
     <header>
@@ -68,4 +68,4 @@
 <!--     </div> -->
     </section>
 
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="/WEB-INF/views/footer.jsp"/>

@@ -6,17 +6,16 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 	
-<!-- 	Just some stuff you need -->
+	<!-- Spring Forms taglib include -->
+	<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+	
+	<!-- 	Just some stuff you need -->
 	<header>
 	  <div class="container">
 
 	<c:choose>
 	<c:when test="${not empty message }">
 	  <p class="alert ${messageClass}">${message }</p>
-	<%
-	  session.setAttribute("message", null);
-	  session.setAttribute("messageClass", null);
-	%>
 	</c:when>
 	</c:choose>
  
@@ -40,24 +39,24 @@
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
 							<td>
-								<form action="updateFeedingSchedule" method="get"">
-									<input type="hidden" value="${schedule.scheduleID}" name="scheduleID" />
-									<input type="hidden" value="${schedule.feedingTime}" name="feedingTime" />
-									<input type="hidden" value="${schedule.recurrence}" name="recurrence" />
-									<input type="hidden" value="${schedule.food}" name="food" />
-									<input type="hidden" value="${schedule.notes}" name="notes" />
-									<button type="submit" class="btn btn-primary">Update</button>
-								</form>
+								<sf:form action="updateFeedingSchedule" modelAttribute="scheduleToUpdate" method="get">
+									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
+									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
+									<sf:hidden path="recurrence" value="${schedule.recurrence}" />
+									<sf:hidden path="food" value="${schedule.food}" />
+									<sf:hidden path="notes" value="${schedule.notes}" />
+									<sf:button type="submit" class="btn btn-primary">Update</sf:button>
+								</sf:form>
 							</td>
 							<td>
-								<form action="deleteFeedingSchedule" method="post">
-									<input type="hidden" value="${schedule.scheduleID}" name="scheduleID" />
-									<input type="hidden" value="${schedule.feedingTime}" name="feedingTime" />
-									<input type="hidden" value="${schedule.recurrence}" name="recurrence" />
-									<input type="hidden" value="${schedule.food}" name="food" />
-									<input type="hidden" value="${schedule.notes}" name="notes" />
-									<button type="submit" class="btn btn-primary">Delete</button>
-								</form>
+								<sf:form action="deleteFeedingSchedule" modelAttribute="scheduleToDelete" method="post">
+									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
+									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
+									<sf:hidden path="recurrence" value="${schedule.recurrence}" />
+									<sf:hidden path="food" value="${schedule.food}" />
+									<sf:hidden path="notes" value="${schedule.notes}" />
+									<sf:button type="submit" class="btn btn-primary">Delete</sf:button>
+								</sf:form>
 							</td>
 							<td><fmt:formatNumber value="${schedule.scheduleID}"/></td>
 							<td><c:out value="${schedule.feedingTime}" /></td>

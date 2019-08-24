@@ -14,15 +14,11 @@
 			out.println("<p class=\"alert alert-danger\">Something went wrong</p>");
 		%>
 		
-		<h1>eZoo <small>404 Page not found</small></h1>
+		<h1>eZoo <small>error page</small></h1>
 		<hr class="paw-primary">
 		<p>
-		  Cannot find requested resource
+		  Your code threw an exception <i class="fa fa-frown-o fa-3"></i>
 		</p>
-	<%
-	  session.setAttribute("message", null);
-	  session.setAttribute("messageClass", null);
-	%>
 
 	  </div>
 	</header>
