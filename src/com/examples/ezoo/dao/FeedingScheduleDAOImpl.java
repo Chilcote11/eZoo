@@ -36,7 +36,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		sessionFactory.openSession().save(feedingSchedule);
 //		sessionFactory.getCurrentSession().close();
 		
-		Log.daoLog(Origin.FSDAO_SAVE, Level.INFO, ": " + feedingSchedule);
+		Log.daoLog(Origin.FSDAO_SAVE, Level.DEBUG, ": " + feedingSchedule);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		sessionFactory.openSession().delete(feedingSchedule);
 //		sessionFactory.getCurrentSession().close();
 		
-		Log.daoLog(Origin.FSDAO_DELETE, Level.INFO, ": " + feedingSchedule);
+		Log.daoLog(Origin.FSDAO_DELETE, Level.DEBUG, ": " + feedingSchedule);
 	}
 
 	@Override // checked
@@ -56,7 +56,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		List<FeedingSchedule> feedingSchedules = results.list();
 		session.close();
 		
-		Log.daoLog(Origin.FSDAO_GETALL, Level.INFO, 
+		Log.daoLog(Origin.FSDAO_GETALL, Level.DEBUG, 
 				": " + feedingSchedules.size() + " retrieved");
 		
 		return feedingSchedules;
@@ -73,7 +73,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		FeedingSchedule feedingSchedule = sessionFactory.openSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
 //		sessionFactory.getCurrentSession().close();
 		
-		Log.daoLog(Origin.FSDAO_GETBYANIMAL, Level.INFO, 
+		Log.daoLog(Origin.FSDAO_GETBYANIMAL, Level.DEBUG, 
 				": \"" + animal.getName() + "[" + animal.getAnimalID() +  "]\""
 				+ " --> scheduleID: " + feedingSchedule);
 		
@@ -91,7 +91,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		session.getTransaction().commit();
 		session.close();
 		
-		Log.daoLog(Origin.FSDAO_ASSIGN, Level.INFO, 
+		Log.daoLog(Origin.FSDAO_ASSIGN, Level.DEBUG, 
 				"scheduleID: " + feedingSchedule.getScheduleID() +  
 				" assigned to " + animal.getName() + "[" + animal.getAnimalID() +  "]");
 	}
@@ -107,7 +107,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		session.getTransaction().commit();
 		session.close();
 		
-		Log.daoLog(Origin.FSDAO_UNASSIGN, Level.INFO, 
+		Log.daoLog(Origin.FSDAO_UNASSIGN, Level.DEBUG, 
 				"Feeding schedule with ID: [" + animal.getFeedingScheduleID() + 
 				"] removed from: \"" + animal.getName() + "[" + animal.getAnimalID() +  "] ");
 	}
@@ -127,6 +127,6 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		session.getTransaction().commit();
 		session.close();
 		
-		Log.daoLog(Origin.FSDAO_UPDATE, Level.INFO, ": " + feedingSchedule);
+		Log.daoLog(Origin.FSDAO_UPDATE, Level.DEBUG, ": " + feedingSchedule);
 	}
 }

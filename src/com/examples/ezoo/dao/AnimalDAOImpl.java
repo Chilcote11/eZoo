@@ -42,7 +42,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 		List<Animal> animals = results.list();
 		session.close();
 		
-		Log.daoLog(Origin.ANIMALDAO_GETALL, Level.INFO, 
+		Log.daoLog(Origin.ANIMALDAO_GETALL, Level.DEBUG, 
 				": " + animals.size() + " retrieved");
 		
 		return animals;
@@ -55,7 +55,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 //		session.save(animal);
 //		session.close();
 		
-		Log.daoLog(Origin.ANIMALDAO_SAVE, Level.INFO, 
+		Log.daoLog(Origin.ANIMALDAO_SAVE, Level.DEBUG, 
 				": " + animal.getName() + "[" + animal.getAnimalID() +  "] saved");
 	}
 	
@@ -66,7 +66,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 //		session.delete(animal);
 //		session.close();
 		
-		Log.daoLog(Origin.ANIMALDAO_DELETE, Level.INFO, 
+		Log.daoLog(Origin.ANIMALDAO_DELETE, Level.DEBUG, 
 				": " + animal.getName() + "[" + animal.getAnimalID() +  "] deleted");
 	}
 

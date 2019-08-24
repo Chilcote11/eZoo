@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.http.MediaType;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.FeedingScheduleDAO;
+import com.examples.ezoo.logger.Origin;
+import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
@@ -36,6 +39,8 @@ import com.examples.ezoo.model.FeedingSchedule;
 @Controller
 public class FSAssignController {
 	
+	private ZooLogger Log = new ZooLogger();
+	
 	Animal animalToAssign; 	// set in GET method, used in POST method
 							// .. since I'm having so much trouble passing it into POST method
 							// this may not be best practice though. unsure what rules are
@@ -44,6 +49,8 @@ public class FSAssignController {
 	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
+		
+		Log.controllerLog(Origin.CONTROLLER_FSASSIGN_GET, Level.INFO, "navigation");
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
@@ -78,13 +85,14 @@ public class FSAssignController {
 		
 		animalToAssign = selectedAnimal;
 		
-		
 		context.close();
 		return "assignFeedingSchedule";
 	}
 	
 	@RequestMapping(value="/FSAssign", method=RequestMethod.POST)
-	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {		
+	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
+		
+		Log.controllerLog(Origin.CONTROLLER_FSASSIGN_POST, Level.INFO, "navigation");
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
@@ -107,12 +115,14 @@ public class FSAssignController {
 			model.addAttribute("message",  "Feeding schedule successfully assigned");	
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
+			Log.controllerLog(Origin.CONTROLLER_FSASSIGN_POST, Level.INFO, "assignment successful");
 			return "redirect:/animalCare";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message",  "There was a problem assigning or unassigning the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
+			Log.controllerLog(Origin.CONTROLLER_FSASSIGN_POST, Level.ERROR, "unknown exception thrown");
 			return "assignFeedingSchedule";
 		}
 		

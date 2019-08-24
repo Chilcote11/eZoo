@@ -3,6 +3,7 @@ package com.examples.ezoo.controllers;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,16 +15,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.FeedingScheduleDAO;
+import com.examples.ezoo.logger.Origin;
+import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
 @Controller
 public class FeedingSchedulesController {
 	
+	private ZooLogger Log = new ZooLogger();
+	
 	@RequestMapping(value="/feedingSchedules", method=RequestMethod.GET)
 	public String DisplayFeedingSchedules(Model model
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
+		
+		Log.controllerLog(Origin.CONTROLLER_FS_GET, Level.INFO, "navigation");
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);

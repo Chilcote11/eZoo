@@ -2,6 +2,7 @@ package com.examples.ezoo.controllers;
 
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -12,15 +13,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.dao.AnimalDAO;
+import com.examples.ezoo.logger.Origin;
+import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
 @Controller
 public class AnimalCareController {
+	
+	private ZooLogger Log = new ZooLogger();
 
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
 	public String DisplayAnimalCare(Model model
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
+		
+		Log.controllerLog(Origin.CONTROLLER_ANIMALCARE_GET, Level.INFO, "navigation");
 		
 		// Grab a list of Animals from the Database
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);

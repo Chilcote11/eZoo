@@ -15,13 +15,17 @@ public class ZooLogger {
 	
 	/*
 	 * Log4J Logging Levels:
-	 * 			- OFF
-	 * 			- FATAL
-	 * 			- ERROR
-	 * 			- WARN
-	 * 			- INFO
-	 * 			- DEBUG
-	 * 			- ALL
+	 * 		- OFF
+	 * 		- FATAL
+	 * 		- ERROR
+	 * 			- controller exceptions
+	 * 		- WARN
+	 * 			- controller validation errors
+	 * 		- INFO
+	 * 			- controller navigation
+	 * 		- DEBUG
+	 * 			- all DAO logging
+	 * 		- ALL
 	 * */
 	
 	private static Logger Log = LogManager.getLogger(ZooLogger.class.getName());
@@ -35,7 +39,7 @@ public class ZooLogger {
 	}
 	
 	private void basicLog(Origin origin, Level level, Object message) {
-		Object mssg = origin + ": " + message;
+		Object mssg = level + " " + origin + ": " + message;
 		Log.log(level, mssg);
 	}
 
