@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 //@Entity(name="ANIMALS")
@@ -13,29 +14,44 @@ public class Animal implements Comparable<Animal> {
 	
 	@Id 
 	@NotNull 
-	private long animalID = 0L;
+	private Integer animalID = 0;
 	
-	@Column @NotNull private String name = "";
+	@Column @NotEmpty(message = "name can't be empty") private String name = "";
 	
-	@Column @NotNull private String taxKingdom = "";
-	@Column @NotNull private String taxPhylum = "";
-	@Column @NotNull private String taxClass = "";
-	@Column @NotNull private String taxOrder = "";
-	@Column @NotNull private String taxFamily = "";
-	@Column @NotNull private String taxGenus = "";
-	@Column @NotNull private String taxSpecies = "";
+	@Column @NotEmpty private String taxKingdom  = "";
+	@Column @NotEmpty private String taxPhylum = "";
+	@Column @NotEmpty private String taxClass = "";
+	@Column @NotEmpty private String taxOrder = "";
+	@Column @NotEmpty private String taxFamily = "";
+	@Column @NotEmpty private String taxGenus = "";
+	@Column @NotEmpty private String taxSpecies = "";
 	
-	@Column @NotNull private double height = 0D;
-	@Column @NotNull private double weight = 0D;
+	@Column @NotNull private Double height = 0D;
+	@Column @NotNull private Double weight = 0D;
 	
-	@Column @NotNull private String type = "";
-	@Column @NotNull private String healthStatus = "";
+	@Column @NotEmpty private String type = null;
+	@Column @NotEmpty private String healthStatus = null;
 
-	@Column(name="feeding_schedule", nullable = true) private Integer feedingScheduleID = 0;		// may need to add other annotation since this is a FK
+	@Column(name="feeding_schedule", nullable = true) private Integer feedingScheduleID = null;		// may need to add other annotation since this is a FK
 	
-	public Animal(){}
+	public Animal() {
+		/*this.animalID = 0;
+		this.name = "";
+		this.taxKingdom = "";
+		this.taxPhylum = "";
+		this.taxClass = "";
+		this.taxOrder = "";
+		this.taxFamily = "";
+		this.taxGenus = "";
+		this.taxSpecies = "";
+		this.height = 0D;
+		this.weight = 0D;
+		this.type = "";
+		this.healthStatus = "";*/
+		// this.feedingScheduleID = null;
+	}
 
-	public Animal(long animalID, String name, String taxKingdom, String taxPhylum, String taxClass, String taxOrder,
+	public Animal(Integer animalID, String name, String taxKingdom, String taxPhylum, String taxClass, String taxOrder,
 			String taxFamily, String taxGenus, String taxSpecies, double height, double weight, String type,
 			String healthStatus, int feedingScheduleID) {
 		super();
@@ -55,11 +71,11 @@ public class Animal implements Comparable<Animal> {
 		this.feedingScheduleID = feedingScheduleID;
 	}
 
-	public long getAnimalID() {
+	public Integer getAnimalID() {
 		return animalID;
 	}
 
-	public void setAnimalID(long animalID) {
+	public void setAnimalID(Integer animalID) {
 		this.animalID = animalID;
 	}
 
@@ -127,19 +143,19 @@ public class Animal implements Comparable<Animal> {
 		this.taxSpecies = taxSpecies;
 	}
 
-	public double getHeight() {
+	public Double getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(Double height) {
 		this.height = height;
 	}
 
-	public double getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 
