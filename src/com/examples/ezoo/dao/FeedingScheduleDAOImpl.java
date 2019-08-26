@@ -3,17 +3,22 @@ package com.examples.ezoo.dao;
 import java.util.List;
 
 import org.hibernate.query.Query;
+import org.apache.logging.log4j.Level;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.examples.ezoo.logger.Origin;
+import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
 @Repository
 @Transactional
 public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
+	
+	private ZooLogger Log = new ZooLogger();
 	
 	private SessionFactory sessionFactory;		// from Spring
 
@@ -30,6 +35,8 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		sessionFactory.getCurrentSession().save(feedingSchedule);
 //		sessionFactory.openSession().save(feedingSchedule);
 //		sessionFactory.getCurrentSession().close();
+		
+		Log.daoLog(Origin.FSDAO_SAVE, Level.DEBUG, feedingSchedule);
 	}
 
 	@Override
@@ -37,6 +44,8 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		sessionFactory.getCurrentSession().delete(feedingSchedule);
 //		sessionFactory.openSession().delete(feedingSchedule);
 //		sessionFactory.getCurrentSession().close();
+		
+		Log.daoLog(Origin.FSDAO_DELETE, Level.DEBUG, feedingSchedule);
 	}
 
 	@Override // checked
@@ -46,6 +55,10 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		Query<FeedingSchedule> results = session.createQuery("from FeedingSchedule");
 		List<FeedingSchedule> feedingSchedules = results.list();
 		session.close();
+		
+		Log.daoLog(Origin.FSDAO_GETALL, Level.DEBUG, 
+				": " + feedingSchedules.size() + " retrieved");
+		
 		return feedingSchedules;
 	}
 
@@ -60,6 +73,10 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 //		FeedingSchedule feedingSchedule = sessionFactory.openSession().get(FeedingSchedule.class, animal.getFeedingScheduleID());
 //		sessionFactory.getCurrentSession().close();
 		
+		Log.daoLog(Origin.FSDAO_GETBYANIMAL, Level.DEBUG, 
+				"\"" + animal.getName() + "[" + animal.getAnimalID() +  "]\""
+				+ " --> scheduleID: " + feedingSchedule);
+		
 		return feedingSchedule;	
 	}
 
@@ -73,6 +90,10 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		query.executeUpdate();
 		session.getTransaction().commit();
 		session.close();
+		
+		Log.daoLog(Origin.FSDAO_ASSIGN, Level.DEBUG, 
+				"assign FS[" + feedingSchedule.getScheduleID() +  
+				"] to " + animal.getName() + "[" + animal.getAnimalID() +  "]");
 	}
 
 	@Override
@@ -85,6 +106,10 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		query.executeUpdate();
 		session.getTransaction().commit();
 		session.close();
+		
+		Log.daoLog(Origin.FSDAO_UNASSIGN, Level.DEBUG, 
+				"remove FS[" + animal.getFeedingScheduleID() + 
+				"] from: \"" + animal.getName() + "[" + animal.getAnimalID() +  "]\"");
 	}
 	
 	@Override
@@ -101,5 +126,7 @@ public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 		query.executeUpdate();
 		session.getTransaction().commit();
 		session.close();
+		
+		Log.daoLog(Origin.FSDAO_UPDATE, Level.DEBUG, feedingSchedule);
 	}
 }
