@@ -44,6 +44,10 @@ public class CreateFeedingScheduleController {
 		
 		if (errors.hasErrors()) {
 			Log.controllerLog(Origin.CONTROLLER_FSCREATE_POST, Level.WARN, "validation errors");
+			
+			model.addAttribute("message",  "Missing or invalid entries! Please try again");
+			model.addAttribute("messageClass",  "alert-danger");
+			
 			return "createFeedingSchedule";
 		}
 		

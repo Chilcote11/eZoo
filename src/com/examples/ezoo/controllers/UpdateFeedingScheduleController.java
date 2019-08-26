@@ -41,6 +41,10 @@ public class UpdateFeedingScheduleController {
 		
 		if (errors.hasErrors()) {
 			Log.controllerLog(Origin.CONTROLLER_FSUPDATE_POST, Level.WARN, "validation errors");
+			
+			model.addAttribute("message",  "Missing or invalid entries! Please try again");
+			model.addAttribute("messageClass",  "alert-danger");
+			
 			return "updateFeedingSchedule";
 		}
 		
