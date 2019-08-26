@@ -40,7 +40,8 @@ public class ZooLogger {
 	}
 	
 	private void basicLog(Origin origin, Level level, Object message) {
-		Object mssg = "Level: " + level + " - " + origin + ": " + message;
+//		Object mssg = "Level: " + level + " - " + origin + ": " + message;
+		String mssg = String.format("Level: %-5s - %-28s: %s", level, origin, message);
 		Log.log(level, mssg);
 	}
 

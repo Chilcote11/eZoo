@@ -61,13 +61,19 @@ public class AnimalDAOImpl implements AnimalDAO {
 	
 	@Override
 	public void deleteAnimal(Animal animal) throws Exception {
+		
+		System.out.println("animal.getName()" + animal.getName());
+		
+		Log.daoLog(Origin.ANIMALDAO_DELETE, Level.DEBUG, 
+				"delete " + animal.getName() + "[" + animal.getAnimalID() +  "]");
+		
 		sessionFactory.getCurrentSession().delete(animal);
 //		Session session = sessionFactory.openSession();
 //		session.delete(animal);
 //		session.close();
 		
-		Log.daoLog(Origin.ANIMALDAO_DELETE, Level.DEBUG, 
-				"delete " + animal.getName() + "[" + animal.getAnimalID() +  "]");
+//		Log.daoLog(Origin.ANIMALDAO_DELETE, Level.DEBUG, 
+//				"delete " + animal.getName() + "[" + animal.getAnimalID() +  "]");
 	}
 
 }
