@@ -4,5 +4,5 @@ import com.examples.ezoo.model.User;
 
 public interface UserDAO {
 
-	void addUser(User user) throws Exception;
+	void saveUser(User user) throws Exception;
 }
