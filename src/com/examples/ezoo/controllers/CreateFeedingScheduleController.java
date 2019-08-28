@@ -28,7 +28,7 @@ public class CreateFeedingScheduleController {
 
 	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.GET)
 	public String DisplayCreateFeedingScheduleForm(Model model
-			, @ModelAttribute("message") String messge
+			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FSCREATE_GET, Level.INFO, "navigation");
