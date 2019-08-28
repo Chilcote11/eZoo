@@ -30,5 +30,13 @@ public class UserDAOImpl implements UserDAO {
 		Log.daoLog(Origin.USERDAO_SAVE, Level.DEBUG, 
 				"save " + user.getUsername() + "[" + user.getUserRole() +  "]");
 	}
+	
+	@Override public void deleteUser(User user) throws Exception {
+		sessionFactory.getCurrentSession().delete(user);
+		sessionFactory.getCurrentSession().delete(user.getRoleObject());
+		
+		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
+				"delete " + user.getUsername() + "[" + user.getUserRole() +  "]");
+	}
 
 }
