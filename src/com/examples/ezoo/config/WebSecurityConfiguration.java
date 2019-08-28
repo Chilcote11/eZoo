@@ -1,5 +1,8 @@
 package com.examples.ezoo.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +28,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/");
 	}
 	
+	@Autowired
+	DataSource ds;	// I think this will work?
+	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
@@ -36,6 +42,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.withUser("admin")
 					.password("passw0rd")
 					.authorities("ROLE_USER", "ROLE_ADMIN");
+		
+		auth
+			.jdbcAuthentication()
+				.dataSource(ds)
+//				.usersByUsernameQuery("SELECT username, password, active FROM USERS WHERE username = ?") // keep "active"?
+				.usersByUsernameQuery("SELECT username, password FROM users WHERE username = ?")
+				.authoritiesByUsernameQuery("SELECT username, role FROM user_roles WHERE username = ?")
+//				.groupAuthoritiesByUsername("")
+				;
 	}
 
 }
