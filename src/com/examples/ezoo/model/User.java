@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
@@ -21,6 +22,23 @@ public class User implements Comparable<User> {
 	@Column(name="user_role") 
 	@NotEmpty(message = "{user_role.validate")
 	private String userRole;
+	
+	@Transient 		// not a property in "users" database table
+	// this is only used in UserDAOImpl
+	private UserRole roleObject = new UserRole(this);
+	
+	// nested class for inserting user roles objects into database
+	@Entity
+	@Table(name="USER_ROLES")
+	public class UserRole {
+		@Id private String userRole = "";
+		@Column private String username = "";
+		
+		public UserRole(User user) {
+			this.userRole = user.userRole;
+			this.username = user.username;
+		}
+	}
 	
 	public User() {}
 	
