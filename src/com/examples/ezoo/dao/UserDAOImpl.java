@@ -25,6 +25,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void saveUser(User user) throws Exception {
 		sessionFactory.getCurrentSession().save(user);
+		sessionFactory.getCurrentSession().save(user.getRoleObject());
 		
 		Log.daoLog(Origin.USERDAO_SAVE, Level.DEBUG, 
 				"save " + user.getUsername() + "[" + user.getUserRole() +  "]");

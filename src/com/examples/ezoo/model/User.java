@@ -30,7 +30,7 @@ public class User implements Comparable<User> {
 	// nested class for inserting user roles objects into database
 	@Entity
 	@Table(name="USER_ROLES")
-	public class UserRole {
+	private class UserRole {
 		@Id private String userRole = "";
 		@Column private String username = "";
 		
@@ -71,6 +71,10 @@ public class User implements Comparable<User> {
 
 	public void setUserRole(String userRole) {
 		this.userRole = userRole;
+	}
+	
+	public UserRole getRoleObject() {
+		return roleObject;
 	}
 
 	
