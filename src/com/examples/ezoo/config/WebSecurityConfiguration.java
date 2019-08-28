@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -50,6 +51,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.usersByUsernameQuery("SELECT username, password FROM users WHERE username = ?")
 				.authoritiesByUsernameQuery("SELECT username, role FROM user_roles WHERE username = ?")
 //				.groupAuthoritiesByUsername("")
+				.passwordEncoder(new BCryptPasswordEncoder())
 				;
 	}
 
