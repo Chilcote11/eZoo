@@ -23,12 +23,12 @@ public class User implements Comparable<User> {
 	@NotEmpty(message = "{user_role.validate")
 	private String role = "";
 	
-	@Transient 		// not a property in "users" database table
-	// this is only used in UserDAOImpl
-	private UserRole roleObject = new UserRole(this);
+//	@Transient 		// not a property in "users" database table
+//	// this is only used in UserDAOImpl
+//	private UserRole roleObject = new UserRole(this);
 	
 	// nested class for inserting user roles objects into database
-	@Entity
+	/*@Entity
 	@Table(name="USER_ROLES")
 	private class UserRole {
 		@Id @Column(name="username")
@@ -37,7 +37,7 @@ public class User implements Comparable<User> {
 		
 		public UserRole(User user) {
 		}
-	}
+	}*/
 	
 	public User() {}
 	
@@ -72,9 +72,9 @@ public class User implements Comparable<User> {
 		this.role = role;
 	}
 	
-	public UserRole getRoleObject() {
-		return roleObject;
-	}
+//	public UserRole getRoleObject() {
+//		return roleObject;
+//	}
 
 	
 	@Override

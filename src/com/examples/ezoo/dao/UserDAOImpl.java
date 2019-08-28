@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.User;
+import com.examples.ezoo.model.UserRole;
 
 @Repository
 @Transactional
@@ -29,7 +30,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void saveUser(User user) throws Exception {
 		sessionFactory.getCurrentSession().save(user);
-		sessionFactory.getCurrentSession().save(user.getRoleObject());
+		sessionFactory.getCurrentSession().save(new UserRole(user));
 		
 		Log.daoLog(Origin.USERDAO_SAVE, Level.DEBUG, 
 				"save " + user.getUsername() + "[" + user.getRole() +  "]");
@@ -37,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override public void deleteUser(User user) throws Exception {
 		sessionFactory.getCurrentSession().delete(user);
-		sessionFactory.getCurrentSession().delete(user.getRoleObject());
+		sessionFactory.getCurrentSession().delete(new UserRole(user));
 		
 		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
 				"delete " + user.getUsername() + "[" + user.getRole() +  "]");
