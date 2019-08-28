@@ -31,8 +31,8 @@ public class User implements Comparable<User> {
 	@Entity
 	@Table(name="USER_ROLES")
 	private class UserRole {
-		@Id private String userRole = "";
-		@Column private String username = "";
+		@Id private String username = "";
+		@Column private String userRole = "";
 		
 		public UserRole(User user) {
 			this.userRole = user.userRole;
