@@ -25,7 +25,7 @@ public class RegistrationController {
 	private ZooLogger Log = new ZooLogger();
 
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String DisplayCreateFeedingScheduleForm(Model model
+	public String displayRegistrationForm(Model model
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
 		
@@ -36,7 +36,7 @@ public class RegistrationController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String createFeedingSchedule(Model model, @Valid @ModelAttribute("newUser") User newUser, Errors errors) {
+	public String register(Model model, @Valid @ModelAttribute("newUser") User newUser, Errors errors) {
 		
 		Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.INFO, "navigation");
 		

@@ -22,7 +22,7 @@
 		<h1>eZoo <small>Login</small></h1>
 		<hr class="paw-primary">
 		
-		<sf:form action="login" modelAttribute="Login" method="post" class="form-horizontal">
+		<sf:form action="login" modelAttribute="userToValidate" method="post" class="form-horizontal">
 		
 		  <div class="form-group">
 		    <sf:label path="username" class="col-sm-4 control-label">Username</sf:label>
