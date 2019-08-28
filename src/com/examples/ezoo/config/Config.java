@@ -20,6 +20,8 @@ import com.examples.ezoo.dao.AnimalDAOImpl;
 import com.examples.ezoo.dao.DAOUtilities;
 import com.examples.ezoo.dao.FeedingScheduleDAO;
 import com.examples.ezoo.dao.FeedingScheduleDAOImpl;
+import com.examples.ezoo.dao.UserDAO;
+import com.examples.ezoo.dao.UserDAOImpl;
 
 
 @Configuration						// from Spring
@@ -56,6 +58,13 @@ public class Config {
 	
 	@Bean FeedingScheduleDAO feedingScheduleDAO (SessionFactory sessionFactory) {
 		FeedingScheduleDAOImpl dao = new FeedingScheduleDAOImpl();
+		dao.setSessionFactory(sessionFactory);
+		return dao;
+	}
+	
+	@Bean 
+	UserDAO userDAO (SessionFactory sessionFactory) {
+		UserDAOImpl dao = new UserDAOImpl();
 		dao.setSessionFactory(sessionFactory);
 		return dao;
 	}

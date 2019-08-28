@@ -37,9 +37,9 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <sf:label path="userRole" class="col-sm-4 control-label">User Role</sf:label>
+		    <sf:label path="role" class="col-sm-4 control-label">User Role</sf:label>
 		    <div class="col-sm-4">
-				<sf:select path="userRole" class="form-control">
+				<sf:select path="role" class="form-control">
 					<sf:option value="ROLE_USER">
 						ROLE_USER
 					</sf:option>

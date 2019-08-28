@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="ANIMALS")
+@Table(name="USERS")
 public class User implements Comparable<User> {
 
 	@Id 
@@ -19,9 +19,9 @@ public class User implements Comparable<User> {
 	@Column @NotEmpty(message = "{password.validate}")
 	private String password = "";
 	
-	@Column(name="user_role") 
+	@Column 
 	@NotEmpty(message = "{user_role.validate")
-	private String userRole;
+	private String role = "";
 	
 	@Transient 		// not a property in "users" database table
 	// this is only used in UserDAOImpl
@@ -31,22 +31,21 @@ public class User implements Comparable<User> {
 	@Entity
 	@Table(name="USER_ROLES")
 	private class UserRole {
-		@Id private String username = "";
-		@Column private String userRole = "";
+		@Id @Column(name="username")
+		private String name = username;
+		@Column(name="role") private String userRole = role;
 		
 		public UserRole(User user) {
-			this.userRole = user.userRole;
-			this.username = user.username;
 		}
 	}
 	
 	public User() {}
 	
-	public User(String username, String password, String userRole) {
+	public User(String username, String password, String role) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.userRole = userRole;
+		this.role = role;
 	}
 	
 	public String getUsername() {
@@ -65,12 +64,12 @@ public class User implements Comparable<User> {
 		this.password = password;
 	}
 
-	public String getUserRole() {
-		return userRole;
+	public String getRole() {
+		return role;
 	}
 
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	public UserRole getRoleObject() {
@@ -86,7 +85,7 @@ public class User implements Comparable<User> {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", userRole=" + userRole + "]";
+		return "User [username=" + username + ", password=" + password + ", role=" + role + "]";
 	}
 
 	

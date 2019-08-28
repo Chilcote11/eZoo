@@ -2,11 +2,15 @@ package com.examples.ezoo.dao;
 
 import org.apache.logging.log4j.Level;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.User;
 
+@Repository
+@Transactional
 public class UserDAOImpl implements UserDAO {
 	
 	private ZooLogger Log = new ZooLogger();
@@ -28,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
 		sessionFactory.getCurrentSession().save(user.getRoleObject());
 		
 		Log.daoLog(Origin.USERDAO_SAVE, Level.DEBUG, 
-				"save " + user.getUsername() + "[" + user.getUserRole() +  "]");
+				"save " + user.getUsername() + "[" + user.getRole() +  "]");
 	}
 	
 	@Override public void deleteUser(User user) throws Exception {
@@ -36,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 		sessionFactory.getCurrentSession().delete(user.getRoleObject());
 		
 		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
-				"delete " + user.getUsername() + "[" + user.getUserRole() +  "]");
+				"delete " + user.getUsername() + "[" + user.getRole() +  "]");
 	}
 
 }
