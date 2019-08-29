@@ -47,12 +47,11 @@
 						ROLE_ADMIN
 					</sf:option>
 				</sf:select>
-				<sf:errors path="userRole"/>
+				<sf:errors path="role"/>
 			</div>
-		  <sf:hidden path="${_csrf.parameterName}" value="${_csrf.token}"/>
 		  <div class="form-group">
 		    <div class="col-sm-offset-4 col-sm-1">
-		      <sf:button type="submit" class="btn btn-primary">Log In</sf:button>
+		      <sf:button type="submit" class="btn btn-primary">Register</sf:button>
 		    </div>
 		  </div>
 		</sf:form>
