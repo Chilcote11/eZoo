@@ -23,7 +23,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 			.authorizeRequests()
-				.antMatchers("/").permitAll()
+				.antMatchers("/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.logout()
@@ -33,6 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/register");
+		web.ignoring().antMatchers("/");
 	}
 	
 	@Autowired
