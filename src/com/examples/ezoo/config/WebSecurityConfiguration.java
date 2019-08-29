@@ -27,6 +27,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 			.logout()
 				.logoutSuccessUrl("/");
+		
+		http
+			.authorizeRequests()
+				.antMatchers("/register").permitAll();
 	}
 	
 	@Autowired
