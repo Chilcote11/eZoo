@@ -34,8 +34,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+
+		// allow registration page to pass
 		web.ignoring().antMatchers("/register");
-//		web.ignoring().antMatchers("/");
+		
+		// allow formatting pages to pass
+		web.ignoring().antMatchers("/resources/**", "/WEB-INF/views/header", "/WEB-INF/views/footer");
 	}
 	
 	@Autowired
