@@ -54,15 +54,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 					//.authorities("ROLE_USER", "ROLE_ADMIN");
 					.authorities("ROLE_ADMIN");
 		
-//		auth
-//			.jdbcAuthentication()
-//				.dataSource(ds)
-////				.usersByUsernameQuery("SELECT username, password, active FROM USERS WHERE username = ?") // keep "active"?
-//				.usersByUsernameQuery("SELECT username, password, true FROM users WHERE username = ?")
-//				.authoritiesByUsernameQuery("SELECT username, role FROM user_roles WHERE username = ?")
-////				.groupAuthoritiesByUsername("")
-//				.passwordEncoder(new BCryptPasswordEncoder())
-//				;
+		auth
+			.jdbcAuthentication()
+				.dataSource(ds)
+//				.usersByUsernameQuery("SELECT username, password, active FROM USERS WHERE username = ?") // keep "active"?
+				.usersByUsernameQuery("SELECT username, password, true FROM users WHERE username = ?")
+				.authoritiesByUsernameQuery("SELECT username, role FROM user_roles WHERE username = ?")
+//				.groupAuthoritiesByUsername("")
+				.passwordEncoder(new BCryptPasswordEncoder())
+				;
 	}
 
 }

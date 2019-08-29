@@ -43,7 +43,6 @@
 		  </div>
 		</sf:form>
 		<form action="register" method="get">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button type="submit" class="btn btn-primary">Register</button>
 		</form>
 	  </div>

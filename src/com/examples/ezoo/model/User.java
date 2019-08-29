@@ -8,6 +8,9 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Entity
 @Table(name="USERS")
 public class User implements Comparable<User> {
@@ -18,6 +21,9 @@ public class User implements Comparable<User> {
 
 	@Column @NotEmpty(message = "{password.validate}")
 	private String password = "";
+	
+	@Transient // not an actual column in db.. obviously
+	PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Column 
 	@NotEmpty(message = "{role.validate")
@@ -44,7 +50,8 @@ public class User implements Comparable<User> {
 	public User(String username, String password, String role) {
 		super();
 		this.username = username;
-		this.password = password;
+//		this.password = password;
+		this.password = encoder.encode(password);
 		this.role = role;
 	}
 	
@@ -56,12 +63,14 @@ public class User implements Comparable<User> {
 		this.username = username;
 	}
 
+	// this getter probably shouldn't exist. but needed to run with Spring
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+//		this.password = password;
+		this.password = encoder.encode(password);
 	}
 
 	public String getRole() {
