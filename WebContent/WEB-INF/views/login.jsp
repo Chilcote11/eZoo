@@ -36,13 +36,16 @@
 		      <sf:input class="form-control" path="password" /><sf:errors path="password" />
 		    </div>
 		  </div>
-		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		  <div class="form-group">
 		    <div class="col-sm-offset-4 col-sm-1">
 		      <sf:button type="submit" class="btn btn-primary">Log In</sf:button>
 		    </div>
 		  </div>
 		</sf:form>
+		<form action="register" method="get">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<button type="submit" class="btn btn-primary">Register</button>
+		</form>
 	  </div>
 	</header>
 
