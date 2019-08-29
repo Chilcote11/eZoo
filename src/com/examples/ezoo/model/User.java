@@ -22,8 +22,8 @@ public class User implements Comparable<User> {
 	@Column @NotEmpty(message = "{password.validate}")
 	private String password = "";
 	
-	@Transient // not an actual column in db.. obviously
-	PasswordEncoder encoder = new BCryptPasswordEncoder();
+//	@Transient // not an actual column in db.. obviously
+//	PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Column 
 	@NotEmpty(message = "{role.validate")
@@ -50,8 +50,8 @@ public class User implements Comparable<User> {
 	public User(String username, String password, String role) {
 		super();
 		this.username = username;
-//		this.password = password;
-		this.password = encoder.encode(password);
+		this.password = password;
+//		this.password = encoder.encode(password);
 		this.role = role;
 	}
 	
@@ -69,8 +69,8 @@ public class User implements Comparable<User> {
 	}
 
 	public void setPassword(String password) {
-//		this.password = password;
-		this.password = encoder.encode(password);
+		this.password = password;
+//		this.password = encoder.encode(password);
 	}
 
 	public String getRole() {

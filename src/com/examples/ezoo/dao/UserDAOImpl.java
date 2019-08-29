@@ -2,6 +2,8 @@ package com.examples.ezoo.dao;
 
 import org.apache.logging.log4j.Level;
 import org.hibernate.SessionFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,8 @@ public class UserDAOImpl implements UserDAO {
 	
 	private ZooLogger Log = new ZooLogger();
 	
+	PasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	private SessionFactory sessionFactory;		// from Spring
 
 	public SessionFactory getSessionFactory() {
@@ -29,6 +33,10 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void saveUser(User user) throws Exception {
+		
+		// encode the password before saving
+		user.setPassword(encoder.encode(user.getPassword()));
+		
 		sessionFactory.getCurrentSession().save(user);
 		sessionFactory.getCurrentSession().save(new UserRole(user));
 		
@@ -37,6 +45,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override public void deleteUser(User user) throws Exception {
+		
+		// encode the password before deleting
+		user.setPassword(encoder.encode(user.getPassword()));
+		
 		sessionFactory.getCurrentSession().delete(user);
 		sessionFactory.getCurrentSession().delete(new UserRole(user));
 		
