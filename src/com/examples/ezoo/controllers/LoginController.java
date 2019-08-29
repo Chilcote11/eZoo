@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
@@ -20,26 +21,32 @@ public class LoginController {
 	private ZooLogger Log = new ZooLogger();
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String displayLoginForm(Model model
+	public String displayLoginForm(Model model, @RequestParam(value="error", required=false) String error
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
 		
-		Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
+		if (error != null) {
+			Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");
+			model.addAttribute("message",  "Username or password is incorrect!");
+			model.addAttribute("messageClass",  "alert-danger");
+		}
+		else 
+			Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("userToValidate", new User());
 		return "login";
 	}
 	
-	@RequestMapping(value="/login?error", method=RequestMethod.GET)					// nearly identical to login controller 
-	public String displayLoginErrorForm(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
-		
-		Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");		// different origin
-		
-		model.addAttribute("userToValidate", new User());
-		return "redirect:/login";													// only real difference
-	}
+//	@RequestMapping(value="/login?error", method=RequestMethod.GET)					// nearly identical to login controller 
+//	public String displayLoginErrorForm(Model model
+//			, @ModelAttribute("message") String message
+//			, @ModelAttribute("messageClass") String messageClass) {
+//		
+//		Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");		// different origin
+//		
+//		model.addAttribute("userToValidate", new User());
+//		return "redirect:/login";													// only real difference
+//	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, @Valid @ModelAttribute("userToValidate") User newUser, Errors errors) {
