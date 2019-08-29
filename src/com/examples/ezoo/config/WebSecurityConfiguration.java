@@ -34,6 +34,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		
+		// allow login messages to pass
+		web.ignoring().antMatchers("/login*");
 
 		// allow registration page to pass
 		web.ignoring().antMatchers("/register");
