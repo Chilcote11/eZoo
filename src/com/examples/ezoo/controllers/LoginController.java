@@ -20,16 +20,27 @@ public class LoginController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
+//	@RequestMapping(value= {"/login" 
+//			, "/login?message=User+successfully+created&messageClass=alert-success"}
+//			, method=RequestMethod.GET)
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String displayLoginForm(Model model, @RequestParam(value="error", required=false) String error
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String displayLoginForm(Model model
+//			, @RequestParam(value="message", required=false) String message
+//			, @RequestParam(value="messageClass", required=false) String messageClass
+			, @RequestParam(value="error", required=false) String error
+			, @ModelAttribute("message") String mssg
+			, @ModelAttribute("messageClass") String mssgClass) {
 		
 		if (error != null) {
 			Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");
 			model.addAttribute("message",  "Username or password is incorrect!");
 			model.addAttribute("messageClass",  "alert-danger");
 		}
+//		else if (message != null) {
+//			Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
+//			model.addAttribute("message",  message);
+//			model.addAttribute("messageClass",  messageClass);
+//		}
 		else 
 			Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
 		
@@ -64,6 +75,6 @@ public class LoginController {
 		
 		model.addAttribute("authUser", newUser);		// for display in header
 		
-		return "redirect:/animalCare";
+		return "redirect:/animalCare";		// makes no difference, set by defaultSuccessUrl("/")
 	}
 }

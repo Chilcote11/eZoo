@@ -56,8 +56,8 @@ public class RegistrationController {
 		try {
 			dao.saveUser(newUser);
 			context.close();
-			model.addAttribute("message",  "User successfully created");
-			model.addAttribute("messageClass", "alert-success");
+//			model.addAttribute("message",  "User successfully created");
+//			model.addAttribute("messageClass", "alert-success");
 			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.INFO, "save successful");
 			return "redirect:/login";
 		} catch(DataIntegrityViolationException e) {

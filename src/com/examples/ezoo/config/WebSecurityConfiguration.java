@@ -22,6 +22,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.loginPage("/login")
 				.defaultSuccessUrl("/")
 				.failureUrl("/login?error=true")
+				//.failureUrl("/login?message=User+successfully+created&messageClass=alert-success")
 				.permitAll()
 				.and()
 			.authorizeRequests()
@@ -35,8 +36,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		
-		// allow login messages to pass
-		web.ignoring().antMatchers("/login*");
+//		// allow login messages to pass
+//		web.ignoring().antMatchers("/login?message=User+successfully+created&messageClass=alert-success");
+//		
+//		// allow login error url to pass
+//		web.ignoring().antMatchers("/login?error=true");
+		
+//		web.ignoring().antMatchers("/login*");
 
 		// allow registration page to pass
 		web.ignoring().antMatchers("/register");
@@ -50,16 +56,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-				.withUser("user")
-					.password("{noop}password")
-					.authorities("ROLE_USER")
-					.and()
-				.withUser("admin")
-					.password("{noop}passw0rd")
-					//.authorities("ROLE_USER", "ROLE_ADMIN");
-					.authorities("ROLE_ADMIN");
+//		auth
+//			.inMemoryAuthentication()
+//				.withUser("user")
+//					.password("{noop}password")
+//					.authorities("ROLE_USER")
+//					.and()
+//				.withUser("admin")
+//					.password("{noop}passw0rd")
+//					//.authorities("ROLE_USER", "ROLE_ADMIN");
+//					.authorities("ROLE_ADMIN");
 		
 		auth
 			.jdbcAuthentication()
