@@ -20,7 +20,7 @@ public class User implements Comparable<User> {
 	private String password = "";
 	
 	@Column 
-	@NotEmpty(message = "{user_role.validate")
+	@NotEmpty(message = "{role.validate")
 	private String role = "";
 	
 //	@Transient 		// not a property in "users" database table
