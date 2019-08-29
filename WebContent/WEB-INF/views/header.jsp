@@ -53,11 +53,6 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                	<li>
-                		<sf:form action="${pageContext.request.contextPath}/logout" method="POST">
-                			<input type="submit" value="logout">
-                		</sf:form>
-                	</li>
 					<li class="dropdown">
                         <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Animal Care<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -85,6 +80,11 @@
                           <li><a href="#">All Users</a></li>
                         </ul>
                     </li>
+                     <li>
+                		<sf:form action="${pageContext.request.contextPath}/logout" method="POST">
+                			<input type="submit" value="logout" class="btn btn-primary">
+                		</sf:form>
+                	</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
