@@ -55,6 +55,8 @@ public class LoginController {
 			return "login";
 		}
 		
+		model.addAttribute("authUser", newUser);		// for display in header
+		
 		return "redirect:/animalCare";
 	}
 }
