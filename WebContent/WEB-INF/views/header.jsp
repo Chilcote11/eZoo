@@ -26,6 +26,9 @@
 <!-- CSS - Custom -->
 <link rel="stylesheet" type="text/css" href="resources/styles/custom.css"/>
 
+<!-- Spring Forms taglib include -->
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+
 </head>
 <body id="page-top" class="index">
 
@@ -50,7 +53,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                	<li><a href="<c:url value="/logout" />">Logout</a></li>
+                	<li>
+                		<sf:form action="${pageContext.request.contextPath}/logout" method="POST">
+                			<input type="submit" value="logout">
+                		</sf:form>
+                	</li>
 					<li class="dropdown">
                         <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Animal Care<b class="caret"></b></a>
                         <ul class="dropdown-menu">
