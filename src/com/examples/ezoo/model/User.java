@@ -26,7 +26,7 @@ public class User implements Comparable<User> {
 //	PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Column 
-	@NotEmpty(message = "{role.validate")
+	@NotEmpty(message = "{role.validate}")
 	private String role = "";
 	
 //	@Transient 		// not a property in "users" database table

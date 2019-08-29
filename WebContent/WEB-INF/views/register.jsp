@@ -40,6 +40,9 @@
 		    <sf:label path="role" class="col-sm-4 control-label">User Role</sf:label>
 		    <div class="col-sm-4">
 				<sf:select path="role" class="form-control">
+					<sf:option value="">
+						-- SELECT A ROLE --
+					</sf:option>
 					<sf:option value="ROLE_USER">
 						ROLE_USER
 					</sf:option>
