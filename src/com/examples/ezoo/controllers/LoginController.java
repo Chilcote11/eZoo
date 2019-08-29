@@ -30,6 +30,17 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping(value="/login?error", method=RequestMethod.GET)					// nearly identical to login controller 
+	public String displayLoginErrorForm(Model model
+			, @ModelAttribute("message") String message
+			, @ModelAttribute("messageClass") String messageClass) {
+		
+		Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");		// different origin
+		
+		model.addAttribute("userToValidate", new User());
+		return "redirect:/login";													// only real difference
+	}
+	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, @Valid @ModelAttribute("userToValidate") User newUser, Errors errors) {
 		
@@ -41,7 +52,7 @@ public class LoginController {
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
 			model.addAttribute("messageClass",  "alert-danger");
 			
-			return "register";
+			return "login";
 		}
 		
 		return "redirect:/animalCare";
