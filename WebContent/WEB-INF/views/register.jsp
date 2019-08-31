@@ -31,7 +31,7 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <sf:label path="password" class="col-sm-4 control-label">Password</sf:label>
+		    <sf:label path="password" type="password" class="col-sm-4 control-label">Password</sf:label>
 		    <div class="col-sm-4">
 		      <sf:input class="form-control" path="password" /><sf:errors path="password" />
 		    </div>
