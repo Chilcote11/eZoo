@@ -25,7 +25,7 @@ public class DeleteFeedingScheduleController {
 	
 	private ZooLogger Log = new ZooLogger();
 
-	@RequestMapping(value="/deleteFeedingSchedule", method=RequestMethod.POST)
+	@RequestMapping(value="/FSDelete", method=RequestMethod.POST)
 	public String deleteFeedingSchedule(Model model, @ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete) {
 
 		Log.controllerLog(Origin.CONTROLLER_FSDELETE_POST, Level.INFO, "navigation");

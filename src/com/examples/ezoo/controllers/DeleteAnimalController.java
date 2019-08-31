@@ -22,7 +22,7 @@ public class DeleteAnimalController {
 	
 	private ZooLogger Log = new ZooLogger();
 
-	@RequestMapping(value="/deleteAnimal", method=RequestMethod.POST)
+	@RequestMapping(value="/AnimalDelete", method=RequestMethod.POST)
 	public String deleteAnimal(Model model, @ModelAttribute("animal") Animal animalToDelete) {
 		
 		Log.controllerLog(Origin.CONTROLLER_DELETEANIMAL_POST, Level.INFO, "navigation");

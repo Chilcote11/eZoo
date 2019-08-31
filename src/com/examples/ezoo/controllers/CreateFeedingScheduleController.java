@@ -26,7 +26,7 @@ public class CreateFeedingScheduleController {
 	
 	private ZooLogger Log = new ZooLogger();
 
-	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.GET)
+	@RequestMapping(value="/FSCreate", method=RequestMethod.GET)
 	public String DisplayCreateFeedingScheduleForm(Model model
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
@@ -34,10 +34,10 @@ public class CreateFeedingScheduleController {
 		Log.controllerLog(Origin.CONTROLLER_FSCREATE_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("newFeedingSchedule", new FeedingSchedule());
-		return "createFeedingSchedule";		
+		return "FSCreate";		
 	}
 	
-	@RequestMapping(value="/createFeedingSchedule", method=RequestMethod.POST)
+	@RequestMapping(value="/FSCreate", method=RequestMethod.POST)
 	public String createFeedingSchedule(Model model, @Valid @ModelAttribute("newFeedingSchedule") FeedingSchedule newFS, Errors errors) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FSCREATE_POST, Level.INFO, "navigation");
@@ -48,7 +48,7 @@ public class CreateFeedingScheduleController {
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
 			model.addAttribute("messageClass",  "alert-danger");
 			
-			return "createFeedingSchedule";
+			return "FSCreate";
 		}
 		
 		// Call DAO method
@@ -68,14 +68,14 @@ public class CreateFeedingScheduleController {
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_FSCREATE_POST, Level.ERROR, "exception: duplicate scheduleID");
-			return "createFeedingSchedule";
+			return "FSCreate";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message",  "There was a problem creating the feeding schedule at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_FSCREATE_POST, Level.ERROR, "unknown exception thrown");
-			return "createFeedingSchedule";
+			return "FSCreate";
 		}
 	}
 }

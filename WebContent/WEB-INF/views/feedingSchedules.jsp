@@ -39,7 +39,7 @@
 					<c:forEach var="schedule" items="${feedingSchedules}">
 						<tr>
 							<td>
-								<sf:form action="updateFeedingSchedule" modelAttribute="scheduleToUpdate" method="get">
+								<sf:form action="FSUpdate" modelAttribute="scheduleToUpdate" method="get">
 									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
 									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
 									<sf:hidden path="recurrence" value="${schedule.recurrence}" />
@@ -49,7 +49,7 @@
 								</sf:form>
 							</td>
 							<td>
-								<sf:form action="deleteFeedingSchedule" modelAttribute="scheduleToDelete" method="post">
+								<sf:form action="FSDelete" modelAttribute="scheduleToDelete" method="post">
 									<sf:hidden path="scheduleID" value="${schedule.scheduleID}" />
 									<sf:hidden path="feedingTime" value="${schedule.feedingTime}" />
 									<sf:hidden path="recurrence" value="${schedule.recurrence}" />

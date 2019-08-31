@@ -23,7 +23,7 @@ public class UpdateFeedingScheduleController {
 	
 	private ZooLogger Log = new ZooLogger();
 
-	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.GET)
+	@RequestMapping(value="/FSUpdate", method=RequestMethod.GET)
 	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
@@ -31,10 +31,10 @@ public class UpdateFeedingScheduleController {
 		Log.controllerLog(Origin.CONTROLLER_FSUPDATE_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("scheduleToUpdate", scheduleToUpdate);	// transfer
-		return "updateFeedingSchedule";
+		return "FSUpdate";
 	}
 	
-	@RequestMapping(value="/updateFeedingSchedule", method=RequestMethod.POST)
+	@RequestMapping(value="/FSUpdate", method=RequestMethod.POST)
 	public String updateFeedingSchedule(Model model, @Valid @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate, Errors errors) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FSUPDATE_POST, Level.INFO, "navigation");
@@ -45,7 +45,7 @@ public class UpdateFeedingScheduleController {
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
 			model.addAttribute("messageClass",  "alert-danger");
 			
-			return "updateFeedingSchedule";
+			return "FSUpdate";
 		}
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
@@ -65,7 +65,7 @@ public class UpdateFeedingScheduleController {
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_FSUPDATE_POST, Level.ERROR, "unknown exception thrown");
-			return "updateFeedingSchedules";
+			return "FSUpdate";
 		}
 	}
 
