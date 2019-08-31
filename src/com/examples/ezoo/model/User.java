@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,7 +20,9 @@ public class User implements Comparable<User> {
 	@NotEmpty(message = "{username.validate}")
 	private String username = "";
 
-	@Column @NotEmpty(message = "{password.validate}")
+	@Column @NotEmpty(message = "{password.notempty.validate}")
+	@Pattern(regexp="[\\w\\d]{8,}", message = "{password.length.validate}")
+	@Pattern(regexp="(\\w)*(\\d)(\\w)*(\\d)", message = "{password.numbers.validate}")
 	private String password = "";
 	
 //	@Transient // not an actual column in db.. obviously
