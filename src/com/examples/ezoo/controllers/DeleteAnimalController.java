@@ -1,6 +1,7 @@
 package com.examples.ezoo.controllers;
 
-import java.util.List;
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 
 import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,10 +19,13 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
 @Controller
+@DenyAll
 public class DeleteAnimalController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	@RolesAllowed("ROLE_ADMIN")
+	@DenyAll
 	@RequestMapping(value="/AnimalDelete", method=RequestMethod.POST)
 	public String deleteAnimal(Model model, @ModelAttribute("animal") Animal animalToDelete) {
 		
