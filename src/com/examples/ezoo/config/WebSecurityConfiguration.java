@@ -27,10 +27,24 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
+				
+				// prevent ROLE_USERs from accessing all pages but animal care, ROLE_ADMINs can see all
+				.antMatchers("/addAnimal", "/assignFeedingSchedule", "/createFeedingSchedule"
+						, "/feedingSchedules", "/updateFeedingSchedule")
+					.hasAuthority("ROLE_ADMIN")
+				
 				.anyRequest().authenticated()
 				.and()
 			.logout()
 				.logoutSuccessUrl("/");
+		
+		// prevent USERs from accessing all pages but animal care, ADMINs can see all
+		http
+			.authorizeRequests()
+				.antMatchers("/addAnimal", "/assignFeedingSchedule", "/createFeedingSchedule"
+						, "/feedingSchedules", "/updateFeedingSchedule")
+					.hasAuthority("ROLE_ADMIN")
+		;
 	}
 	
 	@Override
@@ -56,16 +70,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth
-//			.inMemoryAuthentication()
-//				.withUser("user")
-//					.password("{noop}password")
-//					.authorities("ROLE_USER")
-//					.and()
-//				.withUser("admin")
-//					.password("{noop}passw0rd")
-//					//.authorities("ROLE_USER", "ROLE_ADMIN");
-//					.authorities("ROLE_ADMIN");
+		auth
+			.inMemoryAuthentication()
+				.withUser("user")
+					.password("{noop}password")
+					.authorities("ROLE_USER")
+					.and()
+				.withUser("admin")
+					.password("{noop}passw0rd")
+					//.authorities("ROLE_USER", "ROLE_ADMIN");
+					.authorities("ROLE_ADMIN");
 		
 		auth
 			.jdbcAuthentication()
