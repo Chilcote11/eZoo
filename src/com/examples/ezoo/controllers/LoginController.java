@@ -31,11 +31,11 @@ public class LoginController {
 			, @ModelAttribute("message") String mssg
 			, @ModelAttribute("messageClass") String mssgClass) {
 		
-//		if (error != null) {
-//			Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");
-//			model.addAttribute("message",  "Username or password is incorrect!");
-//			model.addAttribute("messageClass",  "alert-danger");
-//		}
+		if (error != null) {
+			Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");
+			model.addAttribute("message",  "Username or password is incorrect!");
+			model.addAttribute("messageClass",  "alert-danger");
+		}
 //		else if (message != null) {
 //			Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
 //			model.addAttribute("message",  message);

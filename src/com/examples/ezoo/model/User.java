@@ -21,8 +21,13 @@ public class User implements Comparable<User> {
 	private String username = "";
 
 	@Column @NotEmpty(message = "{password.notempty.validate}")
-	@Pattern(regexp="[\\w\\d]{8,}", message = "{password.length.validate}")
-	@Pattern(regexp="(\\w)*(\\d)(\\w)*(\\d)", message = "{password.numbers.validate}")
+	@Pattern(regexp="[$./\\w\\d]{8,}", message = "{password.length.validate}")
+//	@Pattern(regexp="($./\\w)*(\\d)($./\\w)*(\\d)", message = "{password.numbers.validate}")
+//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)", message = "{password.numbers.validate}")
+//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)+($./\\w\\d)*", message = "{password.numbers.validate}")
+//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)($./\\w\\d)*", message = "{password.numbers.validate}")
+//	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)] {1,}", message = "{password.numbers.validate}")
+	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)]+", message = "{password.numbers.validate}")		// the only one that worked. so annoying
 	private String password = "";
 	
 //	@Transient // not an actual column in db.. obviously
