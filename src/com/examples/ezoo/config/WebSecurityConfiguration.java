@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -31,9 +32,23 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				
 				// prevent ROLE_USERs from accessing all pages but animal care, ROLE_ADMINs can see all
-				.antMatchers("/addAnimal", "/assignFeedingSchedule", "/createFeedingSchedule"
-						, "/feedingSchedules", "/updateFeedingSchedule")
-					.hasAuthority("ROLE_ADMIN")				
+				.antMatchers("/AnimalAdd*", "/FSAssign*", "/FSCreate*"
+						, "/feedingSchedules*", "/FSUpdate*")
+					.hasAuthority("ROLE_ADMIN")
+
+				// block post methods as well --- but none of these work
+				.antMatchers(HttpMethod.POST, "AnimalAdd*")
+					.hasAuthority("ROLE_ADMIN")
+				.antMatchers(HttpMethod.POST, "FSAssign*")
+					.hasAuthority("ROLE_ADMIN")
+				.antMatchers(HttpMethod.POST, "FSUnassign*")	// doesn't work
+					.hasAuthority("ROLE_ADMIN")					
+				.antMatchers(HttpMethod.POST, "FSCreate*")
+					.hasAuthority("ROLE_ADMIN")
+				.antMatchers(HttpMethod.POST, "FSDelete*")	// doesn't work
+					.hasAuthority("ROLE_ADMIN")
+				.antMatchers(HttpMethod.POST, "FSUpdate*")
+					.hasAuthority("ROLE_ADMIN")
 				
 				// everyone must be authenticated to get past the home page
 				.anyRequest().authenticated()
