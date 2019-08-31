@@ -26,17 +26,26 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 			.authorizeRequests()
+			
+				// anyone can see the home page
 				.antMatchers("/").permitAll()
 				
 				// prevent ROLE_USERs from accessing all pages but animal care, ROLE_ADMINs can see all
 				.antMatchers("/addAnimal", "/assignFeedingSchedule", "/createFeedingSchedule"
 						, "/feedingSchedules", "/updateFeedingSchedule")
-					.hasAuthority("ROLE_ADMIN")
+					.hasAuthority("ROLE_ADMIN")				
 				
+				// everyone must be authenticated to get past the home page
 				.anyRequest().authenticated()
 				.and()
 			.logout()
-				.logoutSuccessUrl("/");
+				.logoutSuccessUrl("/")
+				.and()
+				
+			// configure accessDeniedPage location
+			.exceptionHandling()
+				.accessDeniedPage("/WEB-INF/views/accessDenied.jsp")
+		;
 		
 		// prevent USERs from accessing all pages but animal care, ADMINs can see all
 		http
