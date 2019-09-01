@@ -22,12 +22,12 @@ public class User implements Comparable<User> {
 
 	@Column @NotEmpty(message = "{password.notempty.validate}")
 	@Pattern(regexp="[$./\\w\\d]{8,}", message = "{password.length.validate}")
-//	@Pattern(regexp="($./\\w)*(\\d)($./\\w)*(\\d)", message = "{password.numbers.validate}")
-//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)", message = "{password.numbers.validate}")
-//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)+($./\\w\\d)*", message = "{password.numbers.validate}")
-//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)($./\\w\\d)*", message = "{password.numbers.validate}")
-//	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)] {1,}", message = "{password.numbers.validate}")
-	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)]+", message = "{password.numbers.validate}")		// the only one that worked. so annoying
+//	@Pattern(regexp="($./\\w)*(\\d)($./\\w)*(\\d)", message = "{password.numbers.validate}")		// "11" passes.  "111", "11a", "aaa11" all do not
+//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)", message = "{password.numbers.validate}")				// "11", "a11", "a1a1" all pass. "11a", "a1a1a", "a1a1a1" all do not pass
+//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)+($./\\w\\d)*", message = "{password.numbers.validate}")	// same as above
+//	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)($./\\w\\d)*", message = "{password.numbers.validate}")	// same as above
+//	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)] {1,}", message = "{password.numbers.validate}")		// same as above
+	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)]+", message = "{password.numbers.validate}")			// everything passes except "".  numbers not required 
 	private String password = "";
 	
 //	@Transient // not an actual column in db.. obviously

@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(jsr250Enabled=true)
+//@EnableGlobalMethodSecurity(jsr250Enabled=true, securedEnabled=true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
