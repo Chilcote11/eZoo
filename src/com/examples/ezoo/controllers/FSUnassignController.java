@@ -8,6 +8,7 @@ import javax.annotation.security.RolesAllowed;
 import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,7 +27,7 @@ public class FSUnassignController {
 	
 	private ZooLogger Log = new ZooLogger();
 
-	@RolesAllowed("ROLE_ADMIN")
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/FSUnassign", method=RequestMethod.POST)
 	public String unassignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToUnassign) {
 		
