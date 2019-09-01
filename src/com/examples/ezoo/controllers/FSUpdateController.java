@@ -19,7 +19,7 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.FeedingSchedule;
 
 @Controller
-public class UpdateFeedingScheduleController {
+public class FSUpdateController {
 	
 	private ZooLogger Log = new ZooLogger();
 

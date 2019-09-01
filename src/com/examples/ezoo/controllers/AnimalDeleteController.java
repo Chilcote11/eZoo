@@ -19,13 +19,13 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
 @Controller
-@DenyAll
-public class DeleteAnimalController {
+//@DenyAll
+public class AnimalDeleteController {
 	
 	private ZooLogger Log = new ZooLogger();
 
 	@RolesAllowed("ROLE_ADMIN")
-	@DenyAll
+//	@DenyAll
 	@RequestMapping(value="/AnimalDelete", method=RequestMethod.POST)
 	public String deleteAnimal(Model model, @ModelAttribute("animal") Animal animalToDelete) {
 		

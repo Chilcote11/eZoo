@@ -2,6 +2,8 @@ package com.examples.ezoo.controllers;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -22,6 +24,7 @@ public class AnimalCareController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	@RolesAllowed("ROLE_ADMIN")
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
 	public String DisplayAnimalCare(Model model
 			, @ModelAttribute("message") String message

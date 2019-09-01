@@ -21,7 +21,7 @@ import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
 @Controller
-public class DeleteFeedingScheduleController {
+public class FSDeleteController {
 	
 	private ZooLogger Log = new ZooLogger();
 
