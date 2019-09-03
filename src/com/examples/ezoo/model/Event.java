@@ -3,7 +3,6 @@ package com.examples.ezoo.model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -14,10 +13,9 @@ import javax.validation.constraints.NotNull;
 @Table(name="EVENTS")
 public class Event implements Comparable<Event>{
 
-	@EmbeddedId
-	@Column(name="event_id")
-//	@NotNull(message = "{eventid.validate}") // moved to EventAttendee class
-	private EventAttendee eventID = new EventAttendee();
+	@Id @Column(name="event_id")
+	@NotNull(message = "{eventid.validate}")
+	private int eventID = 0;
 	
 	@Column(name="name")
 	@NotEmpty(message = "{eventname.validate}")
@@ -33,7 +31,7 @@ public class Event implements Comparable<Event>{
 	
 	public Event() {}
 	
-	public Event(EventAttendee eventID, String eventName, LocalDate eventDate, String description) {
+	public Event(int eventID, String eventName, LocalDate eventDate, String description) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -41,11 +39,11 @@ public class Event implements Comparable<Event>{
 		this.description = description;
 	}
 
-	public EventAttendee getEventID() {
+	public int getEventID() {
 		return eventID;
 	}
 
-	public void setEventID(EventAttendee eventID) {
+	public void setEventID(int eventID) {
 		this.eventID = eventID;
 	}
 
@@ -75,7 +73,7 @@ public class Event implements Comparable<Event>{
 
 	@Override
 	public int compareTo(Event o) {
-		return this.getEventID().getEventID() - o.getEventID().getEventID();
+		return this.getEventID() - o.getEventID();
 	}
 
 	@Override
@@ -83,4 +81,5 @@ public class Event implements Comparable<Event>{
 		return "Event [eventID=" + eventID + ", eventName=" + eventName + ", eventDate=" + eventDate + ", description="
 				+ description + "]";
 	}	
+
 }
