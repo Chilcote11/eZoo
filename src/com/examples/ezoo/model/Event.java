@@ -21,7 +21,7 @@ public class Event implements Comparable<Event>{
 	@NotEmpty(message = "{eventname.validate}")
 	private String eventName = "";
 	
-	@Column(name="time")
+	@Column(name="date")
 	@NotEmpty(message = "{eventtime.validate}")
 	private LocalDate eventDate = LocalDate.now();	// unsure if this is a good initialization
 	
