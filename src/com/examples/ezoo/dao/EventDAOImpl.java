@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.EmbeddedEventAttendee;
@@ -12,6 +14,8 @@ import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
+@Repository
+@Transactional
 public class EventDAOImpl implements EventDAO {
 	
 	private ZooLogger Log = new ZooLogger();
@@ -27,7 +31,7 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public Event getEvent(Integer eventID) {
+	public Event getEventByID(Integer eventID) {
 		
 		if (eventID == null) {					// assuming I'll need this
 			return null;
@@ -91,6 +95,14 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void deleteEvent(Event event) throws Exception {
+		
+		// remove from EVENT_ATTENDEES table
+		EmbeddedEventAttendee eea = new EmbeddedEventAttendee();
+		eea.setEventID(event.getEventID());
+		EventAttendee ea = new EventAttendee(eea);
+		sessionFactory.getCurrentSession().delete(ea);
+		
+		// remove from EVENTS table
 		sessionFactory.getCurrentSession().delete(event);
 		
 		// TODO logging
