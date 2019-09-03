@@ -13,7 +13,7 @@ public class EventAttendee implements Serializable{
 	@NotNull
 	private String username;
 	
-	@NotNull
+	@NotNull(message = "{eventid.validate}")
 	private Integer eventID;
 	
 	public String getUsername() {
