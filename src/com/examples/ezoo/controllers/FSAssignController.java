@@ -86,7 +86,7 @@ public class FSAssignController {
 		animalToAssign = selectedAnimal;
 		
 		context.close();
-		return "assignFeedingSchedule";
+		return "FSAssign";
 	}
 	
 	@RequestMapping(value="/FSAssign", method=RequestMethod.POST)
@@ -123,7 +123,7 @@ public class FSAssignController {
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_FSASSIGN_POST, Level.ERROR, "unknown exception thrown");
-			return "assignFeedingSchedule";
+			return "FSAssign";
 		}
 		
 	}

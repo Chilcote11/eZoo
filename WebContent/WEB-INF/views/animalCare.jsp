@@ -46,7 +46,7 @@
 				<c:forEach var="animal" items="${animals}">
 					<tr>
 						<td>
-							<sf:form action="deleteAnimal" modelAttribute="animal" method="post">
+							<sf:form action="AnimalDelete" modelAttribute="animal" method="post">
 								<sf:hidden path="animalID" value="${animal.animalID}"/>
 								<sf:button type="submit" class="btn btn-primary">Delete</sf:button>
 							</sf:form>

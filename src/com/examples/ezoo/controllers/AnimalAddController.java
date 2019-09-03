@@ -22,11 +22,11 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
 @Controller
-public class AddAnimalController {
+public class AnimalAddController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
-	@RequestMapping(value="/addAnimal", method=RequestMethod.GET)
+	@RequestMapping(value="/AnimalAdd", method=RequestMethod.GET)
 	public String DisplayAddAnimalForm(Model model
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
@@ -35,10 +35,10 @@ public class AddAnimalController {
 		
 		model.addAttribute("newAnimal", new Animal());
 		
-		return "addAnimal";		
+		return "AnimalAdd";		
 	}
 	
-	@RequestMapping(value="/addAnimal", method=RequestMethod.POST)
+	@RequestMapping(value="/AnimalAdd", method=RequestMethod.POST)
 	public String addAnimal(Model model, @Valid @ModelAttribute("newAnimal") Animal newAnimal, Errors errors) {
 		
 		Log.controllerLog(Origin.CONTROLLER_ADDANIMAL_POST, Level.INFO, "navigation");
@@ -49,7 +49,7 @@ public class AddAnimalController {
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
 			model.addAttribute("messageClass",  "alert-danger");
 			
-			return "addAnimal";
+			return "AnimalAdd";
 		}
 
 		
@@ -71,14 +71,14 @@ public class AddAnimalController {
 			model.addAttribute("messageClass", "alert-danger");
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_ADDANIMAL_POST, Level.ERROR, "exception: duplicate animalID");
-			return "addAnimal";
+			return "AnimalAdd";
 		}catch (Exception e){
 			e.printStackTrace();
 			model.addAttribute("message", "There was a problem creating the animal at this time");
 			model.addAttribute("messageClass", "alert-danger");
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_ADDANIMAL_POST, Level.ERROR, "unknown exception thrown");
-			return "addAnimal";
+			return "AnimalAdd";
 		}
 
 	}
