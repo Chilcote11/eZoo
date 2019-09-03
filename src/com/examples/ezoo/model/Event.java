@@ -15,7 +15,7 @@ public class Event implements Comparable<Event>{
 
 	@Id @Column(name="event_id")
 	@NotNull(message = "{eventid.validate}")
-	private int eventID = 0;
+	private Integer eventID = 0;
 	
 	@Column(name="name")
 	@NotEmpty(message = "{eventname.validate}")
@@ -31,7 +31,7 @@ public class Event implements Comparable<Event>{
 	
 	public Event() {}
 	
-	public Event(int eventID, String eventName, LocalDate eventDate, String description) {
+	public Event(Integer eventID, String eventName, LocalDate eventDate, String description) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -39,11 +39,11 @@ public class Event implements Comparable<Event>{
 		this.description = description;
 	}
 
-	public int getEventID() {
+	public Integer getEventID() {
 		return eventID;
 	}
 
-	public void setEventID(int eventID) {
+	public void setEventID(Integer eventID) {
 		this.eventID = eventID;
 	}
 

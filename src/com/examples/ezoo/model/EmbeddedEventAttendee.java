@@ -16,6 +16,13 @@ public class EmbeddedEventAttendee implements Serializable{
 	@NotNull(message = "{eventid.validate}")
 	private Integer event_id;
 	
+	public EmbeddedEventAttendee() {}
+	
+	public EmbeddedEventAttendee(String username, Integer event_id) {
+		this.username = username;
+		this.event_id = event_id;
+	}
+	
 	public String getUsername() {
 		return username;
 	}

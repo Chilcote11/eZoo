@@ -8,7 +8,7 @@ import com.examples.ezoo.model.User;
 public interface EventDAO {
 	
 	// for users and admins
-	Event getEvent(Event event);									// check out an event
+	Event getEvent(Integer eventID);									// check out an event
 	List<Event> getAllEvents();										// view zoo schedule
 	List<Event> getEventsByUser(User user);							// see events you're signed up for
 	void signUpForEvent(User user, Event event) throws Exception;	// sign up for event
