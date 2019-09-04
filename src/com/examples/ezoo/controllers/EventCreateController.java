@@ -20,7 +20,7 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 
 @Controller
-public class EventCreate {
+public class EventCreateController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
@@ -36,7 +36,7 @@ public class EventCreate {
 	}
 	
 	@RequestMapping(value="/EventCreate", method=RequestMethod.POST)
-	public String createEvent(Model model, @Valid @ModelAttribute("newFeedingSchedule") Event newEvent, Errors errors) {
+	public String createEvent(Model model, @Valid @ModelAttribute("newEvent") Event newEvent, Errors errors) {
 		
 		// TODO logging
 		

@@ -48,6 +48,11 @@
 		      <sf:input class="form-control" path="description" /><sf:errors path="description" />
 		    </div>
 		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-4 col-sm-1">
+		      <sf:button type="submit" class="btn btn-primary">Create</sf:button>
+		    </div>
+		  </div>
 		</sf:form>
 	  </div>
 	</header>

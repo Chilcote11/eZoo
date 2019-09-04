@@ -6,8 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.aspectj.lang.annotation.After;
 
 @Entity
 @Table(name="EVENTS")
@@ -22,7 +25,7 @@ public class Event implements Comparable<Event>{
 	private String eventName = "";
 	
 	@Column(name="date")
-	@NotEmpty(message = "{eventtime.validate}")
+	@Future(message = "{eventdate.validate}")
 	private LocalDate eventDate = LocalDate.now();	// unsure if this is a good initialization
 	
 	@Column

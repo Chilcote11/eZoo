@@ -42,6 +42,7 @@
 									<sf:hidden path="eventName" value="${event.eventName}" />
 									<sf:hidden path="eventDate" value="${event.eventDate}" />
 									<sf:hidden path="description" value="${event.description}" />
+									<sf:button type="submit" class="btn btn-primary">Update</sf:button>
 								</sf:form>
 							</td>
 							<td>

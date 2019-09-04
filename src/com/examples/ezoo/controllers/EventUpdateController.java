@@ -34,7 +34,7 @@ public class EventUpdateController {
 		return "EventUpdate";
 	}
 	
-	@RequestMapping(value="/FSUpdate", method=RequestMethod.POST)
+	@RequestMapping(value="/EventUpdate", method=RequestMethod.POST)
 	public String updateEvent(Model model, @Valid @ModelAttribute("eventToUpdate") Event eventToUpdate, Errors errors) {
 		
 		// TODO logging

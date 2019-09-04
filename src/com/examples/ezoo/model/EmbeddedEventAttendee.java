@@ -3,6 +3,7 @@ package com.examples.ezoo.model;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Embeddable
@@ -10,7 +11,7 @@ public class EmbeddedEventAttendee implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
+	@NotEmpty(message = "{username.validate}")
 	private String username;
 	
 	@NotNull(message = "{eventid.validate}")
