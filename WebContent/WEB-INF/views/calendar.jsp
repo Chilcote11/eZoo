@@ -40,7 +40,7 @@
 								<sf:form action="EventUpdate" modelAttribute="eventToUpdate" method="get">
 									<sf:hidden path="eventID" value="${event.eventID}" />
 									<sf:hidden path="eventName" value="${event.eventName}" />
-									<sf:hidden path="eventDate" value="${event.eventDate}" />
+									<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
 									<sf:hidden path="description" value="${event.description}" />
 									<sf:button type="submit" class="btn btn-primary">Update</sf:button>
 								</sf:form>
@@ -49,7 +49,7 @@
 								<sf:form action="EventDelete" modelAttribute="eventToDelete" method="post">
 									<sf:hidden path="eventID" value="${event.eventID}" />
 									<sf:hidden path="eventName" value="${event.eventName}" />
-									<sf:hidden path="eventDate" value="${event.eventDate}" />
+									<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
 									<sf:hidden path="description" value="${event.description}" />
 									<sf:button type="submit" class="btn btn-primary">Delete</sf:button>
 								</sf:form>

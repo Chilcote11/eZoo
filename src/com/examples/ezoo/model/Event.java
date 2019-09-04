@@ -1,16 +1,20 @@
 package com.examples.ezoo.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.aspectj.lang.annotation.After;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="EVENTS")
@@ -25,8 +29,9 @@ public class Event implements Comparable<Event>{
 	private String eventName = "";
 	
 	@Column(name="date")
-	@Future(message = "{eventdate.validate}")
-	private LocalDate eventDate = LocalDate.now();	// unsure if this is a good initialization
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+//	@Future(message = "{eventdate.future.validate}")
+	private LocalDateTime eventDate = LocalDateTime.now();	// unsure if this is a good initialization
 	
 	@Column
 	@NotEmpty(message = "{eventdescription.validate}")
@@ -34,7 +39,7 @@ public class Event implements Comparable<Event>{
 	
 	public Event() {}
 	
-	public Event(Integer eventID, String eventName, LocalDate eventDate, String description) {
+	public Event(Integer eventID, String eventName, LocalDateTime eventDate, String description) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
@@ -58,11 +63,11 @@ public class Event implements Comparable<Event>{
 		this.eventName = eventName;
 	}
 
-	public LocalDate getEventDate() {
+	public LocalDateTime getEventDate() {
 		return eventDate;
 	}
 
-	public void setEventDate(LocalDate eventDate) {
+	public void setEventDate(LocalDateTime eventDate) {
 		this.eventDate = eventDate;
 	}
 
