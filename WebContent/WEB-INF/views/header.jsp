@@ -66,9 +66,9 @@
                     <li class="dropdown">
                         <a tabindex="-1" href="#" class="dropdown-toggle" data-toggle="dropdown">Event Management<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="eventManagement">Home (Level 200)</a></li>
+                          <li><a href="calendar">Home (Level 200)</a></li>
                           <li class="divider"></li>
-                          <li><a href="#">Create Event</a></li>
+                          <li><a href="EventCreate">Create Event</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.examples.ezoo.dao.AnimalDAO;
 import com.examples.ezoo.dao.AnimalDAOImpl;
 import com.examples.ezoo.dao.DAOUtilities;
+import com.examples.ezoo.dao.EventDAO;
+import com.examples.ezoo.dao.EventDAOImpl;
 import com.examples.ezoo.dao.FeedingScheduleDAO;
 import com.examples.ezoo.dao.FeedingScheduleDAOImpl;
 import com.examples.ezoo.dao.UserDAO;
@@ -65,6 +67,13 @@ public class Config {
 	@Bean 
 	UserDAO userDAO (SessionFactory sessionFactory) {
 		UserDAOImpl dao = new UserDAOImpl();
+		dao.setSessionFactory(sessionFactory);
+		return dao;
+	}
+	
+	@Bean
+	EventDAO eventDAO(SessionFactory sessionFactory) {
+		EventDAOImpl dao = new EventDAOImpl();
 		dao.setSessionFactory(sessionFactory);
 		return dao;
 	}

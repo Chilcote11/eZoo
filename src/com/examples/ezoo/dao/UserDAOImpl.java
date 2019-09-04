@@ -47,7 +47,8 @@ public class UserDAOImpl implements UserDAO {
 				"save " + user.getUsername() + "[" + user.getRole() +  "]");
 	}
 	
-	@Override public void deleteUser(User user) throws Exception {
+	@Override 
+	public void deleteUser(User user) throws Exception {
 		
 		// encode the password before deleting
 		user.setPassword(encoder.encode(user.getPassword()));
@@ -57,6 +58,17 @@ public class UserDAOImpl implements UserDAO {
 		
 		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
 				"delete " + user.getUsername() + "[" + user.getRole() +  "]");
+	}
+	
+	@Override
+	public User getUserByName(String username) {
+		if (username == null) return null;		// assuming I'll need this
+		
+		User user = sessionFactory.getCurrentSession().get(User.class, username);
+		
+		Log.daoLog(Origin.USERDAO_GETBYNAME, Level.DEBUG, user);
+		
+		return user;
 	}
 
 }
