@@ -1,6 +1,7 @@
 package com.examples.ezoo.dao;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class TestEventDAO {
 		UserDAO userDAO = (UserDAO) context.getBean(UserDAO.class);
 		
 		// test saveEvent method
-		Event event1 = new Event(400, "penguin flips", LocalDate.now(), "gnarly stuff");
-		Event event2 = new Event(401, "dolphin flips", LocalDate.now(), "don't wanna miss this");
-		Event event3 = new Event(402, "lion flips", LocalDate.now(), "watch out");
+		Event event1 = new Event(400, "penguin flips", LocalDateTime.now(), "gnarly stuff");
+		Event event2 = new Event(401, "dolphin flips", LocalDateTime.now(), "don't wanna miss this");
+		Event event3 = new Event(402, "lion flips", LocalDateTime.now(), "watch out");
 		try {
 			dao.saveEvent(event1);
 			dao.saveEvent(event2);

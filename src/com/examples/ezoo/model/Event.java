@@ -29,7 +29,7 @@ public class Event implements Comparable<Event>{
 	private String eventName = "";
 	
 	@Column(name="date")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 //	@Future(message = "{eventdate.future.validate}")
 	private LocalDateTime eventDate = LocalDateTime.now();	// unsure if this is a good initialization
 	
