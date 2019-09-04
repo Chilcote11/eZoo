@@ -27,7 +27,8 @@ public class EventAttendee {
 
 	@Override
 	public String toString() {
-		return "EventAttendee [eventAttendee=" + eventAttendee + "]";
+		return "EventAttendee [username=" + eventAttendee.getUsername() + 
+				", eventID=" + eventAttendee.getEventID() + "]";
 	}
 	
 	

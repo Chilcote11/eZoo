@@ -53,14 +53,14 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public List<Event> getEventsByUser(User user) {				// not confident about this one
+	public List<EventAttendee> getEventsByUser(User user) {				// not confident about this one
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Query<Event> query = session.createQuery("from EventAttendee where username = :UNAME");
+//		session.beginTransaction();
+		Query<EventAttendee> query = session.createQuery("from EventAttendee WHERE username = :UNAME");
 		query.setParameter("UNAME", user.getUsername());
-		query.executeUpdate();
-		List<Event> events = query.list();			// not sure if I can do this
-		session.getTransaction().commit();			// also fairly sure this is out of order
+//		query.executeUpdate();
+		List<EventAttendee> events = query.list();			// not sure if I can do this
+//		session.getTransaction().commit();			// also fairly sure this is out of order
 		session.close();
 		
 		// TODO logging
@@ -97,10 +97,19 @@ public class EventDAOImpl implements EventDAO {
 	public void deleteEvent(Event event) throws Exception {
 		
 		// remove from EVENT_ATTENDEES table
-		EmbeddedEventAttendee eea = new EmbeddedEventAttendee();
-		eea.setEventID(event.getEventID());
-		EventAttendee ea = new EventAttendee(eea);
-		sessionFactory.getCurrentSession().delete(ea);
+//		EmbeddedEventAttendee eea = new EmbeddedEventAttendee();
+//		eea.setEventID(event.getEventID());
+//		EventAttendee ea = new EventAttendee(eea);
+//		sessionFactory.getCurrentSession().delete(ea);
+		
+		// remove from EVENT_ATTENDEES table
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query query = session.createQuery("DELETE FROM EventAttendee WHERE event_id = :EI");
+		query.setParameter("EI", event.getEventID());
+		query.executeUpdate();
+		session.getTransaction().commit();			// also fairly sure this is out of order
+		session.close();
 		
 		// remove from EVENTS table
 		sessionFactory.getCurrentSession().delete(event);

@@ -9,8 +9,14 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Event;
+import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
+
+/*
+ * This test class assumes that a user 'cory' exists in USERS table
+ * When finished running, all data is restored to its original state
+ * */
 public class TestEventDAO {
 
 	public static void main(String[] args) {
@@ -49,10 +55,11 @@ public class TestEventDAO {
 		}
 		
 		// test getEventByID
-		Event event4 = dao.getEventByID(event3.getEventID());
+		Event event4 = dao.getEventByID(event3.getEventID()); // 402
 		System.out.println("test getEventByID");
-		System.out.print("event4: " + event4);
-		System.out.println(" = event3: " + event3);
+		System.out.println("event4: " + event4);
+		System.out.println(" 			= 			");
+		System.out.println("event3: " + event3);
 
 		// test signUpForEvent
 		User cory = userDAO.getUserByName("cory");
@@ -64,7 +71,7 @@ public class TestEventDAO {
 			System.out.println(e);
 		}
 		
-		// test leaveEvent
+		// test leaveEvent 400
 		try {
 			dao.leaveEvent(cory, event1);		// penguins not that big
 		} catch (Exception e) {
@@ -72,15 +79,14 @@ public class TestEventDAO {
 		}
 		
 		// test getEventsByUser
-		List<Event> corysEvents = dao.getEventsByUser(cory);
-		Collections.sort(corysEvents);
+		List<EventAttendee> corysEvents = dao.getEventsByUser(cory);
+//		Collections.sort(corysEvents);
 		System.out.println("Cory's events: ");
-		for (Event e : corysEvents) {
+		for (EventAttendee e : corysEvents) {
 			System.out.println(e);
 		}
 		
-		// test deleteEvent						// will this remove events from event_attendees
-												// should they be notified?... above my pay grade
+		// test deleteEvent						// all things back to normal
 		try {
 			for (Event e : allEvents) {
 				dao.deleteEvent(e);
