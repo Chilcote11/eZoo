@@ -2,12 +2,14 @@ package com.examples.ezoo.dao;
 
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.EmbeddedEventAttendee;
 import com.examples.ezoo.model.Event;
@@ -39,6 +41,8 @@ public class EventDAOImpl implements EventDAO {
 		
 		Event event = sessionFactory.getCurrentSession().get(Event.class, eventID);
 		
+		Log.daoLog(Origin.EVENTDAO_GETBYID, Level.DEBUG, event);
+		
 		return event;
 	}
 
@@ -48,6 +52,9 @@ public class EventDAOImpl implements EventDAO {
 		Query<Event> results = session.createQuery("from Event");
 		List<Event> events = results.list();
 		session.close();
+		
+		Log.daoLog(Origin.EVENTDAO_GETALL, Level.DEBUG, 
+				": " + events.size() + " retrieved");
 		
 		return events;
 	}
@@ -63,7 +70,8 @@ public class EventDAOImpl implements EventDAO {
 //		session.getTransaction().commit();			// also fairly sure this is out of order
 		session.close();
 		
-		// TODO logging
+		Log.daoLog(Origin.EVENTDAO_GETEVENTSFORUSER, Level.DEBUG, 
+				events.size() + " events retrieved for " + user.getUsername());
 		
 		return events;
 	}
@@ -74,7 +82,9 @@ public class EventDAOImpl implements EventDAO {
 		// can move EmbeddedEventAttendee (EEA) to EventAttendee (EA) if EA only used in DAO.. TBD
 		sessionFactory.getCurrentSession().save(ea);
 		
-		// TODO logging
+		Log.daoLog(Origin.EVENTDAO_SIGNUP, Level.DEBUG, 
+				"user: " + user.getUsername() +  
+				", event: " + event.getEventID());
 	}
 
 	@Override
@@ -82,14 +92,16 @@ public class EventDAOImpl implements EventDAO {
 		EventAttendee ea = new EventAttendee(new EmbeddedEventAttendee(user.getUsername(), event.getEventID()));
 		sessionFactory.getCurrentSession().delete(ea);
 		
-		// TODO logging
+		Log.daoLog(Origin.EVENTDAO_LEAVE, Level.DEBUG, 
+				"user: " + user.getUsername() +  
+				", event: " + event.getEventID());
 	}
 
 	@Override
 	public void saveEvent(Event event) throws Exception {
 		sessionFactory.getCurrentSession().save(event);
 		
-		// TODO logging
+		Log.daoLog(Origin.EVENTDAO_SAVE, Level.DEBUG, event);
 
 	}
 
@@ -114,7 +126,7 @@ public class EventDAOImpl implements EventDAO {
 		// remove from EVENTS table
 		sessionFactory.getCurrentSession().delete(event);
 		
-		// TODO logging
+		Log.daoLog(Origin.EVENTDAO_DELETE, Level.DEBUG, event);
 
 	}
 
@@ -132,7 +144,7 @@ public class EventDAOImpl implements EventDAO {
 		session.getTransaction().commit();
 		session.close();
 		
-		// TODO logging
+		Log.daoLog(Origin.EVENTDAO_UPDATE, Level.DEBUG, event);
 
 	}
 

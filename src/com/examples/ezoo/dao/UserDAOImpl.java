@@ -66,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		User user = sessionFactory.getCurrentSession().get(User.class, username);
 		
-		// TODO logging
+		Log.daoLog(Origin.USERDAO_GETBYNAME, Level.DEBUG, user);
 		
 		return user;
 	}
