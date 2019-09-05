@@ -31,6 +31,7 @@
 						<th class="text-center">Event name</th>
 						<th class="text-center">Event date</th>
 						<th class="text-center">Event description</th>
+						<th class="text-center">Attend</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -59,9 +60,9 @@
 							<td><c:out value="${event.eventDate}" /></td>
 							<td><c:out value="${event.description}" /></td>
 							<td>
-								<c:forEach var="eventAttendee" items="${eventAttendees}">
-									<% Boolean alreadyGoing = false; %>
-									<c:if test="${eventAttendee.username == (mine)}">
+								<% Boolean alreadyGoing = false; %>
+								<c:forEach var="oneOfMine" items="${myEvents}">
+									<c:if test="${oneOfMine.eventID == event.eventID}">
 										<% alreadyGoing = true; %>
 									</c:if>
 								</c:forEach>
