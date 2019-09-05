@@ -62,7 +62,7 @@
 							<td>
 								<% Boolean alreadyGoing = false; %>
 								<c:forEach var="oneOfMine" items="${myEvents}">
-									<c:if test="${oneOfMine.eventID == event.eventID}">
+									<c:if test="${oneOfMine.eventAttendee.eventID == event.eventID}">
 										<% alreadyGoing = true; %>
 									</c:if>
 								</c:forEach>
