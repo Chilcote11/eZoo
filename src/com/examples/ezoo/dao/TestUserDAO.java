@@ -1,5 +1,8 @@
 package com.examples.ezoo.dao;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
@@ -13,12 +16,12 @@ public class TestUserDAO {
 		UserDAO dao = (UserDAO) context.getBean(UserDAO.class);
 		
 		// test saveUser method
-		User user = new User("user22", "password", "ROLE_USER");
-		User admin = new User("admin22", "passw0rd", "ROLE_ADMIN");
+		User user = new User("user22", "password", Arrays.asList("ROLE_USER"));
+		User admin = new User("admin22", "passw0rd", Arrays.asList("ROLE_USER", "ROLE_ADMIN"));
 		User another = new User();		
 		another.setUsername("another22");
 		another.setPassword("password");
-		another.setRole("ROLE_USER");
+		another.setRoles(Arrays.asList("ROLE_USER"));
 		try {
 			dao.saveUser(user);
 			dao.saveUser(admin);

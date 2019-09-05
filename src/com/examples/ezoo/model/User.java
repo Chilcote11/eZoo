@@ -1,5 +1,8 @@
 package com.examples.ezoo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -35,7 +38,7 @@ public class User implements Comparable<User> {
 	
 	@Transient
 	@NotEmpty(message = "{role.validate}")
-	private String role = "";
+	private List<String> roles = new ArrayList<>();
 	
 //	@Transient 		// not a property in "users" database table
 //	// this is only used in UserDAOImpl
@@ -55,12 +58,12 @@ public class User implements Comparable<User> {
 	
 	public User() {}
 	
-	public User(String username, String password, String role) {
+	public User(String username, String password, List<String> roles) {
 		super();
 		this.username = username;
 		this.password = password;
 //		this.password = encoder.encode(password);
-		this.role = role;
+		this.roles = roles;
 	}
 	
 	public String getUsername() {
@@ -81,12 +84,12 @@ public class User implements Comparable<User> {
 //		this.password = encoder.encode(password);
 	}
 
-	public String getRole() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> role) {
+		this.roles = roles;
 	}
 	
 //	public UserRole getRoleObject() {
@@ -102,7 +105,7 @@ public class User implements Comparable<User> {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", role=" + role + "]";
+		return "User [username=" + username + ", password=" + password + ", roles=" + roles + "]";
 	}
 
 	

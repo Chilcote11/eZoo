@@ -25,7 +25,7 @@ public class UserRole {
 		return userRole;
 	}
 
-	public void setUserRole(EmbeddedUserRole userRole) {
+	public void setUserRoles(EmbeddedUserRole userRole) {
 		this.userRole = userRole;
 	}
 

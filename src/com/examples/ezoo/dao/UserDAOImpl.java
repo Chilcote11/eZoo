@@ -1,5 +1,7 @@
 package com.examples.ezoo.dao;
 
+import java.util.List;
+
 import org.apache.logging.log4j.Level;
 import org.hibernate.SessionFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,13 +43,17 @@ public class UserDAOImpl implements UserDAO {
 //		System.out.println("newPassword: " + newPassword);
 		user.setPassword(newPassword);
 		
-		sessionFactory.getCurrentSession().save(user);		// into USERS table
+		// save into USERS table
+		sessionFactory.getCurrentSession().save(user);
 		
-		UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), user.getRole()));
-		sessionFactory.getCurrentSession().save(ur);		// into USER_ROLES table
+		// save into USER_ROLES table
+		for (String role : user.getRoles()) {
+			UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), role));
+			sessionFactory.getCurrentSession().save(ur);
+		}
 		
 		Log.daoLog(Origin.USERDAO_SAVE, Level.DEBUG, 
-				"save " + user.getUsername() + "[" + user.getRole() +  "]");
+				"save " + user.getUsername() + "[" + user.getRoles() +  "]");
 	}
 	
 	@Override 
@@ -56,14 +62,18 @@ public class UserDAOImpl implements UserDAO {
 		// encode the password before deleting
 		user.setPassword(encoder.encode(user.getPassword()));
 		
-		UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), user.getRole()));
-		sessionFactory.getCurrentSession().delete(ur);		// from USER_ROLES table
+		// delete from USER_ROLES table
+		for (String role : user.getRoles()) {
+			UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), role));
+			sessionFactory.getCurrentSession().delete(ur);
+		}
 		
-		sessionFactory.getCurrentSession().delete(user);	// from USERS table
+		// delete from USERS table
+		sessionFactory.getCurrentSession().delete(user);
 		
 		
 		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
-				"delete " + user.getUsername() + "[" + user.getRole() +  "]");
+				"delete " + user.getUsername() + "[" + user.getRoles() +  "]");
 	}
 	
 	@Override
