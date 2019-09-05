@@ -1,6 +1,7 @@
 package com.examples.ezoo.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,11 +11,29 @@ import javax.persistence.Table;
 @Entity
 @Table(name="USER_ROLES")
 public class UserRole {
-	@Id private String username = "";
-	@Column private String role = "";
+
+	@EmbeddedId
+	private EmbeddedUserRole userRole = new EmbeddedUserRole();
 	
-	public UserRole(User user) {
-		this.username = user.getUsername();
-		this.role = user.getRole();
+	public UserRole() {}
+	
+	public UserRole(EmbeddedUserRole userRole) {
+		this.userRole = userRole;
 	}
+
+	public EmbeddedUserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(EmbeddedUserRole userRole) {
+		this.userRole = userRole;
+	}
+
+	@Override
+	public String toString() {
+		return "UserRole [username=" + userRole.getUsername() + 
+							"role=" + userRole.getRole() + "]";
+	}
+	
+	
 }

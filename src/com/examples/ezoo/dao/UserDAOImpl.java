@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
+import com.examples.ezoo.model.EmbeddedUserRole;
 import com.examples.ezoo.model.User;
 import com.examples.ezoo.model.UserRole;
 
@@ -40,8 +41,10 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println("newPassword: " + newPassword);
 		user.setPassword(newPassword);
 		
-		sessionFactory.getCurrentSession().save(user);
-		sessionFactory.getCurrentSession().save(new UserRole(user));
+		sessionFactory.getCurrentSession().save(user);		// into USERS table
+		
+		UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), user.getRole()));
+		sessionFactory.getCurrentSession().save(ur);		// into USER_ROLES table
 		
 		Log.daoLog(Origin.USERDAO_SAVE, Level.DEBUG, 
 				"save " + user.getUsername() + "[" + user.getRole() +  "]");
@@ -54,7 +57,8 @@ public class UserDAOImpl implements UserDAO {
 		user.setPassword(encoder.encode(user.getPassword()));
 		
 		sessionFactory.getCurrentSession().delete(user);
-		sessionFactory.getCurrentSession().delete(new UserRole(user));
+		UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), user.getRole()));
+		sessionFactory.getCurrentSession().delete(ur);
 		
 		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
 				"delete " + user.getUsername() + "[" + user.getRole() +  "]");

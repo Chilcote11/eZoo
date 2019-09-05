@@ -33,7 +33,7 @@ public class User implements Comparable<User> {
 //	@Transient // not an actual column in db.. obviously
 //	PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
-	@Column 
+	@Transient
 	@NotEmpty(message = "{role.validate}")
 	private String role = "";
 	
