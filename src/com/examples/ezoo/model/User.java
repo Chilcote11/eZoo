@@ -39,6 +39,7 @@ public class User implements Comparable<User> {
 	@Transient
 	@NotEmpty(message = "{role.validate}")
 	private List<String> roles = new ArrayList<>();
+//	private String[] roles = {""};
 	
 //	@Transient 		// not a property in "users" database table
 //	// this is only used in UserDAOImpl
@@ -88,7 +89,7 @@ public class User implements Comparable<User> {
 		return roles;
 	}
 
-	public void setRoles(List<String> role) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 	
