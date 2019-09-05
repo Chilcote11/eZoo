@@ -26,8 +26,9 @@
 <!-- CSS - Custom -->
 <link rel="stylesheet" type="text/css" href="resources/styles/custom.css"/>
 
-<!-- Spring Forms taglib include -->
+<!-- Spring Forms and Security taglib includes -->
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 </head>
 <body id="page-top" class="index">
@@ -48,6 +49,9 @@
                 <c:if test="${authUser != null }">
                   <p class="navbar-text">Welcome: ${authUser.username}</p>
 				</c:if>
+				<security:authorize access="isAuthenticated()">
+					<p class="navbar-text">Welcome: <security:authentication property="principal.username" /></p>
+				</security:authorize>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
