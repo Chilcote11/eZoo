@@ -57,7 +57,33 @@
 							<td><fmt:formatNumber value="${event.eventID}"/></td>
 							<td><c:out value="${event.eventName}" /></td>
 							<td><c:out value="${event.eventDate}" /></td>
-							<td><c:out value="${event.description}" /></td>								
+							<td><c:out value="${event.description}" /></td>
+							<td>
+								<c:forEach var="eventAttendee" items="${eventAttendees}">
+									<% Boolean alreadyGoing = false; %>
+									<c:if test="${eventAttendee.username == (mine)}">
+										<% alreadyGoing = true; %>
+									</c:if>
+								</c:forEach>
+								<c:if test="${alreadyGoing}">
+									<sf:form action="EventLeave" modelAttribute="eventToLeave" method="post">
+										<sf:hidden path="eventID" value="${event.eventID}" />
+										<sf:hidden path="eventName" value="${event.eventName}" />
+										<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
+										<sf:hidden path="description" value="${event.description}" />
+										<sf:button type="submit" class="btn btn-primary">Bail</sf:button>
+									</sf:form>
+								</c:if>
+								<c:if test="${!alreadyGoing}">
+									<sf:form action="EventSignUp" modelAttribute="eventToAttend" method="post">
+										<sf:hidden path="eventID" value="${event.eventID}" />
+										<sf:hidden path="eventName" value="${event.eventName}" />
+										<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
+										<sf:hidden path="description" value="${event.description}" />
+										<sf:button type="submit" class="btn btn-primary">Sign me up!</sf:button>
+									</sf:form>
+								</c:if>
+							</td>								
 						</tr>
 					</c:forEach>
 				</tbody>

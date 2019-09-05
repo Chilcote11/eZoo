@@ -33,13 +33,13 @@ public class CalendarController {
 		List<Event> events = dao.getAllEvents();
 		Collections.sort(events);
 		
-		// Pupulate the list into a variable that will be stored in the model
+		// Pupulate variables stored in model
 		model.addAttribute("events", events);
-		
-		// 
 		model.addAttribute("eventToDelete", new Event());
-		
 		model.addAttribute("eventToUpdate", new Event());
+		model.addAttribute("eventToAttend", new Event());
+		
+		
 		
 		context.close();
 		return "calendar";
