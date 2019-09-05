@@ -1,5 +1,8 @@
 package com.examples.ezoo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,20 +25,25 @@ public class User implements Comparable<User> {
 
 	@Column @NotEmpty(message = "{password.notempty.validate}")
 	@Pattern(regexp="[$./\\w\\d]{8,}", message = "{password.length.validate}")
+//	@Pattern(regexp="(\\w)*(\\d)(\\w)*(\\d)", message = "{password.numbers.validate}")				// "ConstraintViolationException: Validation failed for classes.. during persist time for groups.."
 //	@Pattern(regexp="($./\\w)*(\\d)($./\\w)*(\\d)", message = "{password.numbers.validate}")		// "11" passes.  "111", "11a", "aaa11" all do not
 //	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)", message = "{password.numbers.validate}")				// "11", "a11", "a1a1" all pass. "11a", "a1a1a", "a1a1a1" all do not pass
 //	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)+($./\\w\\d)*", message = "{password.numbers.validate}")	// same as above
 //	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)($./\\w\\d)*", message = "{password.numbers.validate}")	// same as above
 //	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)] {1,}", message = "{password.numbers.validate}")		// same as above
 	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)]+", message = "{password.numbers.validate}")			// everything passes except "".  numbers not required 
+//	@Pattern(regexp="^(?=.*?[0-9]{2,})$", message = "{password.numbers.validate}")					// nothing passes this requirement
+//	@Pattern(regexp="^(?=.*?[0-9]{2,}).{8,}$", message = "{password.numbers.validate}")				// numbers must be next to eachother. "aaaaaa11", "11aa..", "aa11aaaa" pass, "aaaaa1a1" does not
+//	@Pattern(regexp="(?=.*?[0-9]{2,}).{8,}", message = "{password.numbers.validate}")				// same as above
 	private String password = "";
 	
 //	@Transient // not an actual column in db.. obviously
 //	PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
-	@Column 
+	@Transient
 	@NotEmpty(message = "{role.validate}")
-	private String role = "";
+	private List<String> roles = new ArrayList<>();
+//	private String[] roles = {""};
 	
 //	@Transient 		// not a property in "users" database table
 //	// this is only used in UserDAOImpl
@@ -55,12 +63,12 @@ public class User implements Comparable<User> {
 	
 	public User() {}
 	
-	public User(String username, String password, String role) {
+	public User(String username, String password, List<String> roles) {
 		super();
 		this.username = username;
 		this.password = password;
 //		this.password = encoder.encode(password);
-		this.role = role;
+		this.roles = roles;
 	}
 	
 	public String getUsername() {
@@ -81,12 +89,12 @@ public class User implements Comparable<User> {
 //		this.password = encoder.encode(password);
 	}
 
-	public String getRole() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 	
 //	public UserRole getRoleObject() {
@@ -102,7 +110,7 @@ public class User implements Comparable<User> {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", role=" + role + "]";
+		return "User [username=" + username + ", password=" + password + ", roles=" + roles + "]";
 	}
 
 	

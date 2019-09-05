@@ -37,20 +37,23 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <sf:label path="role" class="col-sm-4 control-label">User Role</sf:label>
+		    <sf:label path="roles" class="col-sm-4 control-label">User Roles</sf:label>
 		    <div class="col-sm-4">
-				<sf:select path="role" class="form-control">
+				<sf:select path="roles" class="form-control">
 					<sf:option value="">
 						-- SELECT A ROLE --
 					</sf:option>
 					<sf:option value="ROLE_USER">
-						ROLE_USER
+						User
 					</sf:option>
 					<sf:option value="ROLE_ADMIN">
-						ROLE_ADMIN
+						Admin
+					</sf:option>
+					<sf:option value="ROLE_USER, ROLE_ADMIN">
+						User and Admin
 					</sf:option>
 				</sf:select>
-				<sf:errors path="role"/>
+				<sf:errors path="roles"/>
 			</div>
 		  </div>
 		  <div class="form-group">
