@@ -31,6 +31,9 @@ public class User implements Comparable<User> {
 //	@Pattern(regexp="(\\D)*(\\d)(\\D)*(\\d)($./\\w\\d)*", message = "{password.numbers.validate}")	// same as above
 //	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)] {1,}", message = "{password.numbers.validate}")		// same as above
 	@Pattern(regexp="[(\\D)*(\\d)(\\D)*(\\d)]+", message = "{password.numbers.validate}")			// everything passes except "".  numbers not required 
+//	@Pattern(regexp="^(?=.*?[0-9]{2,})$", message = "{password.numbers.validate}")					// nothing passes this requirement
+//	@Pattern(regexp="^(?=.*?[0-9]{2,}).{8,}$", message = "{password.numbers.validate}")				// numbers must be next to eachother. "aaaaaa11", "11aa..", "aa11aaaa" pass, "aaaaa1a1" does not
+//	@Pattern(regexp="(?=.*?[0-9]{2,}).{8,}", message = "{password.numbers.validate}")				// same as above
 	private String password = "";
 	
 //	@Transient // not an actual column in db.. obviously
