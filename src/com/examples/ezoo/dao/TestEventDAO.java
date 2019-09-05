@@ -82,7 +82,7 @@ public class TestEventDAO {
 		// test getEventsByUser
 		List<EventAttendee> corysEvents = dao.getEventsByUser(cory);
 //		Collections.sort(corysEvents);
-		System.out.println("Cory's events: ");
+		System.out.println("Cory[" + cory + "]'s events: ");
 		for (EventAttendee e : corysEvents) {
 			System.out.println(e);
 		}
