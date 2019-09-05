@@ -36,9 +36,9 @@ public class UserDAOImpl implements UserDAO {
 	public void saveUser(User user) throws Exception {
 		
 		// encode the password before saving
-		System.out.println("oldPassword: " + user.getPassword());
+//		System.out.println("oldPassword: " + user.getPassword());
 		String newPassword = encoder.encode(user.getPassword());
-		System.out.println("newPassword: " + newPassword);
+//		System.out.println("newPassword: " + newPassword);
 		user.setPassword(newPassword);
 		
 		sessionFactory.getCurrentSession().save(user);		// into USERS table
@@ -56,9 +56,11 @@ public class UserDAOImpl implements UserDAO {
 		// encode the password before deleting
 		user.setPassword(encoder.encode(user.getPassword()));
 		
-		sessionFactory.getCurrentSession().delete(user);
 		UserRole ur = new UserRole(new EmbeddedUserRole(user.getUsername(), user.getRole()));
-		sessionFactory.getCurrentSession().delete(ur);
+		sessionFactory.getCurrentSession().delete(ur);		// from USER_ROLES table
+		
+		sessionFactory.getCurrentSession().delete(user);	// from USERS table
+		
 		
 		Log.daoLog(Origin.USERDAO_DELETE, Level.DEBUG, 
 				"delete " + user.getUsername() + "[" + user.getRole() +  "]");

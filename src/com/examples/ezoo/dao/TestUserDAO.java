@@ -13,11 +13,10 @@ public class TestUserDAO {
 		UserDAO dao = (UserDAO) context.getBean(UserDAO.class);
 		
 		// test saveUser method
-		User user = new User("user", "password", "ROLE_USER");
-		User admin = new User("admin", "passw0rd", "ROLE_ADMIN");
+		User user = new User("user22", "password", "ROLE_USER");
+		User admin = new User("admin22", "passw0rd", "ROLE_ADMIN");
 		User another = new User();		
-				// initializing this way because of suspicion about User() constructor
-		another.setUsername("another");
+		another.setUsername("another22");
 		another.setPassword("password");
 		another.setRole("ROLE_USER");
 		try {
