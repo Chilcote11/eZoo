@@ -1,5 +1,6 @@
 package com.examples.ezoo.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -46,9 +47,16 @@ public class PersonalEventsController {
 		}
 		Collections.sort(myEvents);
 		
+		// fill in the @Transient 'numberAttending' field for each Event
+		for (Event e : myEvents) {
+			e.setNumberAttending( dao.getNumberAttending( e.getEventID() ) );
+		}
+		
 		// Pupulate variables stored in model
 		model.addAttribute("myEvents", myEvents);
+		model.addAttribute("eventDetails", new Event());		// use with details form
 		model.addAttribute("eventToLeave", new Event());
+		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP
 		
 		context.close();
 		return "PersonalEvents";

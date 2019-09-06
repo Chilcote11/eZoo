@@ -37,7 +37,7 @@ public class CalendarController {
 		List<Event> events = dao.getAllEvents();
 		Collections.sort(events);
 		
-		// fill in @Transient 'numberAttending' field
+		// fill in the @Transient 'numberAttending' field for each Event
 		for (Event e : events) {
 			e.setNumberAttending( dao.getNumberAttending( e.getEventID() ) );
 		}
