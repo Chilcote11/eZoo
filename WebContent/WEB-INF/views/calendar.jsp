@@ -60,10 +60,10 @@
 							<td><c:out value="${event.eventDate}" /></td>
 							<td><c:out value="${event.description}" /></td>
 							<td>
-								<% Boolean alreadyGoing = false; %>
+								<c:set var="alreadyGoing" value="${false}"/>
 								<c:forEach var="oneOfMine" items="${myEvents}">
 									<c:if test="${oneOfMine.eventAttendee.eventID == event.eventID}">
-										<% alreadyGoing = true; %>
+										<c:set var="alreadyGoing" value="${true}"/>
 									</c:if>
 								</c:forEach>
 								<c:if test="${alreadyGoing}">

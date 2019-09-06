@@ -41,6 +41,7 @@ public class CalendarController {
 		model.addAttribute("eventToDelete", new Event());
 		model.addAttribute("eventToUpdate", new Event());
 		model.addAttribute("eventToAttend", new Event());
+		model.addAttribute("eventToLeave", new Event());
 		
 		// add a list of this users events to the model object
 		User me = new User();
