@@ -28,66 +28,105 @@ public class Event implements Comparable<Event>{
 	@NotEmpty(message = "{eventname.validate}")
 	private String eventName = "";
 	
-	@Column(name="date")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-//	@Future(message = "{eventdate.future.validate}")
-	private LocalDateTime eventDate = LocalDateTime.now();	// unsure if this is a good initialization
-	
 	@Column
 	@NotEmpty(message = "{eventdescription.validate}")
 	private String description = "";
 	
-	public Event() {}
+	@Column(name="start_time")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime startTime = LocalDateTime.now();	// unsure if this is a good initialization
 	
-	public Event(Integer eventID, String eventName, LocalDateTime eventDate, String description) {
+	@Column(name="end_time")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	private LocalDateTime endTime = LocalDateTime.now().plusHours(2);	// unsure if this is a good initialization
+	
+	@Column(name="creator")
+	@NotEmpty(message = "{eventcreator.validate}")
+	private String creator = "";
+	
+	
+	public Event() {}
+
+	public Event(Integer eventID, String eventName, String description, 
+			LocalDateTime startTime, LocalDateTime endTime, String creator) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
-		this.eventDate = eventDate;
 		this.description = description;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.creator = creator;
 	}
+
 
 	public Integer getEventID() {
 		return eventID;
 	}
 
+
 	public void setEventID(Integer eventID) {
 		this.eventID = eventID;
 	}
+
 
 	public String getEventName() {
 		return eventName;
 	}
 
+
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
 
-	public LocalDateTime getEventDate() {
-		return eventDate;
-	}
-
-	public void setEventDate(LocalDateTime eventDate) {
-		this.eventDate = eventDate;
-	}
 
 	public String getDescription() {
 		return description;
 	}
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	@Override
-	public int compareTo(Event o) {
-		return this.getEventID() - o.getEventID();
+
+	public LocalDateTime getStartTime() {
+		return startTime;
+	}
+
+
+	public void setStartTime(LocalDateTime startTime) {
+		this.startTime = startTime;
+	}
+
+
+	public LocalDateTime getEndTime() {
+		return endTime;
+	}
+
+
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
+	}
+
+
+	public String getCreator() {
+		return creator;
+	}
+
+
+	public void setCreator(String creator) {
+		this.creator = creator;
 	}
 
 	@Override
 	public String toString() {
-		return "Event [eventID=" + eventID + ", eventName=" + eventName + ", eventDate=" + eventDate + ", description="
-				+ description + "]";
-	}	
+		return "Event [eventID=" + eventID + ", eventName=" + eventName + ", description=" + description
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", creator=" + creator + "]";
+	}
+
+	@Override
+	public int compareTo(Event o) {
+		return this.eventID - o.getEventID();
+	}
 
 }

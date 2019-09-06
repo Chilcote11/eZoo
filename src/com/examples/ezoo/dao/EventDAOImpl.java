@@ -135,10 +135,13 @@ public class EventDAOImpl implements EventDAO {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Query query = session.createQuery("UPDATE Event SET "
-				+ "name = :N, date = :T, description = :D WHERE event_id = :EI");
+				+ "name = :N, description = :D , start_time = :ST, end_time = :ET, "
+				+ "creator = :C WHERE event_id = :EI");
 		query.setParameter("N", event.getEventName());
-		query.setParameter("T", event.getEventDate());
 		query.setParameter("D", event.getDescription());
+		query.setParameter("ST", event.getStartTime());
+		query.setParameter("ET", event.getEndTime());
+		query.setParameter("C", event.getCreator());
 		query.setParameter("EI", event.getEventID());
 		query.executeUpdate();
 		session.getTransaction().commit();

@@ -26,9 +26,12 @@ public class TestEventDAO {
 		UserDAO userDAO = (UserDAO) context.getBean(UserDAO.class);
 		
 		// test saveEvent method
-		Event event1 = new Event(400, "penguin flips", LocalDateTime.now(), "gnarly stuff");
-		Event event2 = new Event(401, "dolphin flips", LocalDateTime.now(), "don't wanna miss this");
-		Event event3 = new Event(402, "lion flips", LocalDateTime.now(), "watch out");
+		Event event1 = new Event(400, "penguin flips", "gnarly stuff", LocalDateTime.now().plusHours(2), 
+				LocalDateTime.now().plusHours(2), userDAO.getUserByName("cory").getUsername());
+		Event event2 = new Event(401, "dolphin flips", "don't wanna miss this", LocalDateTime.now().plusHours(2), 
+				LocalDateTime.now().plusHours(2), userDAO.getUserByName("cory").getUsername());
+		Event event3 = new Event(402, "lion flips", "watch out", LocalDateTime.now().plusHours(2), 
+				LocalDateTime.now().plusHours(2), userDAO.getUserByName("cory").getUsername());
 		try {
 			dao.saveEvent(event1);
 			dao.saveEvent(event2);
@@ -95,6 +98,8 @@ public class TestEventDAO {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		
+		context.close();
 	}
 
 }
