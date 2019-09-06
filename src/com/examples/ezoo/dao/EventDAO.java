@@ -14,6 +14,7 @@ public interface EventDAO {
 	List<EventAttendee> getEventsByUser(User user);							// see events you're signed up for
 	void signUpForEvent(User user, Event event) throws Exception;	// sign up for event
 	void leaveEvent(User user, Event event) throws Exception;		// leave event
+	int getNumberAttending(int eventID);							// see how many attending an event
 
 	// for admins only
 	void saveEvent(Event event) throws Exception;					// create new event

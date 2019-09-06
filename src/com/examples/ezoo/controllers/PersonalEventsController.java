@@ -1,6 +1,7 @@
 package com.examples.ezoo.controllers;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,11 +22,11 @@ import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
 @Controller
-public class CalendarController {
+public class PersonalEventsController {
 
 	private ZooLogger Log = new ZooLogger();
 	
-	@RequestMapping(value="/calendar", method=RequestMethod.GET)
+	@RequestMapping(value="/PersonalEvents", method=RequestMethod.GET)
 	public String DisplayCalendar(Model model
 			, @ModelAttribute("message") String message
 			, @ModelAttribute("messageClass") String messageClass) {
@@ -34,33 +35,30 @@ public class CalendarController {
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		EventDAO dao = context.getBean(EventDAO.class);
-		List<Event> events = dao.getAllEvents();
-		Collections.sort(events);
+		
+		// get the user's events
+		User me = new User();
+		String myName = SecurityContextHolder.getContext().getAuthentication().getName();
+		me.setUsername(myName);
+		List<EventAttendee> myEventAttendees = dao.getEventsByUser(me);
+		List<Event> myEvents = new ArrayList<>();
+		for (EventAttendee e : myEventAttendees) {
+			myEvents.add( dao.getEventByID( e.getEventAttendee().getEventID() ) );
+		}
+		Collections.sort(myEvents);
 		
 		// fill in the @Transient 'numberAttending' field for each Event
-		for (Event e : events) {
+		for (Event e : myEvents) {
 			e.setNumberAttending( dao.getNumberAttending( e.getEventID() ) );
 		}
 		
 		// Pupulate variables stored in model
-		model.addAttribute("events", events);
-		model.addAttribute("eventToDelete", new Event());
-		model.addAttribute("eventToUpdate", new Event());
+		model.addAttribute("myEvents", myEvents);
 		model.addAttribute("eventDetails", new Event());		// use with details form
-		model.addAttribute("eventToAttend", new Event());
 		model.addAttribute("eventToLeave", new Event());
-//		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName());
-//				// needed for forms
 		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP
 		
-		// add a list of this users events to the model object
-		User me = new User();
-		String myName = SecurityContextHolder.getContext().getAuthentication().getName();
-		me.setUsername(myName);
-		List<EventAttendee> myEvents = dao.getEventsByUser(me);
-		model.addAttribute("myEvents", myEvents);
-		
 		context.close();
-		return "calendar";
+		return "PersonalEvents";
 	}
 }

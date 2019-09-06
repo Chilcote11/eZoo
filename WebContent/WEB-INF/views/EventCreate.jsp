@@ -37,17 +37,24 @@
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <sf:label path="eventDate" class="col-sm-4 control-label">Event Date</sf:label>
-		    <div class="col-sm-4">
-		      <sf:input class="form-control" path="eventDate" /><sf:errors path="eventDate" />
-		    </div>
-		  </div>
-		  <div class="form-group">
 		    <sf:label path="description" class="col-sm-4 control-label">Description</sf:label>
 		    <div class="col-sm-4">
 		      <sf:input class="form-control" path="description" /><sf:errors path="description" />
 		    </div>
 		  </div>
+  		  <div class="form-group">
+		    <sf:label path="startTime" class="col-sm-4 control-label">Start Time</sf:label>
+		    <div class="col-sm-4">
+		      <sf:input class="form-control" path="startTime" /><sf:errors path="startTime" />
+		    </div>
+		  </div>
+  		  <div class="form-group">
+		    <sf:label path="endTime" class="col-sm-4 control-label">End Time</sf:label>
+		    <div class="col-sm-4">
+		      <sf:input class="form-control" path="endTime" /><sf:errors path="endTime" />
+		    </div>
+		  </div>
+		  <sf:hidden path="creator" value="${creator}" />
 		  <div class="form-group">
 		    <div class="col-sm-offset-4 col-sm-1">
 		      <sf:button type="submit" class="btn btn-primary">Create</sf:button>

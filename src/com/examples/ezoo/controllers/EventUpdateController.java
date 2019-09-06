@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,6 +32,7 @@ public class EventUpdateController {
 		// TODO logging
 		
 		model.addAttribute("eventToUpdate", eventToUpdate);	// transfer
+		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName()); // currently unused
 		return "EventUpdate";
 	}
 	

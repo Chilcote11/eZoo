@@ -73,6 +73,7 @@
                           <li><a href="calendar">Home (Level 200)</a></li>
                           <li class="divider"></li>
                           <li><a href="EventCreate">Create Event</a></li>
+                          <li><a href="PersonalEvents">Personal Events</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

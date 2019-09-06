@@ -96,6 +96,23 @@ public class EventDAOImpl implements EventDAO {
 				"user: " + user.getUsername() +  
 				", event: " + event.getEventID());
 	}
+	
+	@Override
+	public int getNumberAttending(int eventID) {
+		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+		Query<EventAttendee> query = session.createQuery("from EventAttendee WHERE event_id = :EI");
+		query.setParameter("EI", eventID);
+//		query.executeUpdate();
+		int numberAttending = query.list().size();			// not sure if I can do this
+//		session.getTransaction().commit();			// also fairly sure this is out of order
+		session.close();
+		
+		Log.daoLog(Origin.EVENTDAO_GETNUMBERATTENDING, Level.DEBUG, 
+				numberAttending + " events retrieved");
+		
+		return numberAttending;
+	}
 
 	@Override
 	public void saveEvent(Event event) throws Exception {
@@ -135,10 +152,13 @@ public class EventDAOImpl implements EventDAO {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Query query = session.createQuery("UPDATE Event SET "
-				+ "name = :N, date = :T, description = :D WHERE event_id = :EI");
+				+ "name = :N, description = :D , start_time = :ST, end_time = :ET, "
+				+ "creator = :C WHERE event_id = :EI");
 		query.setParameter("N", event.getEventName());
-		query.setParameter("T", event.getEventDate());
 		query.setParameter("D", event.getDescription());
+		query.setParameter("ST", event.getStartTime());
+		query.setParameter("ET", event.getEndTime());
+		query.setParameter("C", event.getCreator());
 		query.setParameter("EI", event.getEventID());
 		query.executeUpdate();
 		session.getTransaction().commit();
