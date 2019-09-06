@@ -13,7 +13,7 @@ import com.examples.ezoo.model.Animal;
 public class TestAnimalDAO {
 	
 	public static void main(String[] args) {
-//		AnimalDAO dao = new AnimalDAOImpl(); // this won't work.. need application context
+
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		AnimalDAO dao = (AnimalDAO) context.getBean(AnimalDAO.class);
 		

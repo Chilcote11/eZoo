@@ -25,9 +25,7 @@ public class RegistrationController {
 	private ZooLogger Log = new ZooLogger();
 
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String displayRegistrationForm(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String displayRegistrationForm(Model model) {
 		
 		Log.controllerLog(Origin.CONTROLLER_REGISTRATION_GET, Level.INFO, "navigation");
 		
@@ -41,6 +39,7 @@ public class RegistrationController {
 		Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.INFO, "navigation");
 		
 		if (errors.hasErrors()) {
+			
 			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.WARN, "validation errors");
 			
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
@@ -54,26 +53,35 @@ public class RegistrationController {
 		UserDAO dao = context.getBean(UserDAO.class);
 		
 		try {
+			
 			dao.saveUser(newUser);
-			context.close();
+			
+			// leaving these out because of trouble with login page being heavily managed by Spring Security
 //			model.addAttribute("message",  "User successfully created");
 //			model.addAttribute("messageClass", "alert-success");
-			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.INFO, "save successful");
+			
+			context.close();			
+			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.INFO, "save successful");			
 			return "redirect:/login";
+			
 		} catch(DataIntegrityViolationException e) {
-			e.printStackTrace();
+			
+			e.printStackTrace();			
 			model.addAttribute("message",  newUser.getUsername() + " already exists");
-			model.addAttribute("messageClass",  "alert-danger");
+			model.addAttribute("messageClass",  "alert-danger");			
 			context.close();
 			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.ERROR, "exception: duplicate username");
 			return "register";
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			
+			e.printStackTrace();			
 			model.addAttribute("message",  "There was a problem creating the feeding schedule at this time");
-			model.addAttribute("messageClass",  "alert-danger");
-			context.close();
-			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.ERROR, "unknown exception thrown");
+			model.addAttribute("messageClass",  "alert-danger");			
+			context.close();			
+			Log.controllerLog(Origin.CONTROLLER_REGISTRATION_POST, Level.ERROR, "unknown exception thrown");			
 			return "register";
+			
 		}
 	}
 }

@@ -27,9 +27,7 @@ public class FSCreateController {
 	private ZooLogger Log = new ZooLogger();
 
 	@RequestMapping(value="/FSCreate", method=RequestMethod.GET)
-	public String DisplayCreateFeedingScheduleForm(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayCreateFeedingScheduleForm(Model model) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FSCREATE_GET, Level.INFO, "navigation");
 		

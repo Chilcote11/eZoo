@@ -26,9 +26,9 @@ public class DAOUtilities {
 	private static FeedingScheduleDAOImpl feedingScheduleDAOImpl;
 	private static Connection connection;
 
+	@Deprecated								// now "gotten" as a Spring @Bean
 	public static synchronized AnimalDAO getAnimalDAO() {
 		// returns AnimalDAO interface implemented by animalDaoImpl.  protects in the face of future upgrades (different implementations)
-		// to better understand this, see the notes in the last part of 100 Dive 2
 
 		if (animalDAOImpl == null) {
 			animalDAOImpl = new AnimalDAOImpl();
@@ -36,6 +36,7 @@ public class DAOUtilities {
 		return animalDAOImpl;
 	}
 	
+	@Deprecated								// now "gotten" as a Spring @Bean
 	public static synchronized FeedingScheduleDAO getFeedingScheduleDAO() {
 		if (feedingScheduleDAOImpl == null) {
 			feedingScheduleDAOImpl = new FeedingScheduleDAOImpl();
@@ -54,7 +55,7 @@ public class DAOUtilities {
 			connection = DriverManager.getConnection(URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);
 		}
 		
-		//If connection was closed then retrieve a new connection
+		// If connection was closed then retrieve a new connection
 		if (connection.isClosed()){
 			System.out.println("getting new connection...");
 			connection = DriverManager.getConnection(URL, CONNECTION_USERNAME, CONNECTION_PASSWORD);

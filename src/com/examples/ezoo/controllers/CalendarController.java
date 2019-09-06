@@ -49,8 +49,6 @@ public class CalendarController {
 		model.addAttribute("eventDetails", new Event());		// use with details form
 		model.addAttribute("eventToAttend", new Event());
 		model.addAttribute("eventToLeave", new Event());
-//		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName());
-//				// needed for forms
 		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP
 		
 		// add a list of this users events to the model object

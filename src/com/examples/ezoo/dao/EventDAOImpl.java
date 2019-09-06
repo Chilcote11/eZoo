@@ -60,14 +60,12 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public List<EventAttendee> getEventsByUser(User user) {				// not confident about this one
+	public List<EventAttendee> getEventsByUser(User user) {
+		
 		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
 		Query<EventAttendee> query = session.createQuery("from EventAttendee WHERE username = :UNAME");
 		query.setParameter("UNAME", user.getUsername());
-//		query.executeUpdate();
-		List<EventAttendee> events = query.list();			// not sure if I can do this
-//		session.getTransaction().commit();			// also fairly sure this is out of order
+		List<EventAttendee> events = query.list();
 		session.close();
 		
 		Log.daoLog(Origin.EVENTDAO_GETEVENTSFORUSER, Level.DEBUG, 
@@ -78,8 +76,8 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void signUpForEvent(User user, Event event) throws Exception {
+		
 		EventAttendee ea = new EventAttendee(new EmbeddedEventAttendee(user.getUsername(), event.getEventID()));
-		// can move EmbeddedEventAttendee (EEA) to EventAttendee (EA) if EA only used in DAO.. TBD
 		sessionFactory.getCurrentSession().save(ea);
 		
 		Log.daoLog(Origin.EVENTDAO_SIGNUP, Level.DEBUG, 
@@ -89,6 +87,7 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void leaveEvent(User user, Event event) throws Exception {
+		
 		EventAttendee ea = new EventAttendee(new EmbeddedEventAttendee(user.getUsername(), event.getEventID()));
 		sessionFactory.getCurrentSession().delete(ea);
 		
@@ -99,13 +98,11 @@ public class EventDAOImpl implements EventDAO {
 	
 	@Override
 	public int getNumberAttending(int eventID) {
+		
 		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
 		Query<EventAttendee> query = session.createQuery("from EventAttendee WHERE event_id = :EI");
 		query.setParameter("EI", eventID);
-//		query.executeUpdate();
-		int numberAttending = query.list().size();			// not sure if I can do this
-//		session.getTransaction().commit();			// also fairly sure this is out of order
+		int numberAttending = query.list().size();
 		session.close();
 		
 		Log.daoLog(Origin.EVENTDAO_GETNUMBERATTENDING, Level.DEBUG, 
@@ -124,13 +121,7 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void deleteEvent(Event event) throws Exception {
-		
-		// remove from EVENT_ATTENDEES table
-//		EmbeddedEventAttendee eea = new EmbeddedEventAttendee();
-//		eea.setEventID(event.getEventID());
-//		EventAttendee ea = new EventAttendee(eea);
-//		sessionFactory.getCurrentSession().delete(ea);
-		
+				
 		// remove from EVENT_ATTENDEES table
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -149,11 +140,11 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void updateEvent(Event event) throws Exception {
+		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query query = session.createQuery("UPDATE Event SET "
-				+ "name = :N, description = :D , start_time = :ST, end_time = :ET, "
-				+ "creator = :C WHERE event_id = :EI");
+		Query query = session.createQuery("UPDATE Event SET name = :N, description = :D , "
+				+ "start_time = :ST, end_time = :ET, creator = :C WHERE event_id = :EI");
 		query.setParameter("N", event.getEventName());
 		query.setParameter("D", event.getDescription());
 		query.setParameter("ST", event.getStartTime());

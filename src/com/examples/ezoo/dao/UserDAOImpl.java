@@ -38,9 +38,7 @@ public class UserDAOImpl implements UserDAO {
 	public void saveUser(User user) throws Exception {
 		
 		// encode the password before saving
-//		System.out.println("oldPassword: " + user.getPassword());
 		String newPassword = encoder.encode(user.getPassword());
-//		System.out.println("newPassword: " + newPassword);
 		user.setPassword(newPassword);
 		
 		// save into USERS table
@@ -78,7 +76,10 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public User getUserByName(String username) {
-		if (username == null) return null;		// assuming I'll need this
+		
+		if (username == null) { 					// assuming I'll need this
+			return null;
+		}
 		
 		User user = sessionFactory.getCurrentSession().get(User.class, username);
 		

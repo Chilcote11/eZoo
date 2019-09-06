@@ -33,7 +33,6 @@ public class EventCreateController {
 		// TODO logging
 		
 		Event newEvent = new Event();
-//		newEvent.setCreator(SecurityContextHolder.getContext().getAuthentication().getName());
 		String creator = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("newEvent", newEvent);
 		model.addAttribute("creator", creator);

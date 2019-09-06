@@ -26,9 +26,7 @@ public class FeedingSchedulesController {
 	private ZooLogger Log = new ZooLogger();
 	
 	@RequestMapping(value="/feedingSchedules", method=RequestMethod.GET)
-	public String DisplayFeedingSchedules(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayFeedingSchedules(Model model) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FS_GET, Level.INFO, "navigation");
 		

@@ -30,10 +30,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="resources/libraries/js/freelancer.js"></script>
     
-<!--     jQuery DataTables -->
+	<!--     jQuery DataTables -->
     <script type="text/javascript" src="https://cdn.datatables.net/t/bs/dt-1.10.11/datatables.js"></script>
     
-<!--     Custom Javascript -->
+	<!--     Custom Javascript -->
     <script src="resources/scripts/custom.js"></script>
     
 </body>

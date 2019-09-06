@@ -26,9 +26,7 @@ public class AnimalCareController {
 
 	@RolesAllowed("ROLE_ADMIN")
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
-	public String DisplayAnimalCare(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAnimalCare(Model model) {
 		
 		Log.controllerLog(Origin.CONTROLLER_ANIMALCARE_GET, Level.INFO, "navigation");
 		

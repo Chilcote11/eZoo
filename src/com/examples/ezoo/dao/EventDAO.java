@@ -9,9 +9,9 @@ import com.examples.ezoo.model.User;
 public interface EventDAO {
 	
 	// for users and admins
-	Event getEventByID(Integer eventID);									// check out an event
+	Event getEventByID(Integer eventID);							// check out an event
 	List<Event> getAllEvents();										// view zoo schedule
-	List<EventAttendee> getEventsByUser(User user);							// see events you're signed up for
+	List<EventAttendee> getEventsByUser(User user);					// see events you're signed up for
 	void signUpForEvent(User user, Event event) throws Exception;	// sign up for event
 	void leaveEvent(User user, Event event) throws Exception;		// leave event
 	int getNumberAttending(int eventID);							// see how many attending an event

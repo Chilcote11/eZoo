@@ -24,9 +24,7 @@ public class FSUpdateController {
 	private ZooLogger Log = new ZooLogger();
 
 	@RequestMapping(value="/FSUpdate", method=RequestMethod.GET)
-	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FSUPDATE_GET, Level.INFO, "navigation");
 		

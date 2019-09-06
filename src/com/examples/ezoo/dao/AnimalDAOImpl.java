@@ -37,6 +37,7 @@ public class AnimalDAOImpl implements AnimalDAO {
 
 	@Override
 	public List<Animal> getAllAnimals() {
+		
 		Session session = sessionFactory.openSession();
 		Query<Animal> results = session.createQuery("from Animal");		// can omit SELECT in HQL
 		List<Animal> animals = results.list();
@@ -51,9 +52,6 @@ public class AnimalDAOImpl implements AnimalDAO {
 	@Override
 	public void saveAnimal(Animal animal) throws Exception {
 		sessionFactory.getCurrentSession().save(animal);
-//		Session session = sessionFactory.openSession();
-//		session.save(animal);
-//		session.close();
 		
 		Log.daoLog(Origin.ANIMALDAO_SAVE, Level.DEBUG, 
 				"save " + animal.getName() + "[" + animal.getAnimalID() +  "]");
@@ -68,12 +66,6 @@ public class AnimalDAOImpl implements AnimalDAO {
 				"delete " + animal.getName() + "[" + animal.getAnimalID() +  "]");
 		
 		sessionFactory.getCurrentSession().delete(animal);
-//		Session session = sessionFactory.openSession();
-//		session.delete(animal);
-//		session.close();
-		
-//		Log.daoLog(Origin.ANIMALDAO_DELETE, Level.DEBUG, 
-//				"delete " + animal.getName() + "[" + animal.getAnimalID() +  "]");
 	}
 
 }

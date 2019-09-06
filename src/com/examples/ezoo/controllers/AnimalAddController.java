@@ -27,9 +27,7 @@ public class AnimalAddController {
 	private ZooLogger Log = new ZooLogger();
 	
 	@RequestMapping(value="/AnimalAdd", method=RequestMethod.GET)
-	public String DisplayAddAnimalForm(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAddAnimalForm(Model model) {
 		
 		Log.controllerLog(Origin.CONTROLLER_ADDANIMAL_GET, Level.INFO, "navigation");
 		
@@ -59,7 +57,6 @@ public class AnimalAddController {
 
 		try {
 			dao.saveAnimal(newAnimal);
-
 			model.addAttribute("message", "Animal successfully created");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();

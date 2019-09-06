@@ -27,9 +27,7 @@ public class PersonalEventsController {
 	private ZooLogger Log = new ZooLogger();
 	
 	@RequestMapping(value="/PersonalEvents", method=RequestMethod.GET)
-	public String DisplayCalendar(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayCalendar(Model model) {
 		
 		// TODO logging
 		
@@ -53,10 +51,10 @@ public class PersonalEventsController {
 		}
 		
 		// Pupulate variables stored in model
-		model.addAttribute("myEvents", myEvents);
+		model.addAttribute("myEvents", myEvents);				// all events listed in table
 		model.addAttribute("eventDetails", new Event());		// use with details form
-		model.addAttribute("eventToLeave", new Event());
-		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP
+		model.addAttribute("eventToLeave", new Event());		// use with withdrawal form
+		model.addAttribute("now", LocalDateTime.now());			// won't work in JSP
 		
 		context.close();
 		return "PersonalEvents";

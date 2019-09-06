@@ -39,9 +39,9 @@ public class FSUnassignController {
 		
 		try {
 			// animalDAO has no "getAnimalByID" method, so here's a work-around
-			// could choose to go add one later, wouldn't be too hard
+			// could easily add one later
 			List<Animal> animals = animalDAO.getAllAnimals();
-			Collections.sort(animals);		// unnecessary, but I like it
+			Collections.sort(animals);		// unnecessary, but consistent
 			Animal animal = new Animal();
 			for (Animal a : animals) {		// need to fill in the gaps, animalToUnassign only has ID populated
 				if (a.getAnimalID() == animalToUnassign.getAnimalID()) {

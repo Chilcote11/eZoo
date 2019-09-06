@@ -15,9 +15,9 @@ public class LoggingTest {
 		Log.debug("Debug message");
 		
 		// Raise the logging level to FATAL
-//		Log.setLevel(Level.FATAL);								// no setLevel method for this Logger
+//		Log.setLevel(Level.FATAL);															// no setLevel method for this Logger
 //		Configurator.setAllLevels(LogManager.getRootLogger().getName(), Level.FATAL);		// changes level universally
-		Configurator.setLevel(Log.getName(), Level.FATAL);		// changes level for current class
+		Configurator.setLevel(Log.getName(), Level.FATAL);									// changes level for current class
 		
 		// The new logging level is FATAL - This message should be skipped
 		Log.info("Info message.. should not be printed");

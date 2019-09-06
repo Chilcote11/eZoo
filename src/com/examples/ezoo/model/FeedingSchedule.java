@@ -30,10 +30,9 @@ public class FeedingSchedule implements Comparable<FeedingSchedule>{
 	private String food = "";
 	
 	@Column 
-	private String notes = "";		// need to add something for nullable?
+	private String notes = "";		
 	
-	@Transient private String animals = "";		// NEVER USE IN DAO
-										// Useful in servlets, specifically FeedingSchedulesServlet
+	@Transient private String animals = "";					// never makes it to the database
 	
 	public FeedingSchedule() {}
 	

@@ -46,9 +46,7 @@ public class FSAssignController {
 							// this may not be best practice though. unsure what rules are
 
 	@RequestMapping(value="/FSAssign", method=RequestMethod.GET)
-	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal) {
 		
 		Log.controllerLog(Origin.CONTROLLER_FSASSIGN_GET, Level.INFO, "navigation");
 		

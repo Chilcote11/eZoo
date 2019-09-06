@@ -54,12 +54,12 @@ public class TestEventDAO {
 		List<Event> allEvents = dao.getAllEvents();
 		Collections.sort(allEvents);
 		System.out.println("All events: ");
-		for (Event e : allEvents) {				// I don't use for-each elsewhere.. not sure why
+		for (Event e : allEvents) {
 			System.out.println(e);
 		}
 		
 		// test getEventByID
-		Event event4 = dao.getEventByID(event3.getEventID()); // 402
+		Event event4 = dao.getEventByID(event3.getEventID()); 	// 402
 		System.out.println("test getEventByID");
 		System.out.println("event4: " + event4);
 		System.out.println(" 			= 			");
@@ -77,7 +77,7 @@ public class TestEventDAO {
 				
 		// test leaveEvent 400
 		try {
-			dao.leaveEvent(cory, event1);		// penguins not that big
+			dao.leaveEvent(cory, event1);		// penguins not that impressive
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -90,13 +90,12 @@ public class TestEventDAO {
 		
 		// test getEventsByUser
 		List<EventAttendee> corysEvents = dao.getEventsByUser(cory);
-//		Collections.sort(corysEvents);
 		System.out.println("Cory[" + cory + "]'s events: ");
 		for (EventAttendee e : corysEvents) {
 			System.out.println(e);
 		}
 		
-		// test deleteEvent						// all things back to normal
+		// test deleteEvent						// all things back to original state
 		try {
 			for (Event e : allEvents) {
 				dao.deleteEvent(e);

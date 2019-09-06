@@ -20,44 +20,21 @@ public class LoginController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
-//	@RequestMapping(value= {"/login" 
-//			, "/login?message=User+successfully+created&messageClass=alert-success"}
-//			, method=RequestMethod.GET)
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String displayLoginForm(Model model
-//			, @RequestParam(value="message", required=false) String message
-//			, @RequestParam(value="messageClass", required=false) String messageClass
-			, @RequestParam(value="error", required=false) String error
-			, @ModelAttribute("message") String mssg
-			, @ModelAttribute("messageClass") String mssgClass) {
+			, @RequestParam(value="error", required=false) String error) {
 		
 		if (error != null) {
 			Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");
 			model.addAttribute("message",  "Username or password is incorrect!");
 			model.addAttribute("messageClass",  "alert-danger");
 		}
-//		else if (message != null) {
-//			Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
-//			model.addAttribute("message",  message);
-//			model.addAttribute("messageClass",  messageClass);
-//		}
-//		else 
-			Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
+
+		Log.controllerLog(Origin.CONTROLLER_LOGIN_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("userToValidate", new User());
 		return "login";
 	}
-	
-//	@RequestMapping(value="/login?error", method=RequestMethod.GET)					// nearly identical to login controller 
-//	public String displayLoginErrorForm(Model model
-//			, @ModelAttribute("message") String message
-//			, @ModelAttribute("messageClass") String messageClass) {
-//		
-//		Log.controllerLog(Origin.CONTROLLER_LOGINERROR_GET, Level.INFO, "navigation");		// different origin
-//		
-//		model.addAttribute("userToValidate", new User());
-//		return "redirect:/login";													// only real difference
-//	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, @Valid @ModelAttribute("userToValidate") User newUser, Errors errors) {
@@ -72,9 +49,7 @@ public class LoginController {
 			
 			return "login";
 		}
-		
-		model.addAttribute("authUser", newUser);		// for display in header
-		
-		return "redirect:/";		// makes no difference, set by defaultSuccessUrl("/")
+			
+		return "redirect:/";		// makes no difference, set by defaultSuccessUrl("/") in WebSecurityConfiguration
 	}
 }

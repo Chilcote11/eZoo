@@ -8,11 +8,7 @@
 	
 	<!-- Spring Forms taglib include -->
 	<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-	
-	<!-- tried including this to use model.addAttribute() ... no luck -->
-	<!--%@ page import="org.springframework.ui.Model" %-->
-	
-	<!-- 	Just some stuff you need -->
+		
 	<header>
 	  <div class="container">
 	  

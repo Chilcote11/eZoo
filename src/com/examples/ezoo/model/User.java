@@ -23,6 +23,8 @@ public class User implements Comparable<User> {
 	@NotEmpty(message = "{username.validate}")
 	private String username = "";
 
+	// TODO: find appropriate pattern to require passwords to have two numbers
+		// most of the attempts below work in simulators (regexr, etc).. but not here
 	@Column @NotEmpty(message = "{password.notempty.validate}")
 	@Pattern(regexp="[$./\\w\\d]{8,}", message = "{password.length.validate}")
 //	@Pattern(regexp="(\\w)*(\\d)(\\w)*(\\d)", message = "{password.numbers.validate}")				// "ConstraintViolationException: Validation failed for classes.. during persist time for groups.."
@@ -36,20 +38,13 @@ public class User implements Comparable<User> {
 //	@Pattern(regexp="^(?=.*?[0-9]{2,}).{8,}$", message = "{password.numbers.validate}")				// numbers must be next to eachother. "aaaaaa11", "11aa..", "aa11aaaa" pass, "aaaaa1a1" does not
 //	@Pattern(regexp="(?=.*?[0-9]{2,}).{8,}", message = "{password.numbers.validate}")				// same as above
 	private String password = "";
-	
-//	@Transient // not an actual column in db.. obviously
-//	PasswordEncoder encoder = new BCryptPasswordEncoder();
-	
+		
 	@Transient
 	@NotEmpty(message = "{role.validate}")
 	private List<String> roles = new ArrayList<>();
-//	private String[] roles = {""};
-	
-//	@Transient 		// not a property in "users" database table
-//	// this is only used in UserDAOImpl
-//	private UserRole roleObject = new UserRole(this);
-	
-	// nested class for inserting user roles objects into database
+		
+	// at one point I considered nesting this class, 
+	// but ultimately had trouble because of the way fields are set with spring forms
 	/*@Entity
 	@Table(name="USER_ROLES")
 	private class UserRole {
@@ -67,7 +62,6 @@ public class User implements Comparable<User> {
 		super();
 		this.username = username;
 		this.password = password;
-//		this.password = encoder.encode(password);
 		this.roles = roles;
 	}
 	
@@ -80,13 +74,13 @@ public class User implements Comparable<User> {
 	}
 
 	// this getter probably shouldn't exist. but needed to run with Spring
+		// TODO: actually haven't checked this... just an assumption
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-//		this.password = encoder.encode(password);
 	}
 
 	public List<String> getRoles() {
@@ -96,11 +90,6 @@ public class User implements Comparable<User> {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	
-//	public UserRole getRoleObject() {
-//		return roleObject;
-//	}
-
 	
 	@Override
 	public int compareTo(User o) {

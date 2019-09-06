@@ -35,11 +35,11 @@ public class Event implements Comparable<Event>{
 	
 	@Column(name="start_time")
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
-	private LocalDateTime startTime = LocalDateTime.now();	// unsure if this is a good initialization
+	private LocalDateTime startTime = LocalDateTime.now();	
 	
 	@Column(name="end_time")
 	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
-	private LocalDateTime endTime = LocalDateTime.now().plusHours(2);	// unsure if this is a good initialization
+	private LocalDateTime endTime = LocalDateTime.now().plusHours(2);
 	
 	@Column(name="creator")
 	@NotEmpty(message = "{eventcreator.validate}")

@@ -34,8 +34,9 @@ public class FSDeleteController {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		FeedingScheduleDAO dao = context.getBean(FeedingScheduleDAO.class);
 		AnimalDAO animalDAO = context.getBean(AnimalDAO.class);
-//		context.close();
+
 		try {
+			
 			// remove feeding schedule from all corresponding animals
 			List<Animal> animals = animalDAO.getAllAnimals();
 			for (Animal animal : animals) {

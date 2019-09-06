@@ -31,8 +31,8 @@ import com.examples.ezoo.dao.UserDAOImpl;
 public class Config {
 
 	@Bean
-	public DataSource dataSource() {									// imported from javax.sql... is this right? - video says yes
-		DriverManagerDataSource ds = new DriverManagerDataSource();		// imported from spring... this is weird
+	public DataSource dataSource() {									// imported from javax.sql
+		DriverManagerDataSource ds = new DriverManagerDataSource();		// imported from spring
 		ds.setDriverClassName("org.postgresql.Driver");
 		ds.setUrl(DAOUtilities.getURL());
 		ds.setUsername(DAOUtilities.getUsername());
@@ -41,11 +41,11 @@ public class Config {
 	}
 	
 	@Bean
-	public LocalSessionFactoryBean sessionFactory(DataSource ds) {		// imported from spring, this should be right
+	public LocalSessionFactoryBean sessionFactory(DataSource ds) {		// imported from spring
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 		factoryBean.setDataSource(ds);
-		factoryBean.setPackagesToScan(new String[] {"com.examples.ezoo.model"});	// may need more?
-		Properties props = new Properties();										// from java.util.. is this right?
+		factoryBean.setPackagesToScan(new String[] {"com.examples.ezoo.model"});
+		Properties props = new Properties();										// from java.util
 		props.setProperty("dialect", "org.hibernate.dialect.PostgreSQL95Dialect");	// newest dialect for PostgreSQL I could find
 		factoryBean.setHibernateProperties(props);
 		return factoryBean;
