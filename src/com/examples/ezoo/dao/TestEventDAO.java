@@ -74,12 +74,18 @@ public class TestEventDAO {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
+				
 		// test leaveEvent 400
 		try {
 			dao.leaveEvent(cory, event1);		// penguins not that big
 		} catch (Exception e) {
 			System.out.println(e);
+		}
+
+		// test getNumberAttending
+		for (Event e : allEvents) {
+			System.out.println("Number attending " + e.getEventName() + "[" + 
+				e.getEventID() + "]: " + dao.getNumberAttending(e.getEventID()));
 		}
 		
 		// test getEventsByUser

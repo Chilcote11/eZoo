@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,16 +34,19 @@ public class Event implements Comparable<Event>{
 	private String description = "";
 	
 	@Column(name="start_time")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	private LocalDateTime startTime = LocalDateTime.now();	// unsure if this is a good initialization
 	
 	@Column(name="end_time")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "MM/dd/yyyy HH:mm")
 	private LocalDateTime endTime = LocalDateTime.now().plusHours(2);	// unsure if this is a good initialization
 	
 	@Column(name="creator")
 	@NotEmpty(message = "{eventcreator.validate}")
 	private String creator = "";
+	
+	@Transient
+	private int numberAttending = 0;
 	
 	
 	public Event() {}
@@ -118,10 +122,19 @@ public class Event implements Comparable<Event>{
 		this.creator = creator;
 	}
 
+	public int getNumberAttending() {
+		return numberAttending;
+	}
+
+	public void setNumberAttending(int numberAttending) {
+		this.numberAttending = numberAttending;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [eventID=" + eventID + ", eventName=" + eventName + ", description=" + description
-				+ ", startTime=" + startTime + ", endTime=" + endTime + ", creator=" + creator + "]";
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", creator=" + creator + ", numberAttending="
+				+ numberAttending + "]";
 	}
 
 	@Override

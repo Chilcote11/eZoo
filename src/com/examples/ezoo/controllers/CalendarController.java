@@ -1,5 +1,6 @@
 package com.examples.ezoo.controllers;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,12 +37,21 @@ public class CalendarController {
 		List<Event> events = dao.getAllEvents();
 		Collections.sort(events);
 		
+		// fill in @Transient 'numberAttending' field
+		for (Event e : events) {
+			e.setNumberAttending( dao.getNumberAttending( e.getEventID() ) );
+		}
+		
 		// Pupulate variables stored in model
 		model.addAttribute("events", events);
 		model.addAttribute("eventToDelete", new Event());
 		model.addAttribute("eventToUpdate", new Event());
+		model.addAttribute("eventDetails", new Event());		// use with details form
 		model.addAttribute("eventToAttend", new Event());
 		model.addAttribute("eventToLeave", new Event());
+//		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName());
+//				// needed for forms
+		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP
 		
 		// add a list of this users events to the model object
 		User me = new User();

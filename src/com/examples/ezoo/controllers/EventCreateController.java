@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,7 +32,11 @@ public class EventCreateController {
 		
 		// TODO logging
 		
-		model.addAttribute("newEvent", new Event());
+		Event newEvent = new Event();
+//		newEvent.setCreator(SecurityContextHolder.getContext().getAuthentication().getName());
+		String creator = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("newEvent", newEvent);
+		model.addAttribute("creator", creator);
 		return "EventCreate";
 	}
 	

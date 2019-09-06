@@ -96,6 +96,23 @@ public class EventDAOImpl implements EventDAO {
 				"user: " + user.getUsername() +  
 				", event: " + event.getEventID());
 	}
+	
+	@Override
+	public int getNumberAttending(int eventID) {
+		Session session = sessionFactory.openSession();
+//		session.beginTransaction();
+		Query<EventAttendee> query = session.createQuery("from EventAttendee WHERE event_id = :EI");
+		query.setParameter("EI", eventID);
+//		query.executeUpdate();
+		int numberAttending = query.list().size();			// not sure if I can do this
+//		session.getTransaction().commit();			// also fairly sure this is out of order
+		session.close();
+		
+		Log.daoLog(Origin.EVENTDAO_GETNUMBERATTENDING, Level.DEBUG, 
+				numberAttending + " events retrieved");
+		
+		return numberAttending;
+	}
 
 	@Override
 	public void saveEvent(Event event) throws Exception {

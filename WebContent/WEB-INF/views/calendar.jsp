@@ -28,9 +28,12 @@
 						<th class="text-center">Update</th>
 						<th class="text-center">Delete</th>
 						<th class="text-center">Event ID</th>
-						<th class="text-center">Event name</th>
-						<th class="text-center">Event date</th>
-						<th class="text-center">Event description</th>
+						<th class="text-center">Name</th>
+						<th class="text-center">Creator</th>
+						<th class="text-center">Attending</th>
+						<th class="text-center">Date</th>
+						<th class="text-center">Status</th>
+						<th class="text-center">Details</th>
 						<th class="text-center">Attend</th>
 					</tr>
 				</thead>
@@ -41,8 +44,10 @@
 								<sf:form action="EventUpdate" modelAttribute="eventToUpdate" method="get">
 									<sf:hidden path="eventID" value="${event.eventID}" />
 									<sf:hidden path="eventName" value="${event.eventName}" />
-									<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
 									<sf:hidden path="description" value="${event.description}" />
+									<sf:hidden path="startTime" value="${LocalDateTime.parse(event.startTime)}" />
+									<sf:hidden path="endTime" value="${LocalDateTime.parse(event.endTime)}" />
+									<sf:hidden path="endTime" value="${event.creator}" />
 									<sf:button type="submit" class="btn btn-primary">Update</sf:button>
 								</sf:form>
 							</td>
@@ -50,15 +55,39 @@
 								<sf:form action="EventDelete" modelAttribute="eventToDelete" method="post">
 									<sf:hidden path="eventID" value="${event.eventID}" />
 									<sf:hidden path="eventName" value="${event.eventName}" />
-									<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
 									<sf:hidden path="description" value="${event.description}" />
+									<sf:hidden path="startTime" value="${LocalDateTime.parse(event.startTime)}" />
+									<sf:hidden path="endTime" value="${LocalDateTime.parse(event.endTime)}" />
+									<sf:hidden path="endTime" value="${event.creator}" />
 									<sf:button type="submit" class="btn btn-primary">Delete</sf:button>
 								</sf:form>
 							</td>
 							<td><fmt:formatNumber value="${event.eventID}"/></td>
 							<td><c:out value="${event.eventName}" /></td>
-							<td><c:out value="${event.eventDate}" /></td>
-							<td><c:out value="${event.description}" /></td>
+							<td><c:out value="${event.creator}" /></td>
+							<td><c:out value="${event.numberAttending}" /></td>
+							<td><c:out value="${event.startTime}" /></td>
+							<td>
+								<c:set var="status" value="${'Closed'}" />
+								<c:if test="${ now.isBefore( event.endTime )}">
+									<c:set var="status" value="${'In Progress'}" />
+									<c:if test="${ now.isBefore( event.startTime ) }" >
+										<c:set var="status" value="${'Open'}" />
+									</c:if>
+								</c:if>
+								<c:out value="${status}" />
+							</td>
+							<td>
+								<sf:form action="EventDetails" modelAttribute="eventDetails" method="get">
+									<sf:hidden path="eventID" value="${event.eventID}" />
+									<sf:hidden path="eventName" value="${event.eventName}" />
+									<sf:hidden path="description" value="${event.description}" />
+									<sf:hidden path="startTime" value="${LocalDateTime.parse(event.startTime)}" />
+									<sf:hidden path="endTime" value="${LocalDateTime.parse(event.endTime)}" />
+									<sf:hidden path="creator" value="${event.creator}" />
+									<sf:button type="submit" class="btn btn-primary">Details</sf:button>
+								</sf:form>
+							</td>
 							<td>
 								<c:set var="alreadyGoing" value="${false}"/>
 								<c:forEach var="oneOfMine" items="${myEvents}">
@@ -70,8 +99,10 @@
 									<sf:form action="EventLeave" modelAttribute="eventToLeave" method="post">
 										<sf:hidden path="eventID" value="${event.eventID}" />
 										<sf:hidden path="eventName" value="${event.eventName}" />
-										<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
 										<sf:hidden path="description" value="${event.description}" />
+										<sf:hidden path="startTime" value="${LocalDateTime.parse(event.startTime)}" />
+										<sf:hidden path="endTime" value="${LocalDateTime.parse(event.endTime)}" />
+										<sf:hidden path="endTime" value="${event.creator}" />
 										<sf:button type="submit" class="btn btn-primary">Bail</sf:button>
 									</sf:form>
 								</c:if>
@@ -79,8 +110,10 @@
 									<sf:form action="EventSignUp" modelAttribute="eventToAttend" method="post">
 										<sf:hidden path="eventID" value="${event.eventID}" />
 										<sf:hidden path="eventName" value="${event.eventName}" />
-										<sf:hidden path="eventDate" value="${LocalDateTime.parse(event.eventDate)}" />
 										<sf:hidden path="description" value="${event.description}" />
+										<sf:hidden path="startTime" value="${LocalDateTime.parse(event.startTime)}" />
+										<sf:hidden path="endTime" value="${LocalDateTime.parse(event.endTime)}" />
+										<sf:hidden path="endTime" value="${event.creator}" />
 										<sf:button type="submit" class="btn btn-primary">Sign me up!</sf:button>
 									</sf:form>
 								</c:if>
