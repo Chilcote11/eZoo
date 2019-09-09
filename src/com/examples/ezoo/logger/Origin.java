@@ -1,5 +1,11 @@
 package com.examples.ezoo.logger;
 
+/**
+ * This is the origin of any given logging message.
+ * 
+ * @author Cory Chilcote
+ *
+ */
 public enum Origin {
 	
 	ANIMALDAO_GETALL,

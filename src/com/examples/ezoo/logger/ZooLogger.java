@@ -5,10 +5,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 
-/*
- * Two methods created daoLog and controllerLog.
+/**
+ * Logger for the entire eZoo application
+ * 
+ * Uses a custom implementation of Log4J
+ * Configuration found in log4j2.properties
+ * 	log messages saved to file with location found there
+ * 
+ * Two methods created: daoLog and controllerLog.
  * 		For now they're identical, but may diverge down the road
  * 
+ * @author Cory Chilcote
+ * @since 2.0
  * */
 
 public class ZooLogger {

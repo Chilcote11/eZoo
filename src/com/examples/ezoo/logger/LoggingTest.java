@@ -5,6 +5,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 
+/**
+ * Very simple test script for verifying Log4J setup
+ * 
+ * Read from log file specified in log4j2.properties to verify setup
+ * 
+ * @author Cory Chilcote
+ *
+ */
 public class LoggingTest {
 	
 	private static Logger Log = LogManager.getLogger(LoggingTest.class.getName());
