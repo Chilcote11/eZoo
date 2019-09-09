@@ -6,8 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-// fields should not be modified after initialization, dao is not setup to handle that
-// this is a very useless class and db table
+/**
+ * POJO used to represent USER_ROLES table in database
+ * 
+ * Uses an EmbeddedId representing a composite key
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Entity
 @Table(name="USER_ROLES")
 public class UserRole {

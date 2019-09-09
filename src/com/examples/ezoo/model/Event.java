@@ -17,6 +17,15 @@ import javax.validation.constraints.NotNull;
 import org.aspectj.lang.annotation.After;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * POJO used to represent EVENTS table in database
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Entity
 @Table(name="EVENTS")
 public class Event implements Comparable<Event>{

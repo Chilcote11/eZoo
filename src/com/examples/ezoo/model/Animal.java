@@ -9,7 +9,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//@Entity(name="ANIMALS")
+/**
+ * POJO used to represent ANIMALS table in database
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Entity
 @Table(name="ANIMALS")
 public class Animal implements Comparable<Animal> {

@@ -6,6 +6,18 @@ import java.util.List;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * An embedded object useful for working with the composite
+ *  (username, role) key in the USER_ROLES database table
+ *  
+ * Used by UserRole class only
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Embeddable
 public class EmbeddedUserRole implements Serializable {
 

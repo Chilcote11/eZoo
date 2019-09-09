@@ -15,6 +15,15 @@ import javax.validation.constraints.Pattern;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * POJO used to represent USERS table in database
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Entity
 @Table(name="USERS")
 public class User implements Comparable<User> {

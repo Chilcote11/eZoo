@@ -6,6 +6,18 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/**
+ * An embedded object useful for working with the composite
+ *  (username, event_id) key in the EVENT_ATTENDEES database table
+ *  
+ * Used by EventAttendee class only
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Embeddable
 public class EmbeddedEventAttendee implements Serializable{
 

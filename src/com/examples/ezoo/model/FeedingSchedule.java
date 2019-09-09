@@ -12,6 +12,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * POJO used to represent FEEDING_SCHEDULES table in database
+ * 
+ * Contains instructions for Spring validation.
+ * 	Messages found in ValidationMessages.properties 
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Entity
 @Table(name="feeding_schedules")
 public class FeedingSchedule implements Comparable<FeedingSchedule>{
