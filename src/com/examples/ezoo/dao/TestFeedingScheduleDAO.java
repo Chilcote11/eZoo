@@ -11,19 +11,24 @@ import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
-/*
- * This test class assumes:
- * 		There are no feeding schedules with ID 400 or 401 already existing
- * 		A feeding schedule with id=1 exists (preferrably containing giraffes as food)
- * 		Leo starts with id=1 and feeding_schedule = 1 (eating giraffes)
- * 		Animal(id=4) exists (preferrably named "hungry") and is originally assigned no feeding schedule
+/**
+ * Test script to verify FeedingScheduleDAOImpl methods 
  * 
- * This test class makes changes, but resets all values to their original state upon completion
+ * Assumptions:
+ * 		+ There are no feeding schedules with ID 400 or 401 already existing
+ * 		+ A feeding schedule with id=1 exists (preferrably containing giraffes as food)
+ * 		+ Leo starts with id=1 and feeding_schedule = 1 (eating giraffes)
+ * 		+ Animal(id=4) exists (preferrably named "hungry") and is originally assigned no feeding schedule
  * 
- * !!! REMEMBER TO SORT !!!
- * 			your assignments and removals won't work if you don't
+ * This test class makes changes to the database, 
+ * 	but resets all values to their original state upon completion
+ * 
+ * Sorting (using Collections.sort) is important for several of these methods; 
+ * 	if unsorted the wrong feeding schedule could be operated on
+ * 
+ * @author Cory Chilcote
+ * 
  */
-
 public class TestFeedingScheduleDAO {
 
 	public static void main(String[] args) {

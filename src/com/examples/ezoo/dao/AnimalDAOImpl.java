@@ -19,8 +19,17 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
-@Repository
-@Transactional
+/**
+ * Uses Spring and Hibernate functions to perform CRUD operations
+ * on Animal class
+ * 
+ * Documentation for each method provided in AnimalDAO interface
+ * 
+ * @author Cory Chilcote
+ *
+ */
+@Repository			// this class acts as a database repository
+@Transactional 		// tells Spring to create a proxy with this interface
 public class AnimalDAOImpl implements AnimalDAO {
 	
 	private ZooLogger Log = new ZooLogger();

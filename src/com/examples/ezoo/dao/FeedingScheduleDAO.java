@@ -5,6 +5,12 @@ import java.util.List;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
+/**
+ * Main interface used to execute CRUD methods on FeedingSchedule class
+ * 
+ * @author Cory Chilcote
+ *
+ */
 public interface FeedingScheduleDAO {
 	
 	void saveFeedingSchedule(FeedingSchedule schedule) throws Exception;						// save a feeding schedule to the database

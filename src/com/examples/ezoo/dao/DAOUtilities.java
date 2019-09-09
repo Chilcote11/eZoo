@@ -8,7 +8,12 @@ import java.sql.SQLException;
 /**
  * Class used to retrieve DAO Implementations. Serves as a factory.
  * 
- * @author anon
+ * @author anon - someone at Revature
+ * 		+ This class was part of the original template
+ * @author Cory Chilcote
+ * 		+ modified this class when switching to Spring and Hibernate
+ * @since 1.0
+ * @version 2.0
  *
  */
 public class DAOUtilities {

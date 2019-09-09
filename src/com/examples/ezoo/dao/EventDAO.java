@@ -6,9 +6,15 @@ import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
+/**
+ * Main interface used to execute CRUD methods on Event class
+ * 
+ * @author Cory Chilcote
+ *
+ */
 public interface EventDAO {
 	
-	// for users and admins
+	// Security: for users and admins
 	Event getEventByID(Integer eventID);							// check out an event
 	List<Event> getAllEvents();										// view zoo schedule
 	List<EventAttendee> getEventsByUser(User user);					// see events you're signed up for
@@ -16,7 +22,7 @@ public interface EventDAO {
 	void leaveEvent(User user, Event event) throws Exception;		// leave event
 	int getNumberAttending(int eventID);							// see how many attending an event
 
-	// for admins only
+	// Security: for admins only
 	void saveEvent(Event event) throws Exception;					// create new event
 	void deleteEvent(Event event) throws Exception;					// delete an event
 	void updateEvent(Event event) throws Exception;					// update an event

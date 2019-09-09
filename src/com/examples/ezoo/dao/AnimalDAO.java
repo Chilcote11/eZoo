@@ -6,7 +6,11 @@ import com.examples.ezoo.model.Animal;
 
 /**
  * Main interface used to execute CRUD methods on Animal class
- * @author anon
+ * 
+ * @author anon - someone at Revature
+ * 		+ This was part of the original template
+ * @author Cory Chilcote
+ * 		+ Added the delete animal method
  *
  */
 public interface AnimalDAO {
@@ -23,6 +27,11 @@ public interface AnimalDAO {
 	 */
 	void saveAnimal(Animal animalToSave) throws Exception;
 	
+	/**
+	 * Used to delete an animal from the datastore
+	 * 
+	 * @param animalToDelete
+	 */
 	void deleteAnimal(Animal animalToDelete) throws Exception;
 
 	

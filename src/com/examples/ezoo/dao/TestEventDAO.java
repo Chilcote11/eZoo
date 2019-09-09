@@ -18,6 +18,19 @@ import com.examples.ezoo.model.User;
  * This test class assumes that a user 'cory' exists in USERS table
  * When finished running, all data is restored to its original state
  * */
+/**
+ * Test script to verify EventDAOImpl methods 
+ * 
+ * Assumptions:
+ * 		+ A user 'cory' exists in the database
+ * 		+ There are no events with id=400-402 already existing
+ * 
+ * This test class makes changes to the database, 
+ * 	but resets all values to their original state upon completion
+ * 
+ * @author Cory Chilcote
+ * 
+ */
 public class TestEventDAO {
 
 	public static void main(String[] args) {

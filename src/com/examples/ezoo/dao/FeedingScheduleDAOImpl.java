@@ -14,6 +14,15 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
+/**
+ * Uses Spring and Hibernate functions to perform CRUD operations
+ * on FeedingSchedule class
+ * 
+ * Documentation for each method provided in FeedingScheduleDAO interface
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Repository
 @Transactional
 public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{

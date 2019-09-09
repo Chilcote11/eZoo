@@ -15,6 +15,15 @@ import com.examples.ezoo.model.EmbeddedUserRole;
 import com.examples.ezoo.model.User;
 import com.examples.ezoo.model.UserRole;
 
+/**
+ * Uses Spring and Hibernate functions to perform CRUD operations
+ * on User class
+ * 
+ * Documentation for each method provided in UserDAO interface
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Repository
 @Transactional
 public class UserDAOImpl implements UserDAO {

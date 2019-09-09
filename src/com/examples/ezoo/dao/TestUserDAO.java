@@ -9,6 +9,18 @@ import org.springframework.context.support.AbstractApplicationContext;
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.User;
 
+/**
+ * Test script to verify FeedingScheduleDAOImpl methods 
+ * 
+ * Assumptions:
+ * 		+ Usernames 'user22', 'admin22', and 'another22' do not already exist in the database
+ * 
+ * This test class makes changes to the database, 
+ * 	but resets all values to their original state upon completion
+ * 
+ * @author Cory Chilcote
+ * 
+ */
 public class TestUserDAO {
 	
 	public static void main(String[] args) {

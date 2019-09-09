@@ -10,6 +10,18 @@ import org.springframework.context.support.AbstractApplicationContext;
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.model.Animal;
 
+/**
+ * Test script to verify AnimalDAOImpl methods 
+ * 
+ * Assumptions:
+ * 		+ There is no feeding schedule with ID 400 already existing
+ * 
+ * This test class makes changes to the database, 
+ * 	but resets all values to their original state upon completion
+ * 
+ * @author Cory Chilcote
+ * 
+ */
 public class TestAnimalDAO {
 	
 	public static void main(String[] args) {

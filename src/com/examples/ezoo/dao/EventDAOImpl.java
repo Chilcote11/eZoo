@@ -16,6 +16,15 @@ import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
+/**
+ * Uses Spring and Hibernate functions to perform CRUD operations
+ * on Event class
+ * 
+ * Documentation for each method provided in EventDAO interface
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Repository
 @Transactional
 public class EventDAOImpl implements EventDAO {
