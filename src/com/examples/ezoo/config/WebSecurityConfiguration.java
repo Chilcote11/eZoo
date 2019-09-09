@@ -14,11 +14,21 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * Configures Spring Security
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(jsr250Enabled=true, securedEnabled=true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
+	/**
+	 * Configures how HTTP requests are secured by interceptors
+	 * That is, what happens 'security wise' when the application receives a request
+	 */
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
@@ -74,6 +84,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		;
 	}
 	
+	/**
+	 * used to configure Spring's filter chain
+	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		
@@ -93,8 +106,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Autowired
-	DataSource ds;	// I think this will work?
+	DataSource ds;
 	
+	/**
+	 * Used to configure details about user store(s)
+	 * Tells Spring how to check a user's credentails to authenticate them 
+	 */
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
@@ -105,16 +122,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.and()
 				.withUser("admin")
 					.password("{noop}passw0rd")
-					//.authorities("ROLE_USER", "ROLE_ADMIN");
-					.authorities("ROLE_ADMIN");
+					.authorities("ROLE_USER", "ROLE_ADMIN");
+//					.authorities("ROLE_ADMIN");
 		
 		auth
 			.jdbcAuthentication()
 				.dataSource(ds)
-//				.usersByUsernameQuery("SELECT username, password, active FROM USERS WHERE username = ?") // keep "active"?
 				.usersByUsernameQuery("SELECT username, password, true FROM users WHERE username = ?")
 				.authoritiesByUsernameQuery("SELECT username, role FROM user_roles WHERE username = ?")
-//				.groupAuthoritiesByUsername("")
 				.passwordEncoder(new BCryptPasswordEncoder())
 				;
 	}

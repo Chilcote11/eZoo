@@ -25,7 +25,12 @@ import com.examples.ezoo.dao.FeedingScheduleDAOImpl;
 import com.examples.ezoo.dao.UserDAO;
 import com.examples.ezoo.dao.UserDAOImpl;
 
-
+/**
+ * Dictates to Spring how to manage transactions with Hibernate
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Configuration						// from Spring
 @EnableTransactionManagement		// specifies that Spring will manage database transactions
 public class Config {
@@ -78,6 +83,12 @@ public class Config {
 		return dao;
 	}
 	
+	/**
+	 * Configure a PlatformTransactionManager bean to return a HibernateTransactionManager
+	 * 
+	 * @param sessionFactory
+	 * @return
+	 */
 	@Bean
 	public PlatformTransactionManager txManager(SessionFactory sessionFactory) {		// import from Spring
 		return new HibernateTransactionManager(sessionFactory);
