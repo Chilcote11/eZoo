@@ -29,15 +29,16 @@ import com.examples.ezoo.dao.UserDAOImpl;
  * Dictates to Spring how to manage transactions with Hibernate
  * 
  * @author Cory Chilcote
+ * @since 2.0
  *
  */
-@Configuration						// from Spring
+@Configuration						// for Spring
 @EnableTransactionManagement		// specifies that Spring will manage database transactions
 public class Config {
 
 	@Bean
-	public DataSource dataSource() {									// imported from javax.sql
-		DriverManagerDataSource ds = new DriverManagerDataSource();		// imported from spring
+	public DataSource dataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("org.postgresql.Driver");
 		ds.setUrl(DAOUtilities.getURL());
 		ds.setUsername(DAOUtilities.getUsername());
@@ -46,12 +47,12 @@ public class Config {
 	}
 	
 	@Bean
-	public LocalSessionFactoryBean sessionFactory(DataSource ds) {		// imported from spring
+	public LocalSessionFactoryBean sessionFactory(DataSource ds) {
 		LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 		factoryBean.setDataSource(ds);
 		factoryBean.setPackagesToScan(new String[] {"com.examples.ezoo.model"});
-		Properties props = new Properties();										// from java.util
-		props.setProperty("dialect", "org.hibernate.dialect.PostgreSQL95Dialect");	// newest dialect for PostgreSQL I could find
+		Properties props = new Properties();										
+		props.setProperty("dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
 		factoryBean.setHibernateProperties(props);
 		return factoryBean;
 	}
@@ -87,16 +88,22 @@ public class Config {
 	 * Configure a PlatformTransactionManager bean to return a HibernateTransactionManager
 	 * 
 	 * @param sessionFactory
-	 * @return
+	 * @return HibernateTransactionManager
 	 */
 	@Bean
-	public PlatformTransactionManager txManager(SessionFactory sessionFactory) {		// import from Spring
+	public PlatformTransactionManager txManager(SessionFactory sessionFactory) {
 		return new HibernateTransactionManager(sessionFactory);
 	}
 	
+	/**
+	 * Causes any class annotated with `@Repository` to have thrown exceptions 
+	 * 	translated to Spring exceptions
+	 * 
+	 * @return PersistenceExceptionTranslationPostProcessor
+	 */
 	@Bean
-	public BeanPostProcessor persistenceTranslation() {					// from Spring
-		return new PersistenceExceptionTranslationPostProcessor();		// from Spring
+	public BeanPostProcessor persistenceTranslation() {
+		return new PersistenceExceptionTranslationPostProcessor();	// 
 	}
 
 }

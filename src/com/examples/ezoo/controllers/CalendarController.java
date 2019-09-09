@@ -26,6 +26,7 @@ import com.examples.ezoo.model.User;
  * Allows users and employees to see and interact with the zoo's events
  * 
  * @author Cory Chilcote
+ * @since 2.0
  *
  */
 @Controller
@@ -36,8 +37,12 @@ public class CalendarController {
 	/**
 	 * Prepares attributes for event management (calendar) page
 	 * 
-	 * @param model
+	 * @param model - functions like a map with String keys and values
+	 * 		+ similar to the request and session objects in a servlet.
+	 * 			model contents are implicitly added to the Request object for JSPs.
+	 * 			You can retrieve model data easily with JSTL.
 	 * @return view name
+	 *
 	 */
 	@RequestMapping(value="/calendar", method=RequestMethod.GET)
 	public String DisplayCalendar(Model model) {
@@ -61,7 +66,7 @@ public class CalendarController {
 		model.addAttribute("eventDetails", new Event());		// use with details form
 		model.addAttribute("eventToAttend", new Event());
 		model.addAttribute("eventToLeave", new Event());
-		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP, must have here
+		model.addAttribute("now", LocalDateTime.now());			// won't work in JSP, must have here
 		
 		// add a list of this users events to the model object
 		User me = new User();

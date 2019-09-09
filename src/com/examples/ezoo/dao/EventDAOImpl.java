@@ -23,15 +23,18 @@ import com.examples.ezoo.model.User;
  * Documentation for each method provided in EventDAO interface
  * 
  * @author Cory Chilcote
+ * @version 2.0
+ * @since 1.0
  *
  */
-@Repository
-@Transactional
+@Repository			// this class acts as a database repository
+@Transactional 		// tells Spring to create a proxy with this interface
 public class EventDAOImpl implements EventDAO {
 	
 	private ZooLogger Log = new ZooLogger();
 	
-	private SessionFactory sessionFactory;		// from Spring
+	private SessionFactory sessionFactory;	
+	// Spring and Hibernate need this for data access.  See Config.java
 	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -44,7 +47,7 @@ public class EventDAOImpl implements EventDAO {
 	@Override
 	public Event getEventByID(Integer eventID) {
 		
-		if (eventID == null) {					// assuming I'll need this
+		if (eventID == null) {
 			return null;
 		}
 		
@@ -57,6 +60,7 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public List<Event> getAllEvents() {
+		
 		Session session = sessionFactory.openSession();
 		Query<Event> results = session.createQuery("from Event");
 		List<Event> events = results.list();
@@ -132,12 +136,12 @@ public class EventDAOImpl implements EventDAO {
 	public void deleteEvent(Event event) throws Exception {
 				
 		// remove from EVENT_ATTENDEES table
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Session session = sessionFactory.openSession();			
+		session.beginTransaction();								// need this for update and delete queries with parameters
 		Query query = session.createQuery("DELETE FROM EventAttendee WHERE event_id = :EI");
 		query.setParameter("EI", event.getEventID());
-		query.executeUpdate();
-		session.getTransaction().commit();			// also fairly sure this is out of order
+		query.executeUpdate();									// execute an update or delete statement
+		session.getTransaction().commit();						// nothing goes to db until this statement executes
 		session.close();
 		
 		// remove from EVENTS table
@@ -151,7 +155,7 @@ public class EventDAOImpl implements EventDAO {
 	public void updateEvent(Event event) throws Exception {
 		
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		session.beginTransaction();								// need this for update and delete queries with parameters
 		Query query = session.createQuery("UPDATE Event SET name = :N, description = :D , "
 				+ "start_time = :ST, end_time = :ET, creator = :C WHERE event_id = :EI");
 		query.setParameter("N", event.getEventName());
@@ -160,8 +164,8 @@ public class EventDAOImpl implements EventDAO {
 		query.setParameter("ET", event.getEndTime());
 		query.setParameter("C", event.getCreator());
 		query.setParameter("EI", event.getEventID());
-		query.executeUpdate();
-		session.getTransaction().commit();
+		query.executeUpdate();									// execute an update or delete statement
+		session.getTransaction().commit();						// nothing goes to db until this statement executes
 		session.close();
 		
 		Log.daoLog(Origin.EVENTDAO_UPDATE, Level.DEBUG, event);

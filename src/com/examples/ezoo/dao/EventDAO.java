@@ -10,6 +10,8 @@ import com.examples.ezoo.model.User;
  * Main interface used to execute CRUD methods on Event class
  * 
  * @author Cory Chilcote
+ * @version 2.0
+ * @since 1.0
  *
  */
 public interface EventDAO {

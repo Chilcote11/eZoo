@@ -13,6 +13,7 @@ import javax.persistence.Table;
  * 	Messages found in ValidationMessages.properties 
  * 
  * @author Cory Chilcote
+ * @since 2.0
  *
  */
 @Entity

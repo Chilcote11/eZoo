@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
  * 	Messages found in ValidationMessages.properties 
  * 
  * @author Cory Chilcote
+ * @since 2.0
  *
  */
 @Embeddable

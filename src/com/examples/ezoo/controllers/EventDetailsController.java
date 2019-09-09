@@ -15,7 +15,7 @@ import com.examples.ezoo.model.Event;
  * Allows users to check out the details of an event
  * 
  * @author Cory Chilcote
- *
+ * @since 2.0
  */
 @Controller
 public class EventDetailsController {
@@ -25,7 +25,10 @@ private ZooLogger Log = new ZooLogger();
 	/**
 	 * Prepares attributes for event details page
 	 * 
-	 * @param model
+	 * @param model - functions like a map with String keys and values
+	 * 		+ similar to the request and session objects in a servlet.
+	 * 			model contents are implicitly added to the Request object for JSPs.
+	 * 			You can retrieve model data easily with JSTL.
 	 * @param eventToDisplay
 	 * @return view name
 	 */

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * Provides configuration for Spring MVC container
  * 
  * @author Cory Chilcote
- * @version 2.0
+ * @since 2.0
  *
  */
 public class ApplicationConfiguration extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -21,7 +21,7 @@ public class ApplicationConfiguration extends AbstractAnnotationConfigDispatcher
 	}
 	
 	/**
-	 * The two methods below inform Spring of my configuration classes and effectively link them
+	 * The two methods below inform Spring of configuration classes and effectively link them
 	 */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {

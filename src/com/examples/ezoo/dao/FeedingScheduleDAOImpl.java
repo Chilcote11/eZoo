@@ -23,8 +23,8 @@ import com.examples.ezoo.model.FeedingSchedule;
  * @author Cory Chilcote
  *
  */
-@Repository
-@Transactional
+@Repository			// this class acts as a database repository
+@Transactional 		// tells Spring to create a proxy with this interface
 public class FeedingScheduleDAOImpl implements FeedingScheduleDAO{
 	
 	private ZooLogger Log = new ZooLogger();

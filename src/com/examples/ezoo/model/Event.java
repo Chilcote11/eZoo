@@ -24,6 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 	Messages found in ValidationMessages.properties 
  * 
  * @author Cory Chilcote
+ * @since 2.0
  *
  */
 @Entity
@@ -54,7 +55,7 @@ public class Event implements Comparable<Event>{
 	@NotEmpty(message = "{eventcreator.validate}")
 	private String creator = "";
 	
-	@Transient
+	@Transient						// never sees the database
 	private int numberAttending = 0;
 	
 	

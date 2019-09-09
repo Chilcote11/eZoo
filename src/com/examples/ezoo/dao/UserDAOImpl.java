@@ -24,8 +24,8 @@ import com.examples.ezoo.model.UserRole;
  * @author Cory Chilcote
  *
  */
-@Repository
-@Transactional
+@Repository			// this class acts as a database repository
+@Transactional 		// tells Spring to create a proxy with this interface
 public class UserDAOImpl implements UserDAO {
 	
 	private ZooLogger Log = new ZooLogger();

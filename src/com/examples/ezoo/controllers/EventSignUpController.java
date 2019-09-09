@@ -21,6 +21,7 @@ import com.examples.ezoo.model.User;
  * Allows users to sign up for an event
  * 
  * @author Cory Chilcote
+ * @since 2.0
  *
  */
 @Controller
@@ -31,7 +32,10 @@ public class EventSignUpController {
 	/**
 	 * Calls DAO method to save an EventAttendee
 	 * 
-	 * @param model
+	 * @param model - functions like a map with String keys and values
+	 * 		+ similar to the request and session objects in a servlet.
+	 * 			model contents are implicitly added to the Request object for JSPs.
+	 * 			You can retrieve model data easily with JSTL.
 	 * @param eventToAttend
 	 * @return view name
 	 */

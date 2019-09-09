@@ -23,7 +23,7 @@ import com.examples.ezoo.model.Event;
  * Allows users to update a previously created event
  * 
  * @author Cory Chilcote
- *
+ * @since 2.0
  */
 @Controller
 public class EventUpdateController {
@@ -33,7 +33,10 @@ public class EventUpdateController {
 	/**
 	 * Prepares attributes for event update page
 	 * 
-	 * @param model
+	 * @param model - functions like a map with String keys and values
+	 * 		+ similar to the request and session objects in a servlet.
+	 * 			model contents are implicitly added to the Request object for JSPs.
+	 * 			You can retrieve model data easily with JSTL.
 	 * @param eventToUpdate
 	 * @return view name
 	 */
@@ -43,16 +46,19 @@ public class EventUpdateController {
 		Log.controllerLog(Origin.CONTROLLER_EVENTUPDATE_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("eventToUpdate", eventToUpdate);	// transfer
-		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName()); // currently unused
+		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName());
 		return "EventUpdate";
 	}
 	
 	/**
 	 * Validates form inputs and calls DAO method to update an event
 	 * 
-	 * @param model
+	 * @param model - functions like a map with String keys and values
+	 * 		+ similar to the request and session objects in a servlet.
+	 * 			model contents are implicitly added to the Request object for JSPs.
+	 * 			You can retrieve model data easily with JSTL.
 	 * @param eventToUpdate
-	 * @param errors
+	 * @param errors - validation errors. reference model class (entity)
 	 * @return view name
 	 */
 	@RequestMapping(value="/EventUpdate", method=RequestMethod.POST)

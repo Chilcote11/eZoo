@@ -21,21 +21,21 @@
 	<h1>eZoo <small>Event Details</small></h1>
 	<hr class="paw-primary">
 	
- 		  <div style="font-size: 3em">
+	  <div style="font-size: 3em">
 	  	<c:out value="${eventToDisplay.eventName}  [event ID: ${eventToDisplay.eventID}]" /></td>
 	  </div>
 	  <div></div>
 	  <div style="font-size: 2em">
-	  	<c:out value="Description:     ${eventToDisplay.description}" /></td>
+	  	<c:out value="Description:     	${eventToDisplay.description}" /></td>
 	  </div>
 	  <div style="font-size: 2em">
-	  	<c:out value="Date Begin:     ${eventToDisplay.startTime}" /></td>
+	  	<c:out value="Date Begin:     	${eventToDisplay.startTime}" /></td>
 	  </div>
 	  <div style="font-size: 2em">
-	  	<c:out value="Date End:     ${eventToDisplay.endTime}" /></td>
+	  	<c:out value="Date End:     	${eventToDisplay.endTime}" /></td>
 	  </div>
 	  <div style="font-size: 2em">
-	  	<c:out value="Created By:     ${eventToDisplay.creator}" /></td>
+	  	<c:out value="Created By:     	${eventToDisplay.creator}" /></td>
 	  </div>
 
   </div>

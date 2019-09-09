@@ -9,15 +9,14 @@
 <!-- Spring Forms taglib include -->
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 
-<!-- 	Just some stuff you need -->
 <header>
   <div class="container">
 
-<c:choose>
-<c:when test="${not empty message }">
-  <p class="alert ${messageClass}">${message }</p>
-</c:when>
-</c:choose>
+	<c:choose>
+	<c:when test="${not empty message }">
+	  <p class="alert ${messageClass}">${message }</p>
+	</c:when>
+	</c:choose>
 
 	<h1>eZoo <small>Events</small></h1>
 	<hr class="paw-primary">
