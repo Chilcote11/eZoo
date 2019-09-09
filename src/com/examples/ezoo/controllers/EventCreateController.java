@@ -40,7 +40,7 @@ public class EventCreateController {
 	@RequestMapping(value="/EventCreate", method=RequestMethod.GET)
 	public String DisplayCreateEventForm(Model model) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_EVENTCREATE_GET, Level.INFO, "navigation");
 		
 		Event newEvent = new Event();
 		String creator = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -60,10 +60,10 @@ public class EventCreateController {
 	@RequestMapping(value="/EventCreate", method=RequestMethod.POST)
 	public String createEvent(Model model, @Valid @ModelAttribute("newEvent") Event newEvent, Errors errors) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_EVENTCREATE_POST, Level.INFO, "navigation");
 		
 		if (errors.hasErrors()) {
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTCREATE_POST, Level.WARN, "validation errors");
 			
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
 			model.addAttribute("messageClass",  "alert-danger");
@@ -80,21 +80,21 @@ public class EventCreateController {
 			context.close();
 			model.addAttribute("message",  "Event successfully created");
 			model.addAttribute("messageClass", "alert-success");
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTCREATE_POST, Level.INFO, "save successful");
 			return "redirect:/calendar";
 		} catch(DataIntegrityViolationException e) {
 			e.printStackTrace();
 			model.addAttribute("message",  "Id of " + newEvent.getEventID() + " is already in use");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTCREATE_POST, Level.ERROR, "exception: duplicate animalID");
 			return "EventCreate";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message",  "There was a problem creating the event at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTCREATE_POST, Level.ERROR, "unknown exception thrown");
 			return "EventCreate";
 		}
 

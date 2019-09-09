@@ -40,7 +40,7 @@ public class EventUpdateController {
 	@RequestMapping(value="/EventUpdate", method=RequestMethod.GET)
 	public String DisplayUpdatePage(Model model, @ModelAttribute("eventToUpdate") Event eventToUpdate) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_EVENTUPDATE_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("eventToUpdate", eventToUpdate);	// transfer
 		model.addAttribute("creator", SecurityContextHolder.getContext().getAuthentication().getName()); // currently unused
@@ -58,10 +58,10 @@ public class EventUpdateController {
 	@RequestMapping(value="/EventUpdate", method=RequestMethod.POST)
 	public String updateEvent(Model model, @Valid @ModelAttribute("eventToUpdate") Event eventToUpdate, Errors errors) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_EVENTUPDATE_POST, Level.INFO, "navigation");
 		
 		if (errors.hasErrors()) {
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTUPDATE_POST, Level.WARN, "validation errors");
 			
 			model.addAttribute("message",  "Missing or invalid entries! Please try again");
 			model.addAttribute("messageClass",  "alert-danger");
@@ -78,14 +78,14 @@ public class EventUpdateController {
 			model.addAttribute("message",  "Event successfully updated");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTUPDATE_POST, Level.INFO, "update successful");
 			return "redirect:/calendar";
 		} catch (Exception e) {
 			e.printStackTrace();;
 			model.addAttribute("message",  "There was a problem updating the event at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTUPDATE_POST, Level.ERROR, "unknown exception thrown");
 			return "EventUpdate";
 		}
 	}

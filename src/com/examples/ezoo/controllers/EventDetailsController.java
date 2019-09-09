@@ -1,11 +1,13 @@
 package com.examples.ezoo.controllers;
 
+import org.apache.logging.log4j.Level;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 
@@ -31,7 +33,7 @@ private ZooLogger Log = new ZooLogger();
 	public String DisplayEventDetails(Model model
 			, @ModelAttribute("eventToDisplay") Event eventToDisplay) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_EVENTDETAILS_GET, Level.INFO, "navigation");
 		
 		model.addAttribute("eventToDisplay", eventToDisplay);
 		

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.examples.ezoo.config.Config;
 import com.examples.ezoo.dao.EventDAO;
+import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.EventAttendee;
@@ -41,7 +43,7 @@ public class PersonalEventsController {
 	@RequestMapping(value="/PersonalEvents", method=RequestMethod.GET)
 	public String DisplayCalendar(Model model) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_PERSONALEVENTS_GET, Level.INFO, "navigation");
 		
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		EventDAO dao = context.getBean(EventDAO.class);

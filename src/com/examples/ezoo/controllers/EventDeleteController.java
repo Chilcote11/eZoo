@@ -36,7 +36,7 @@ public class EventDeleteController {
 	@RequestMapping(value="/EventDelete", method=RequestMethod.POST)
 	public String deleteEvent(Model model, @ModelAttribute("eventToDelete") Event eventToDelete) {
 		
-		// TODO logging
+		Log.controllerLog(Origin.CONTROLLER_EVENTDELETE_POST, Level.INFO, "navigation");
 		
 		// Call DAO method
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
@@ -47,14 +47,14 @@ public class EventDeleteController {
 			model.addAttribute("message",  "Event successfully deleted");
 			model.addAttribute("messageClass", "alert-success");
 			context.close();
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTDELETE_POST, Level.INFO, "delete successful");
 			return "redirect:/calendar";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("message",  "There was a problem deleting the event at this time");
 			model.addAttribute("messageClass",  "alert-danger");
 			context.close();
-			// TODO logging
+			Log.controllerLog(Origin.CONTROLLER_EVENTDELETE_POST, Level.ERROR, "unknown exception thrown");
 			return "redirect:/calendar";
 		}
 	}
