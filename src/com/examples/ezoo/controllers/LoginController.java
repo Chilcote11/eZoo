@@ -15,11 +15,26 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.User;
 
+/** 
+ * Allows users to login to their account. 
+ * 
+ * Note: login handled by Spring based on config files
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class LoginController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for the login page
+	 * 
+	 * @param model
+	 * @param error
+	 * @return view name
+	 */
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String displayLoginForm(Model model
 			, @RequestParam(value="error", required=false) String error) {
@@ -36,6 +51,17 @@ public class LoginController {
 		return "login";
 	}
 	
+	/**
+	 * Validates a user's login credentials
+	 * 
+	 * Spring handles the heavy lifting here, based on the instructions
+	 * I gave in WebSecurityConfiguration
+	 * 
+	 * @param model
+	 * @param newUser
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, @Valid @ModelAttribute("userToValidate") User newUser, Errors errors) {
 		

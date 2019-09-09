@@ -20,15 +20,25 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 
+/**
+ * Allows employees to create new events and save them to the database
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class EventCreateController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for event creation page
+	 * 
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventCreate", method=RequestMethod.GET)
-	public String DisplayCreateEventForm(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayCreateEventForm(Model model) {
 		
 		// TODO logging
 		
@@ -39,6 +49,14 @@ public class EventCreateController {
 		return "EventCreate";
 	}
 	
+	/**
+	 * Validates form inputs and calls DAO method to save an event to the database
+	 * 
+	 * @param model
+	 * @param newEvent
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventCreate", method=RequestMethod.POST)
 	public String createEvent(Model model, @Valid @ModelAttribute("newEvent") Event newEvent, Errors errors) {
 		

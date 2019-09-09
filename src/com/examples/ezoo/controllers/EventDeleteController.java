@@ -15,11 +15,24 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 
+/**
+ * Allows employees to delete an event from the database
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class EventDeleteController {
 
 	private ZooLogger Log = new ZooLogger();
 
+	/**
+	 * Validates form inputs and calls DAO method to delete an event from the database
+	 * 
+	 * @param model
+	 * @param eventToDelete
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventDelete", method=RequestMethod.POST)
 	public String deleteEvent(Model model, @ModelAttribute("eventToDelete") Event eventToDelete) {
 		

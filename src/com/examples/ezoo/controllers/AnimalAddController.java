@@ -1,7 +1,5 @@
 package com.examples.ezoo.controllers;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.Level;
@@ -21,11 +19,23 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
+/**
+ * Allows employees to save an animal into the database
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class AnimalAddController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
+	/** 
+	 * Prepares attributes a page to add an animal
+	 * 
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping(value="/AnimalAdd", method=RequestMethod.GET)
 	public String DisplayAddAnimalForm(Model model) {
 		
@@ -36,6 +46,14 @@ public class AnimalAddController {
 		return "AnimalAdd";		
 	}
 	
+	/**
+	 * Validates form inputs and calls DAO method to save animal to database
+	 * 
+	 * @param model
+	 * @param newAnimal
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping(value="/AnimalAdd", method=RequestMethod.POST)
 	public String addAnimal(Model model, @Valid @ModelAttribute("newAnimal") Animal newAnimal, Errors errors) {
 		

@@ -9,16 +9,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 
+/**
+ * Allows users to check out the details of an event
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class EventDetailsController {
 
 private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for event details page
+	 * 
+	 * @param model
+	 * @param eventToDisplay
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventDetails", method=RequestMethod.GET)
-	public String DisplayCalendar(Model model
-			, @ModelAttribute("eventToDisplay") Event eventToDisplay
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayEventDetails(Model model
+			, @ModelAttribute("eventToDisplay") Event eventToDisplay) {
 		
 		// TODO logging
 		

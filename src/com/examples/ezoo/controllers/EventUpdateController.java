@@ -19,15 +19,26 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 
+/** 
+ * Allows users to update a previously created event
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class EventUpdateController {
 
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for event update page
+	 * 
+	 * @param model
+	 * @param eventToUpdate
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventUpdate", method=RequestMethod.GET)
-	public String DisplayUpdatePage(Model model, @ModelAttribute("eventToUpdate") Event eventToUpdate
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayUpdatePage(Model model, @ModelAttribute("eventToUpdate") Event eventToUpdate) {
 		
 		// TODO logging
 		
@@ -36,6 +47,14 @@ public class EventUpdateController {
 		return "EventUpdate";
 	}
 	
+	/**
+	 * Validates form inputs and calls DAO method to update an event
+	 * 
+	 * @param model
+	 * @param eventToUpdate
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventUpdate", method=RequestMethod.POST)
 	public String updateEvent(Model model, @Valid @ModelAttribute("eventToUpdate") Event eventToUpdate, Errors errors) {
 		

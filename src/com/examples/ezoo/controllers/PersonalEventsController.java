@@ -21,11 +21,23 @@ import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
+/**
+ * Allows users to see all events they've signed up for
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class PersonalEventsController {
 
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for the personal events page
+	 * 
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping(value="/PersonalEvents", method=RequestMethod.GET)
 	public String DisplayCalendar(Model model) {
 		

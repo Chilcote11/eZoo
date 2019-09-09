@@ -15,11 +15,24 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.User;
 
+/**
+ * Allows users to sign up for an event
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class EventSignUpController {
 
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Calls DAO method to save an EventAttendee
+	 * 
+	 * @param model
+	 * @param eventToAttend
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventSignUp", method=RequestMethod.POST)
 	public String signUp(Model model, @ModelAttribute("eventToAttend") Event eventToAttend) {
 

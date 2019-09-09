@@ -18,12 +18,25 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
+/**
+ * Allows employees to remove animals from the database
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 //@DenyAll
 public class AnimalDeleteController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	/**
+	 * Validates form inputs and calls DAO method to delete an animal from the database
+	 * 
+	 * @param model
+	 * @param animalToDelete
+	 * @return view name
+	 */
 	@RolesAllowed("ROLE_ADMIN")
 //	@DenyAll
 	@RequestMapping(value="/AnimalDelete", method=RequestMethod.POST)

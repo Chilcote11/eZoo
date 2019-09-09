@@ -22,11 +22,24 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
+/**
+ * Allows a user to unassign a feeding schedule from an animal
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class FSUnassignController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	/**
+	 * Calls DAO method to remove a feeding schedule from an animal
+	 * 
+	 * @param model
+	 * @param animalToUnassign
+	 * @return view name
+	 */
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/FSUnassign", method=RequestMethod.POST)
 	public String unassignFeedingSchedule(Model model, @ModelAttribute("animal") Animal animalToUnassign) {

@@ -15,11 +15,24 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.User;
 
+/** 
+ * Allow users to leave an event they've previously signed up for
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class EventLeaveController {
 
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Calls DAO method to delete an EventAttendee
+	 * 
+	 * @param model
+	 * @param eventToLeave
+	 * @return view name
+	 */
 	@RequestMapping(value="/EventLeave", method=RequestMethod.POST)
 	public String signUp(Model model, @ModelAttribute("eventToLeave") Event eventToLeave) {
 

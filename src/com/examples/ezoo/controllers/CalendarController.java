@@ -20,15 +20,25 @@ import com.examples.ezoo.model.Event;
 import com.examples.ezoo.model.EventAttendee;
 import com.examples.ezoo.model.User;
 
+/**
+ * Allows users and employees to see and interact with the zoo's events
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class CalendarController {
 
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for event management (calendar) page
+	 * 
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping(value="/calendar", method=RequestMethod.GET)
-	public String DisplayCalendar(Model model
-			, @ModelAttribute("message") String message
-			, @ModelAttribute("messageClass") String messageClass) {
+	public String DisplayCalendar(Model model) {
 		
 		// TODO logging
 		
@@ -49,7 +59,7 @@ public class CalendarController {
 		model.addAttribute("eventDetails", new Event());		// use with details form
 		model.addAttribute("eventToAttend", new Event());
 		model.addAttribute("eventToLeave", new Event());
-		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP
+		model.addAttribute("now", LocalDateTime.now());		// won't work in JSP, must have here
 		
 		// add a list of this users events to the model object
 		User me = new User();

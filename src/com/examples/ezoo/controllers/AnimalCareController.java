@@ -19,12 +19,24 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 
+/**
+ * Allows users and employees to see all animals in the zoo
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class AnimalCareController {
 	
 	private ZooLogger Log = new ZooLogger();
 
-	@RolesAllowed("ROLE_ADMIN")
+	/**
+	 * Prepares attributes for animal care page
+	 * 
+	 * @param model
+	 * @return view name
+	 */
+//	@RolesAllowed("ROLE_ADMIN")
 	@RequestMapping(value="/animalCare", method=RequestMethod.GET)
 	public String DisplayAnimalCare(Model model) {
 		
@@ -50,8 +62,8 @@ public class AnimalCareController {
 				longest = a;
 		model.addAttribute("longestNamedAnimal", longest);
 		
-		model.addAttribute("animal", new Animal());			// needed for animal care page
-				// used for deletion, assignment, and unassignment forms
+		// needed for animal care JSP - used for deletion, assignment, and unassignment forms
+		model.addAttribute("animal", new Animal());
 		
 		context.close();
 		return "animalCare";

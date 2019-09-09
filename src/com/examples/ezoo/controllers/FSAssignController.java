@@ -26,15 +26,13 @@ import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
 /**
- * Controller implementation class FSAssignmentController
- * 		calls the DAO method to assign/remove a feeding schedule from a given animal
- * 		"unassignment" logic (post method only) accessed from animalCare page
- * 		"assignment" logic (uses both get and post) accessed from animalCare page
- * 			but then redirects to (gets) assignFeedingSchedule Controller.  from there
- * 			a feeding schedule is chosen to assign (post)
+ * Allows users to assign a feeding schedule to an animal
  * 
  * Potential future update:
- * 		add a new dao method to get an animal by its unique ID (see lines 84, 85)
+ * 		add a new dao method to get an animal by its unique ID (see TODO)
+ * 
+ * @author Cory Chilcote
+ * 
  */
 @Controller
 public class FSAssignController {
@@ -45,6 +43,13 @@ public class FSAssignController {
 							// .. since I'm having so much trouble passing it into POST method
 							// this may not be best practice though. unsure what rules are
 
+	/**
+	 * Prepares attributes for the page used to choose which feeding schedule to assign to the chosen animal
+	 * 
+	 * @param model
+	 * @param selectedAnimal
+	 * @return view name
+	 */
 	@RequestMapping(value="/FSAssign", method=RequestMethod.GET)
 	public String DisplayAssignmentOptions(Model model, @ModelAttribute("animal") Animal selectedAnimal) {
 		
@@ -87,6 +92,13 @@ public class FSAssignController {
 		return "FSAssign";
 	}
 	
+	/**
+	 * Calls DAO method to assign a feeding schedule to an animal
+	 * 
+	 * @param model
+	 * @param fs
+	 * @return
+	 */
 	@RequestMapping(value="/FSAssign", method=RequestMethod.POST)
 	public String assignFeedingSchedule(Model model, @ModelAttribute("scheduleToAssign") FeedingSchedule fs) {
 		
@@ -98,7 +110,7 @@ public class FSAssignController {
 		
 		try {
 			// animalDAO has no "getAnimalByID" method, so here's a work-around
-			// could choose to go add one later, wouldn't be too hard
+			// could choose to go add one later, wouldn't be too hard (TODO)
 			List<Animal> animals = animalDAO.getAllAnimals();
 			Collections.sort(animals);		// unnecessary, but I like it
 			Animal animal = new Animal();

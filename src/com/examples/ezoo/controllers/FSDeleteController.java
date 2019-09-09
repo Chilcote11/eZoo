@@ -20,11 +20,24 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
+/**
+ * Allow users to delete a feeding schedule from the database
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class FSDeleteController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	/**
+	 * Calls DAO method to delete a feeding schedule from the database
+	 * 
+	 * @param model
+	 * @param scheduleToDelete
+	 * @return view name
+	 */
 	@RequestMapping(value="/FSDelete", method=RequestMethod.POST)
 	public String deleteFeedingSchedule(Model model, @ModelAttribute("scheduleToDelete") FeedingSchedule scheduleToDelete) {
 

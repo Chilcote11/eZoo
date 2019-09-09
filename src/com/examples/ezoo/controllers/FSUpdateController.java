@@ -18,11 +18,24 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.FeedingSchedule;
 
+/**
+ * Allows users to update a previously created feeding schedule
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class FSUpdateController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	/**
+	 * Prepares attributes for page to update a feeding schedule
+	 * 
+	 * @param model
+	 * @param scheduleToUpdate
+	 * @return view name
+	 */
 	@RequestMapping(value="/FSUpdate", method=RequestMethod.GET)
 	public String DisplayUpdatePage(Model model, @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate) {
 		
@@ -32,6 +45,15 @@ public class FSUpdateController {
 		return "FSUpdate";
 	}
 	
+	
+	/**
+	 * Validates form inputs and calls DAO method to update a feeding schedule
+	 * 
+	 * @param model
+	 * @param scheduleToUpdate
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping(value="/FSUpdate", method=RequestMethod.POST)
 	public String updateFeedingSchedule(Model model, @Valid @ModelAttribute("scheduleToUpdate") FeedingSchedule scheduleToUpdate, Errors errors) {
 		

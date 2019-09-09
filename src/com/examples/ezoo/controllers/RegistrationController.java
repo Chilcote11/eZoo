@@ -19,11 +19,23 @@ import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.User;
 
+/**
+ * Allows users to register new accounts
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class RegistrationController {
 	
 	private ZooLogger Log = new ZooLogger();
 
+	/**
+	 * Prepares attributes for registration page
+	 * 
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String displayRegistrationForm(Model model) {
 		
@@ -33,6 +45,14 @@ public class RegistrationController {
 		return "register";
 	}
 	
+	/**
+	 * Validates form inputs and calls DAO method to save the new account to the database
+	 * 
+	 * @param model
+	 * @param newUser
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(Model model, @Valid @ModelAttribute("newUser") User newUser, Errors errors) {
 		

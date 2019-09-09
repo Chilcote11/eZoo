@@ -8,6 +8,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.examples.ezoo.logger.Origin;
 import com.examples.ezoo.logger.ZooLogger;
 
+/**
+ * Allows me to store index.jsp in WEB-INF/views with all the other JSPs.
+ * 
+ * Without this it must be outside the WEB-INF folder in WebContent, 
+ * which breaks convention
+ * Also allows for logging
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class HomeController {
 

@@ -20,11 +20,23 @@ import com.examples.ezoo.logger.ZooLogger;
 import com.examples.ezoo.model.Animal;
 import com.examples.ezoo.model.FeedingSchedule;
 
+/** 
+ * Allows users to view and interact with the zoo's various feeding schedules
+ * 
+ * @author Cory Chilcote
+ *
+ */
 @Controller
 public class FeedingSchedulesController {
 	
 	private ZooLogger Log = new ZooLogger();
 	
+	/**
+	 * Prepares attributes for the page that displays all feeding schedules
+	 * 
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping(value="/feedingSchedules", method=RequestMethod.GET)
 	public String DisplayFeedingSchedules(Model model) {
 		
