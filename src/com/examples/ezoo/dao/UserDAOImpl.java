@@ -75,6 +75,8 @@ public class UserDAOImpl implements UserDAO {
 			sessionFactory.getCurrentSession().delete(ur);
 		}
 		
+		// TODO delete from EVENT_ATTENDEES
+		
 		// delete from USERS table
 		sessionFactory.getCurrentSession().delete(user);
 		
